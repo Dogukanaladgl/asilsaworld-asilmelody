@@ -3,90 +3,22 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import LightboxModal, {
-  type LightboxItem,
-} from "@/components/ui/LightboxModal";
+import LightboxModal from "@/components/ui/LightboxModal";
+import { furnitureData, type FurnitureItem } from "@/lib/data";
 
-const collections: LightboxItem[] = [
-  {
-    id: "1",
-    title: "Linen Lounge",
-    imageUrl:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop",
-    description:
-      "Soft linen upholstery meets sculptural form — a lounge piece designed for quiet, elevated living.",
-  },
-  {
-    id: "2",
-    title: "Oak Dining",
-    imageUrl:
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop",
-    description:
-      "Warm oak surfaces and balanced proportions create a dining experience rooted in timeless craft.",
-  },
-  {
-    id: "3",
-    title: "Serene Bedroom",
-    imageUrl:
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-    description:
-      "A calm sanctuary of muted tones and refined textures, composed for restful elegance.",
-  },
-  {
-    id: "4",
-    title: "Marble Accent",
-    imageUrl:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
-    description:
-      "Natural marble veining and clean geometry — an accent that anchors the room with quiet luxury.",
-  },
-  {
-    id: "5",
-    title: "Velvet Corner",
-    imageUrl:
-      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=1200&auto=format&fit=crop",
-    description:
-      "Deep velvet and inviting curves invite conversation, comfort, and understated sophistication.",
-  },
-  {
-    id: "6",
-    title: "Reading Nook",
-    imageUrl:
-      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1200&auto=format&fit=crop",
-    description:
-      "A intimate composition of soft seating and warm light — designed for slow, intentional moments.",
-  },
-  {
-    id: "7",
-    title: "Soft Gallery",
-    imageUrl:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",
-    description:
-      "Gallery-like spacing and soft neutrals turn everyday living into a curated visual experience.",
-  },
-  {
-    id: "8",
-    title: "Morning Light",
-    imageUrl:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1200&auto=format&fit=crop",
-    description:
-      "Sunlit surfaces and airy forms celebrate openness — furniture that breathes with the room.",
-  },
-];
-
-const aspectClasses: Record<string, string> = {
-  "1": "aspect-[3/4]",
-  "2": "aspect-square",
-  "3": "aspect-[4/5]",
-  "4": "aspect-[3/4]",
-  "5": "aspect-[5/4]",
-  "6": "aspect-square",
-  "7": "aspect-[3/4]",
-  "8": "aspect-[4/5]",
-};
+const aspectClasses = [
+  "aspect-[3/4]",
+  "aspect-square",
+  "aspect-[4/5]",
+  "aspect-[3/4]",
+  "aspect-[5/4]",
+  "aspect-square",
+  "aspect-[3/4]",
+  "aspect-[4/5]",
+] as const;
 
 export default function Collections() {
-  const [selectedItem, setSelectedItem] = useState<LightboxItem | null>(null);
+  const [selectedItem, setSelectedItem] = useState<FurnitureItem | null>(null);
 
   return (
     <section
@@ -101,7 +33,7 @@ export default function Collections() {
       </div>
 
       <div className="mx-auto max-w-7xl columns-1 gap-6 sm:columns-2 lg:columns-3">
-        {collections.map((item) => (
+        {furnitureData.map((item, index) => (
           <motion.div
             key={item.id}
             initial={{ opacity: 0, y: 50 }}
@@ -113,7 +45,7 @@ export default function Collections() {
             <button
               type="button"
               onClick={() => setSelectedItem(item)}
-              className={`relative block w-full cursor-pointer overflow-hidden text-left ${aspectClasses[item.id]}`}
+              className={`relative block w-full cursor-pointer overflow-hidden text-left ${aspectClasses[index % aspectClasses.length]}`}
               aria-label={`View details for ${item.title}`}
             >
               <Image
