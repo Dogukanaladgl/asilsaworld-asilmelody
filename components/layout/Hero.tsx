@@ -1,7 +1,12 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop";
@@ -23,23 +28,48 @@ const fadeInUp = {
 };
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(parallaxRef.current, {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative -mt-32 flex h-screen min-h-[600px] w-full items-center justify-center overflow-hidden">
-      <motion.div
-        initial={{ scale: 1.05 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2, ease: "easeOut" }}
-        className="absolute inset-0"
-      >
-        <Image
-          src={HERO_IMAGE}
-          alt="Minimalist premium living space"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </motion.div>
+    <section
+      ref={sectionRef}
+      className="relative -mt-32 flex h-screen min-h-[600px] w-full items-center justify-center overflow-hidden"
+    >
+      <div ref={parallaxRef} className="absolute inset-0 will-change-transform">
+        <motion.div
+          initial={{ scale: 1.05 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={HERO_IMAGE}
+            alt="Minimalist premium living space"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </motion.div>
+      </div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
 

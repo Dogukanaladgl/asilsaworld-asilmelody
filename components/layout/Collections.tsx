@@ -91,7 +91,7 @@ export default function Collections() {
   return (
     <section
       id="collections"
-      className="bg-asilsa-cream px-6 py-24 md:px-10 md:py-32"
+      className="scroll-mt-28 bg-asilsa-cream px-6 py-24 md:px-10 md:py-32"
     >
       <div className="mx-auto mb-16 max-w-7xl text-center md:mb-20">
         <h2 className="font-serif text-3xl font-light tracking-wide text-museum-dark md:text-4xl">

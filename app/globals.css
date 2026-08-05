@@ -7,5 +7,16 @@ html {
 }
 
 body {
-  @apply antialiased bg-asilsa-cream text-museum-dark;
+  @apply select-none bg-asilsa-cream text-museum-dark antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  @apply select-text;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }

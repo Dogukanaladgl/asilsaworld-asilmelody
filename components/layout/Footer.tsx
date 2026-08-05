@@ -51,7 +51,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div id="contact">
+        <div id="contact" className="scroll-mt-28">
           <h3 className="text-[0.65rem] uppercase tracking-[0.3em] text-museum-dark/50">
             Contact
           </h3>
