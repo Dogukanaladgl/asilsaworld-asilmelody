@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent, type DragEvent } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 28 },
@@ -35,6 +36,7 @@ export default function CareersPage() {
   const [fileName, setFileName] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { t } = useLanguage();
 
   const handleFile = (file: File | undefined) => {
     if (!file) return;
@@ -75,14 +77,13 @@ export default function CareersPage() {
             variants={fadeInUp}
             className="font-serif text-4xl font-light tracking-wide text-museum-dark md:text-5xl"
           >
-            Join Our Vision
+            {t.careers.title}
           </motion.h1>
           <motion.p
             variants={fadeInUp}
             className="mx-auto mt-6 max-w-xl text-sm font-light leading-relaxed tracking-wide text-gray-500 md:text-base"
           >
-            Eğer estetiğe, lükse ve kusursuz detaylara tutkuyla bağlıysan, Asilsa
-            World ekibinde sana her zaman yer var.
+            {t.careers.subtitle}
           </motion.p>
           <motion.span
             variants={fadeInUp}
@@ -102,14 +103,14 @@ export default function CareersPage() {
               htmlFor="name"
               className="mb-2 block text-[0.65rem] uppercase tracking-[0.25em] text-museum-dark/45"
             >
-              İsim
+              {t.careers.name}
             </label>
             <input
               id="name"
               name="name"
               type="text"
               required
-              placeholder="Adınız Soyadınız"
+              placeholder={t.careers.namePlaceholder}
               className={inputClass}
             />
           </motion.div>
@@ -119,14 +120,14 @@ export default function CareersPage() {
               htmlFor="email"
               className="mb-2 block text-[0.65rem] uppercase tracking-[0.25em] text-museum-dark/45"
             >
-              E-posta
+              {t.careers.email}
             </label>
             <input
               id="email"
               name="email"
               type="email"
               required
-              placeholder="ornek@email.com"
+              placeholder={t.careers.emailPlaceholder}
               className={inputClass}
             />
           </motion.div>
@@ -136,14 +137,14 @@ export default function CareersPage() {
               htmlFor="position"
               className="mb-2 block text-[0.65rem] uppercase tracking-[0.25em] text-museum-dark/45"
             >
-              Pozisyon
+              {t.careers.position}
             </label>
             <input
               id="position"
               name="position"
               type="text"
               required
-              placeholder="Başvurmak istediğiniz pozisyon"
+              placeholder={t.careers.positionPlaceholder}
               className={inputClass}
             />
           </motion.div>
@@ -153,20 +154,20 @@ export default function CareersPage() {
               htmlFor="message"
               className="mb-2 block text-[0.65rem] uppercase tracking-[0.25em] text-museum-dark/45"
             >
-              Kendini Anlat
+              {t.careers.about}
             </label>
             <textarea
               id="message"
               name="message"
               rows={4}
-              placeholder="Bize biraz kendinizden bahsedin..."
+              placeholder={t.careers.aboutPlaceholder}
               className={`${inputClass} resize-none`}
             />
           </motion.div>
 
           <motion.div variants={fieldVariant}>
             <label className="mb-3 block text-[0.65rem] uppercase tracking-[0.25em] text-museum-dark/45">
-              CV
+              {t.careers.cv}
             </label>
             <div
               role="button"
@@ -206,9 +207,7 @@ export default function CareersPage() {
                 />
               </svg>
               <p className="max-w-xs text-center text-sm font-light tracking-wide text-museum-dark/55">
-                {fileName
-                  ? fileName
-                  : "CV'nizi sürükleyin veya seçmek için tıklayın (.pdf, .docx)"}
+                {fileName ?? t.careers.cvHint}
               </p>
               <input
                 ref={fileInputRef}
@@ -225,7 +224,7 @@ export default function CareersPage() {
               type="submit"
               className="border border-museum-dark/80 px-10 py-3.5 text-[0.7rem] uppercase tracking-[0.3em] text-museum-dark transition-colors duration-500 hover:bg-museum-dark hover:text-asilsa-cream"
             >
-              Başvuruyu Gönder
+              {t.careers.submit}
             </button>
           </motion.div>
         </motion.form>

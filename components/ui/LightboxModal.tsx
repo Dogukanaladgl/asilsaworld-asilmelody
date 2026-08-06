@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { FurnitureItem } from "@/lib/data";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 type LightboxModalProps = {
   isOpen: boolean;
@@ -15,10 +16,12 @@ export default function LightboxModal({
   onClose,
   item,
 }: LightboxModalProps) {
+  const { language, t } = useLanguage();
+
   if (!isOpen || !item) return null;
 
   const whatsappHref = `https://wa.me/905555555555?text=${encodeURIComponent(
-    `Merhaba, ${item.title} hakkında bilgi almak istiyorum.`,
+    t.lightbox.message.replace("{title}", item.title),
   )}`;
 
   return (
@@ -44,7 +47,7 @@ export default function LightboxModal({
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close"
+          aria-label={t.lightbox.close}
           className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center text-museum-dark/60 transition-colors hover:text-museum-dark md:text-asilsa-cream/80 md:hover:text-asilsa-cream"
         >
           <span className="text-2xl font-light leading-none">×</span>
@@ -63,7 +66,7 @@ export default function LightboxModal({
 
         <div className="flex flex-col justify-center px-8 py-10 md:px-12 md:py-14">
           <p className="mb-3 text-[0.65rem] uppercase tracking-[0.3em] text-asilsa-gold">
-            {item.category}
+            {item.category[language]}
           </p>
           <h3
             id="lightbox-title"
@@ -73,10 +76,10 @@ export default function LightboxModal({
           </h3>
           <span className="mt-4 block h-px w-10 bg-asilsa-gold" />
           <p className="mt-6 text-sm font-light leading-relaxed tracking-wide text-museum-dark/70 md:text-base">
-            {item.description}
+            {item.description[language]}
           </p>
           <p className="mt-5 text-[0.6rem] uppercase tracking-[0.25em] text-museum-dark/35">
-            Ref. {item.id}
+            {t.lightbox.reference} {item.id}
           </p>
           <a
             href={whatsappHref}
@@ -84,7 +87,7 @@ export default function LightboxModal({
             rel="noopener noreferrer"
             className="mt-10 inline-flex w-fit items-center justify-center border border-asilsa-gold bg-asilsa-gold/10 px-6 py-3 text-[0.7rem] uppercase tracking-[0.25em] text-museum-dark transition-colors hover:bg-asilsa-gold hover:text-asilsa-cream"
           >
-            WhatsApp&apos;tan Bilgi Al
+            {t.lightbox.whatsapp}
           </a>
         </div>
       </motion.div>

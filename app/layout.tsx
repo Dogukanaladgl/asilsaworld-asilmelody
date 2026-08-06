@@ -3,6 +3,7 @@ import { Playfair_Display, Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SmoothScrolling from "@/components/layout/SmoothScrolling";
+import LanguageProvider from "@/components/providers/LanguageProvider";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -38,11 +39,13 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${geistSans.variable} ${geistMono.variable} font-sans`}
       >
-        <SmoothScrolling>
-          <Header />
-          <main className="pt-32">{children}</main>
-          <Footer />
-        </SmoothScrolling>
+        <LanguageProvider>
+          <SmoothScrolling>
+            <Header />
+            <main className="pt-32">{children}</main>
+            <Footer />
+          </SmoothScrolling>
+        </LanguageProvider>
       </body>
     </html>
   );

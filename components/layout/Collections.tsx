@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import LightboxModal from "@/components/ui/LightboxModal";
 import { furnitureData, type FurnitureItem } from "@/lib/data";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const aspectClasses = [
   "aspect-[3/4]",
@@ -19,6 +20,7 @@ const aspectClasses = [
 
 export default function Collections() {
   const [selectedItem, setSelectedItem] = useState<FurnitureItem | null>(null);
+  const { t } = useLanguage();
 
   return (
     <section
@@ -27,7 +29,7 @@ export default function Collections() {
     >
       <div className="mx-auto mb-16 max-w-7xl text-center md:mb-20">
         <h2 className="font-serif text-3xl font-light tracking-wide text-museum-dark md:text-4xl">
-          Curated Collections
+          {t.collections.title}
         </h2>
         <span className="mx-auto mt-5 block h-px w-12 bg-asilsa-gold" />
       </div>
@@ -46,7 +48,7 @@ export default function Collections() {
               type="button"
               onClick={() => setSelectedItem(item)}
               className={`relative block w-full cursor-pointer overflow-hidden text-left ${aspectClasses[index % aspectClasses.length]}`}
-              aria-label={`View details for ${item.title}`}
+              aria-label={`${item.title} — ${t.collections.inquire}`}
             >
               <Image
                 src={item.imageUrl}
@@ -63,7 +65,7 @@ export default function Collections() {
                   {item.title}
                 </p>
                 <span className="border border-asilsa-cream/80 px-5 py-2 text-[0.65rem] uppercase tracking-[0.25em] text-asilsa-cream transition-colors group-hover:bg-asilsa-cream/10">
-                  Bilgi Al
+                  {t.collections.inquire}
                 </span>
               </div>
             </button>

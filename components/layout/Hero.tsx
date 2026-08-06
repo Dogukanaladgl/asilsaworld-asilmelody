@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,6 +31,7 @@ const fadeInUp = {
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -83,13 +85,13 @@ export default function Hero() {
           variants={fadeInUp}
           className="font-serif text-4xl font-light leading-tight tracking-wide text-asilsa-cream md:text-6xl lg:text-7xl"
         >
-          Elegance in Every Detail.
+          {t.hero.title}
         </motion.h1>
         <motion.p
           variants={fadeInUp}
           className="mt-6 text-sm font-light tracking-[0.2em] text-asilsa-cream/85 md:text-base"
         >
-          Discover the art of living spaces.
+          {t.hero.subtitle}
         </motion.p>
       </motion.div>
 
@@ -105,7 +107,7 @@ export default function Hero() {
           className="flex flex-col items-center gap-3"
         >
           <span className="text-[0.65rem] uppercase tracking-[0.3em] text-asilsa-cream/80">
-            Scroll to Explore
+            {t.hero.scroll}
           </span>
           <span className="h-12 w-px bg-gradient-to-b from-asilsa-cream/70 to-transparent" />
         </motion.div>

@@ -3,22 +3,21 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-
-const navLinks = [
-  { href: "/#collections", label: "Collections", external: false },
-  {
-    href: "https://asilmelody.com",
-    label: "Asil Melody",
-    external: true,
-  },
-  { href: "/careers", label: "Careers", external: false },
-  { href: "#contact", label: "Contact", external: false },
-] as const;
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import LanguageToggle from "@/components/ui/LanguageToggle";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const navLinks = [
+    { href: "/#collections", label: t.nav.collections, external: false },
+    { href: "https://asilmelody.com", label: t.nav.asilMelody, external: true },
+    { href: "/careers", label: t.nav.careers, external: false },
+    { href: "#contact", label: t.nav.contact, external: false },
+  ];
 
   return (
     <>
@@ -61,19 +60,14 @@ export default function Header() {
             )}
           </nav>
 
-          <button
-            type="button"
-            onClick={() => {}}
-            className="hidden text-sm font-light tracking-[0.2em] text-gray-800 transition-colors hover:text-asilsa-gold md:flex md:justify-self-end"
-            aria-label="Switch language"
-          >
-            TR / EN
-          </button>
+          <LanguageToggle className="hidden md:flex md:justify-self-end" />
 
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen((open) => !open)}
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={
+              isMobileMenuOpen ? t.common.closeMenu : t.common.openMenu
+            }
             aria-expanded={isMobileMenuOpen}
             className="relative z-[70] flex h-8 w-8 items-center justify-center text-museum-dark md:hidden"
           >
@@ -141,14 +135,7 @@ export default function Header() {
 
             <span className="mt-14 block h-px w-10 bg-asilsa-gold" />
 
-            <button
-              type="button"
-              onClick={() => {}}
-              className="mt-14 text-sm font-light tracking-[0.3em] text-museum-dark/70 transition-colors hover:text-asilsa-gold"
-              aria-label="Switch language"
-            >
-              TR / EN
-            </button>
+            <LanguageToggle className="mt-14 tracking-[0.3em]" />
           </motion.div>
         )}
       </AnimatePresence>
