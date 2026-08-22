@@ -70,13 +70,13 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, delay: index * 0.08 }}
-            className="text-center lg:text-left"
+            className="min-w-0 text-center lg:text-left"
           >
             <FeatureIcon index={index} />
-            <h3 className="mt-4 text-[0.7rem] uppercase tracking-[0.22em] text-museum-dark">
+            <h3 className="mt-4 text-[0.68rem] uppercase tracking-[0.14em] text-museum-dark sm:tracking-[0.22em]">
               {item.title}
             </h3>
-            <p className="mt-3 text-sm font-light leading-relaxed tracking-wide text-museum-dark/55">
+            <p className="mx-auto mt-3 max-w-[22rem] text-sm font-light leading-relaxed tracking-normal text-museum-dark/55 break-words lg:mx-0 lg:tracking-wide">
               {item.text}
             </p>
           </motion.div>

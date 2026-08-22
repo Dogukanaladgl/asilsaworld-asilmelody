@@ -3,14 +3,17 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { brand, getWhatsAppUrl } from "@/lib/contact";
+import { brand } from "@/lib/contact";
 
 const inputClass =
-  "w-full border-0 border-b border-museum-dark/20 bg-transparent py-2.5 text-sm font-light tracking-wide text-museum-dark outline-none transition-colors placeholder:text-museum-dark/35 focus:border-asilsa-gold";
+  "w-full border-0 border-b border-museum-dark/20 bg-transparent py-2.5 text-base font-light tracking-wide text-museum-dark outline-none transition-colors placeholder:text-museum-dark/35 focus:border-asilsa-gold sm:text-sm";
+
+type Status = "idle" | "sending" | "success" | "error";
 
 export default function FloatingContact() {
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
   useEffect(() => {
     if (!isOpen) return;
@@ -25,35 +28,47 @@ export default function FloatingContact() {
     };
   }, [isOpen]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
 
-    const body = t.contactPanel.whatsappBody
-      .replace("{name}", name)
-      .replace("{email}", email)
-      .replace("{message}", message);
-
-    window.open(getWhatsAppUrl(body), "_blank", "noopener,noreferrer");
-    setIsOpen(false);
-    e.currentTarget.reset();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[55] flex flex-col items-end justify-end sm:inset-x-auto sm:bottom-8 sm:right-8 sm:items-end">
+    <>
       <AnimatePresence>
         {isOpen && (
-          <>
+          <motion.div
+            className="fixed inset-0 z-[55] flex items-end justify-end sm:items-end sm:justify-end sm:p-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
             <motion.button
               type="button"
               aria-label={t.contactPanel.close}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="pointer-events-auto absolute inset-0 h-[100dvh] w-full bg-black/35 sm:hidden"
+              className="absolute inset-0 bg-black/40 sm:bg-black/25"
               onClick={() => setIsOpen(false)}
             />
 
@@ -65,9 +80,9 @@ export default function FloatingContact() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 40 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="pointer-events-auto relative z-10 mb-0 w-full max-h-[85dvh] overflow-y-auto overscroll-contain border-t border-asilsa-beige/80 bg-asilsa-cream shadow-[0_-12px_40px_rgba(44,36,28,0.15)] sm:mb-3 sm:w-[22rem] sm:max-h-[min(85dvh,34rem)] sm:border sm:shadow-[0_20px_60px_rgba(44,36,28,0.18)]"
+              className="relative z-10 flex max-h-[min(88dvh,calc(100svh-1rem))] w-full flex-col overflow-hidden border-t border-asilsa-beige/80 bg-asilsa-cream shadow-[0_-12px_40px_rgba(44,36,28,0.15)] sm:mb-16 sm:max-h-[min(85dvh,34rem)] sm:w-[22rem] sm:border sm:shadow-[0_20px_60px_rgba(44,36,28,0.18)]"
             >
-              <div className="sticky top-0 z-10 flex items-center justify-between border-b border-asilsa-beige/70 bg-museum-dark px-5 py-3.5">
+              <div className="flex shrink-0 items-center justify-between border-b border-asilsa-beige/70 bg-museum-dark px-5 py-3.5">
                 <h2
                   id="contact-panel-title"
                   className="font-serif text-sm font-light tracking-[0.08em] text-asilsa-cream"
@@ -78,13 +93,16 @@ export default function FloatingContact() {
                   type="button"
                   onClick={() => setIsOpen(false)}
                   aria-label={t.contactPanel.close}
-                  className="flex h-9 w-9 items-center justify-center text-asilsa-cream/70 transition-colors hover:text-asilsa-cream"
+                  className="flex h-11 w-11 items-center justify-center text-asilsa-cream/70 transition-colors hover:text-asilsa-cream"
                 >
-                  <span className="text-xl font-light leading-none">×</span>
+                  <span className="text-2xl font-light leading-none">×</span>
                 </button>
               </div>
 
-              <form onSubmit={handleSubmit} className="px-5 pb-safe pt-4 sm:pb-5">
+              <form
+                onSubmit={handleSubmit}
+                className="overflow-y-auto overscroll-contain px-5 pb-safe pt-4 sm:pb-5"
+              >
                 <p className="mb-5 border-l border-asilsa-gold pl-3 text-sm font-light leading-relaxed tracking-wide text-museum-dark/70 sm:mb-6">
                   {t.contactPanel.greeting}
                 </p>
@@ -133,25 +151,44 @@ export default function FloatingContact() {
 
                 <button
                   type="submit"
-                  className="btn-primary mt-6 w-full sm:mt-7"
+                  disabled={status === "sending"}
+                  className="btn-primary mt-6 w-full disabled:cursor-wait disabled:opacity-70 sm:mt-7"
                 >
-                  {t.contactPanel.send}
+                  {status === "sending"
+                    ? t.contactPanel.sending
+                    : t.contactPanel.send}
                 </button>
+                {status === "success" && (
+                  <p className="mt-3 text-center text-xs font-light text-museum-dark/70">
+                    {t.contactPanel.success}
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="mt-3 text-center text-xs font-light text-red-800/80">
+                    {t.contactPanel.error}
+                  </p>
+                )}
               </form>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
 
       <motion.button
         type="button"
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={() => {
+          setIsOpen((open) => !open);
+          setStatus("idle");
+        }}
         aria-label={t.common.contactUs}
         aria-expanded={isOpen}
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.6, ease: "easeOut" }}
-        className="pointer-events-auto relative z-20 m-4 flex h-12 w-12 items-center justify-center rounded-full bg-museum-dark text-asilsa-cream shadow-[0_8px_30px_rgba(44,36,28,0.25)] transition-all duration-500 hover:bg-asilsa-gold hover:text-museum-dark sm:m-0 sm:h-14 sm:w-14"
+        className={`fab-inset pointer-events-auto fixed z-[56] flex h-12 w-12 items-center justify-center rounded-full bg-museum-dark text-asilsa-cream shadow-[0_8px_30px_rgba(44,36,28,0.25)] transition-opacity duration-300 hover:bg-asilsa-gold hover:text-museum-dark sm:bottom-8 sm:right-8 sm:h-14 sm:w-14 ${
+          isOpen ? "max-sm:pointer-events-none max-sm:opacity-0" : ""
+        }`}
+        tabIndex={isOpen ? -1 : 0}
       >
         {isOpen ? (
           <svg
@@ -159,7 +196,7 @@ export default function FloatingContact() {
             fill="none"
             stroke="currentColor"
             strokeWidth="1.4"
-            className="h-5 w-5 sm:h-6 sm:w-6"
+            className="hidden h-5 w-5 sm:block sm:h-6 sm:w-6"
             aria-hidden
           >
             <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
@@ -170,7 +207,7 @@ export default function FloatingContact() {
             fill="none"
             stroke="currentColor"
             strokeWidth="1.4"
-            className="h-5 w-5 transition-transform duration-500 group-hover:scale-105 sm:h-6 sm:w-6"
+            className="h-5 w-5 sm:h-6 sm:w-6"
             aria-hidden
           >
             <path
@@ -181,6 +218,6 @@ export default function FloatingContact() {
           </svg>
         )}
       </motion.button>
-    </div>
+    </>
   );
 }

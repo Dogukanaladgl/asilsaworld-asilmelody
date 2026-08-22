@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { FurnitureItem } from "@/lib/data";
@@ -18,6 +19,19 @@ export default function LightboxModal({
   item,
 }: LightboxModalProps) {
   const { language, t } = useLanguage();
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.body.classList.add("scroll-locked");
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.classList.remove("scroll-locked");
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen || !item) return null;
 
@@ -42,19 +56,19 @@ export default function LightboxModal({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 40 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="relative grid max-h-[92dvh] w-full max-w-4xl overflow-y-auto overscroll-contain bg-asilsa-cream sm:max-h-[90vh] sm:overflow-hidden sm:rounded-xl md:grid-cols-2"
+        className="relative grid max-h-[100svh] w-full max-w-4xl overflow-y-auto overscroll-contain bg-asilsa-cream sm:max-h-[90vh] sm:overflow-hidden sm:rounded-xl md:grid-cols-2"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label={t.lightbox.close}
-          className="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-asilsa-cream text-museum-dark shadow-md ring-1 ring-museum-dark/10 transition-colors hover:bg-museum-dark hover:text-asilsa-cream"
+          className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-asilsa-cream text-museum-dark shadow-md ring-1 ring-museum-dark/10 transition-colors hover:bg-museum-dark hover:text-asilsa-cream"
         >
           <span className="text-2xl font-light leading-none">×</span>
         </button>
 
-        <div className="relative h-56 w-full shrink-0 sm:h-72 md:min-h-[520px]">
+        <div className="relative h-[min(42svh,18rem)] w-full shrink-0 sm:h-72 md:min-h-[520px]">
           <Image
             src={item.imageUrl}
             alt={item.title}

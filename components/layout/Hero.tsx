@@ -25,7 +25,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative -mt-[3.75rem] bg-asilsa-cream sm:-mt-24 md:-mt-32">
+    <section className="relative -mt-[calc(3.75rem+env(safe-area-inset-top))] bg-asilsa-cream sm:-mt-24 md:-mt-32">
       <div className="mx-auto grid min-h-[100svh] max-w-[1400px] items-stretch md:grid-cols-2">
         {/* Arched visual plane — Lumina-inspired */}
         <motion.div
@@ -51,7 +51,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="text-fluid-caption mb-5 uppercase tracking-[0.32em] text-museum-dark/45"
+            className="text-fluid-caption mb-5 uppercase tracking-[0.22em] text-museum-dark/45 sm:tracking-[0.32em]"
           >
             {t.nav.collections}
           </motion.p>
@@ -61,7 +61,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="font-serif text-[clamp(2.4rem,1.4rem+4.5vw,4.75rem)] font-light leading-[1.08] tracking-tight text-museum-dark"
+            className="max-w-full break-words font-serif text-[clamp(2rem,1.15rem+5.2vw,4.75rem)] font-light leading-[1.1] tracking-tight text-museum-dark"
           >
             <span className="block">{t.hero.line1}</span>
             <span className="block italic text-asilsa-gold/90">{t.hero.line2}</span>
@@ -85,7 +85,7 @@ export default function Hero() {
             variants={fade}
             className="mt-9"
           >
-            <Link href="/#collections" className="btn-primary gap-2">
+            <Link href="/#collections" className="btn-primary w-full gap-2 sm:w-auto">
               {t.hero.cta}
               <span aria-hidden className="text-base leading-none">
                 →

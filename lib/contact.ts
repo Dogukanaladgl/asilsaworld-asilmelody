@@ -12,7 +12,6 @@ export const contact = {
   whatsappNumber: "905300122700",
   email: "hello@asilsa.world",
   instagramHandle: "@asilsa.world",
-  instagramUrl: "https://instagram.com/asilsa.world",
   // Location
   addressLines: ["Fevziçakmak, 10740. Sokak No: 1", "Karatay / Konya, Türkiye"],
   addressShort: "Karatay, Konya",
@@ -20,6 +19,14 @@ export const contact = {
   // Hours
   hoursDisplay: "08:00 – 20:00",
   hoursNote: "Her gün",
+  // Social — update URLs when ready
+  social: {
+    facebook: "https://facebook.com/",
+    instagram: "https://instagram.com/asilsa.world",
+    tiktok: "https://tiktok.com/",
+    x: "https://x.com/",
+    youtube: "https://youtube.com/",
+  },
 } as const;
 
 export function getWhatsAppUrl(message?: string) {

@@ -45,7 +45,7 @@ textarea,
   }
 
   .px-fluid {
-    padding-inline: clamp(1.125rem, 4.5vw, 2.5rem);
+    padding-inline: clamp(1.25rem, 5.5vw, 2.5rem);
   }
 
   .py-section {
@@ -64,18 +64,27 @@ textarea,
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .fab-inset {
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    right: max(1rem, env(safe-area-inset-right));
+  }
+
   .btn-primary {
-    @apply inline-flex items-center justify-center border border-museum-dark bg-museum-dark px-7 py-3.5 text-[0.7rem] uppercase tracking-[0.28em] text-asilsa-cream transition-all duration-500;
+    @apply inline-flex items-center justify-center border border-museum-dark bg-museum-dark px-5 py-3.5 text-center text-[0.65rem] uppercase tracking-[0.18em] text-asilsa-cream transition-all duration-500 sm:px-7 sm:text-[0.7rem] sm:tracking-[0.28em];
     @apply hover:border-asilsa-gold hover:bg-asilsa-gold hover:text-museum-dark;
   }
 
   .btn-primary-light {
-    @apply inline-flex items-center justify-center border border-asilsa-cream bg-asilsa-cream/15 px-7 py-3.5 text-[0.7rem] uppercase tracking-[0.28em] text-asilsa-cream backdrop-blur-sm transition-all duration-500;
+    @apply inline-flex items-center justify-center border border-asilsa-cream bg-asilsa-cream/15 px-5 py-3.5 text-center text-[0.65rem] uppercase tracking-[0.18em] text-asilsa-cream backdrop-blur-sm transition-all duration-500 sm:px-7 sm:text-[0.7rem] sm:tracking-[0.28em];
     @apply hover:bg-asilsa-cream hover:text-museum-dark;
   }
 
   .btn-gold {
-    @apply inline-flex items-center justify-center border border-asilsa-gold bg-asilsa-gold px-7 py-3.5 text-[0.7rem] uppercase tracking-[0.25em] text-museum-dark transition-all duration-500;
+    @apply inline-flex items-center justify-center border border-asilsa-gold bg-asilsa-gold px-5 py-3.5 text-center text-[0.65rem] uppercase tracking-[0.16em] text-museum-dark transition-all duration-500 sm:px-7 sm:text-[0.7rem] sm:tracking-[0.25em];
     @apply hover:bg-museum-dark hover:border-museum-dark hover:text-asilsa-cream;
   }
 }

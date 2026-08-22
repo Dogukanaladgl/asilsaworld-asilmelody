@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import SocialIcons from "@/components/ui/SocialIcons";
 import { contact, getMapsEmbedUrl, getMapsUrl } from "@/lib/contact";
 
 export default function Location() {
@@ -10,7 +11,7 @@ export default function Location() {
   return (
     <section
       id="location"
-      className="scroll-mt-20 border-t border-gray-200/40 bg-asilsa-cream px-fluid py-section md:scroll-mt-28"
+      className="scroll-mt-[calc(5rem+env(safe-area-inset-top))] border-t border-gray-200/40 bg-asilsa-cream px-fluid py-section md:scroll-mt-32"
     >
       <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] md:gap-12 lg:gap-16">
         <motion.div
@@ -56,6 +57,8 @@ export default function Location() {
               <p key={line}>{line}</p>
             ))}
           </address>
+
+          <SocialIcons variant="onLight" className="mt-6" />
 
           <a
             href={getMapsUrl()}

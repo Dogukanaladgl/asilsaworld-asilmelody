@@ -25,7 +25,7 @@ export default function Collections() {
   return (
     <section
       id="collections"
-      className="scroll-mt-20 bg-asilsa-cream px-fluid py-section md:scroll-mt-28"
+      className="scroll-mt-[calc(5rem+env(safe-area-inset-top))] bg-asilsa-cream px-fluid py-section md:scroll-mt-32"
     >
       <div className="mx-auto mb-10 max-w-7xl text-center sm:mb-12 md:mb-16 lg:mb-20">
         <p className="text-fluid-body mx-auto mb-3 max-w-xs font-light leading-relaxed tracking-wide text-museum-dark/55 sm:mb-4 sm:max-w-md md:mb-5">

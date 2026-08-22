@@ -7,7 +7,7 @@ export default function PartnerBanner() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-[min(70vh,40rem)] w-full items-center justify-center overflow-hidden bg-museum-spotlight px-fluid py-section md:min-h-[60vh]">
+    <section className="relative flex min-h-[min(70svh,40rem)] w-full items-center justify-center overflow-hidden bg-museum-spotlight px-fluid py-section md:min-h-[60svh]">
       <div className="absolute inset-0 bg-museum-dark/20" />
 
       <motion.div
@@ -30,7 +30,7 @@ export default function PartnerBanner() {
           href="https://asilmelody.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-primary-light mt-8 sm:mt-10"
+          className="btn-primary-light mt-8 w-full sm:mt-10 sm:w-auto"
         >
           {t.partner.cta}
         </a>

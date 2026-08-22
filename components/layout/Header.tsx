@@ -137,9 +137,9 @@ export default function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`fixed top-0 z-50 w-full bg-asilsa-cream/80 py-3.5 backdrop-blur-md sm:py-5 md:py-6 ${isMobileMenuOpen ? "z-[70] bg-asilsa-cream" : ""}`}
+        className={`fixed top-0 z-50 w-full bg-asilsa-cream/80 pt-[env(safe-area-inset-top)] backdrop-blur-md ${isMobileMenuOpen ? "z-[70] bg-asilsa-cream" : ""}`}
       >
-        <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-fluid md:grid md:grid-cols-3">
+        <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-fluid py-3.5 sm:py-5 md:grid md:grid-cols-3 md:py-6">
           <Link
             href="/"
             onClick={closeMobileMenu}
@@ -240,13 +240,13 @@ export default function Header() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed inset-0 z-[65] flex flex-col bg-asilsa-cream md:hidden"
           >
-            <div className="flex h-[3.75rem] items-center justify-between px-fluid">
-              <span className="font-serif text-[0.75rem] font-light tracking-[0.08em] text-museum-dark">
-                {brand.name}
-              </span>
-            </div>
+            <div
+              className="shrink-0"
+              style={{ height: "calc(3.75rem + env(safe-area-inset-top))" }}
+              aria-hidden
+            />
 
-            <nav className="flex flex-1 flex-col items-center justify-center gap-7 px-6 pb-24">
+            <nav className="flex flex-1 flex-col items-center justify-center gap-7 px-6 pb-safe">
               {navItems.map((item) => (
                 <Link
                   key={item.key}

@@ -47,7 +47,7 @@ export default function Spaces() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/70 via-museum-dark/10 to-transparent" />
-              <span className="absolute inset-x-0 bottom-0 p-4 text-center text-[0.65rem] uppercase tracking-[0.22em] text-asilsa-cream sm:p-5 sm:tracking-[0.28em]">
+              <span className="absolute inset-x-0 bottom-0 p-3 text-center text-[0.62rem] uppercase leading-snug tracking-[0.14em] text-asilsa-cream sm:p-5 sm:text-[0.65rem] sm:tracking-[0.28em]">
                 {item.label}
               </span>
             </Link>

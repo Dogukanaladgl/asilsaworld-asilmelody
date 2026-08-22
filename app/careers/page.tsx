@@ -30,17 +30,20 @@ const fieldVariant = {
 };
 
 const inputClass =
-  "w-full border-0 border-b border-museum-dark/20 bg-transparent py-3 text-sm font-light tracking-wide text-museum-dark outline-none transition-colors placeholder:text-museum-dark/35 focus:border-asilsa-gold";
+  "w-full border-0 border-b border-museum-dark/20 bg-transparent py-3 text-base font-light tracking-wide text-museum-dark outline-none transition-colors placeholder:text-museum-dark/35 focus:border-asilsa-gold sm:text-sm";
 
 export default function CareersPage() {
-  const [fileName, setFileName] = useState<string | null>(null);
+  const [cvFile, setCvFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
+    "idle",
+  );
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { t } = useLanguage();
 
   const handleFile = (file: File | undefined) => {
     if (!file) return;
-    setFileName(file.name);
+    setCvFile(file);
   };
 
   const onDrop = (e: DragEvent<HTMLDivElement>) => {
@@ -49,20 +52,30 @@ export default function CareersPage() {
     handleFile(e.dataTransfer.files?.[0]);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    console.log("Careers application:", {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      position: formData.get("position"),
-      message: formData.get("message"),
-      cv: fileName,
-    });
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    if (cvFile) formData.set("cv", cvFile);
+
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/careers", {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
+      form.reset();
+      setCvFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
-    <div className="min-h-screen bg-asilsa-cream px-fluid pb-28 pt-6 sm:pb-20 sm:pt-8 md:pt-12">
+    <div className="min-h-svh bg-asilsa-cream px-fluid pb-[calc(7rem+env(safe-area-inset-bottom))] pt-6 sm:pb-20 sm:pt-8 md:pt-12">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial="hidden"
@@ -207,7 +220,7 @@ export default function CareersPage() {
                 />
               </svg>
               <p className="max-w-xs text-center text-sm font-light tracking-wide text-museum-dark/55">
-                {fileName ?? t.careers.cvHint}
+                {cvFile?.name ?? t.careers.cvHint}
               </p>
               <input
                 ref={fileInputRef}
@@ -222,10 +235,21 @@ export default function CareersPage() {
           <motion.div variants={fieldVariant} className="pt-4 text-center">
             <button
               type="submit"
-              className="btn-primary px-10"
+              disabled={status === "sending"}
+              className="btn-primary w-full px-10 disabled:cursor-wait disabled:opacity-70 sm:w-auto"
             >
-              {t.careers.submit}
+              {status === "sending" ? t.careers.sending : t.careers.submit}
             </button>
+            {status === "success" && (
+              <p className="mt-4 text-sm font-light text-museum-dark/70">
+                {t.careers.success}
+              </p>
+            )}
+            {status === "error" && (
+              <p className="mt-4 text-sm font-light text-red-800/80">
+                {t.careers.error}
+              </p>
+            )}
           </motion.div>
         </motion.form>
       </div>

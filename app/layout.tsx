@@ -50,7 +50,9 @@ export default function RootLayout({
         <LanguageProvider>
           <SmoothScrolling>
             <Header />
-            <main className="pt-20 sm:pt-24 md:pt-32">{children}</main>
+            <main className="pt-[calc(3.75rem+env(safe-area-inset-top))] sm:pt-24 md:pt-32">
+              {children}
+            </main>
             <Footer />
             <FloatingContact />
           </SmoothScrolling>

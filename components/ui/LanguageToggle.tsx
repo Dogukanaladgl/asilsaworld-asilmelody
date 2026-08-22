@@ -14,7 +14,7 @@ export default function LanguageToggle({
       type="button"
       onClick={toggleLanguage}
       aria-label={t.common.switchLanguage}
-      className={`text-sm font-light tracking-[0.2em] transition-colors ${className}`}
+      className={`inline-flex min-h-11 min-w-[4.5rem] items-center justify-center text-sm font-light tracking-[0.2em] transition-colors ${className}`}
     >
       <span
         className={
