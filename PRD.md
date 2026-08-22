@@ -1,4 +1,4 @@
-# Project Overview: Asilsa World & Asil Melody
+# Project Overview: Asil's a World & Asil Melody
 Act as an expert Frontend Developer, Next.js Architect, and UI/UX Designer. We are building a premium digital ecosystem consisting of two distinct but connected web experiences. 
 
 ## Global Tech Stack
@@ -10,7 +10,7 @@ Act as an expert Frontend Developer, Next.js Architect, and UI/UX Designer. We a
 
 ---
 
-## 1. Asilsa World (Premium Furniture Lookbook)
+## 1. Asil's a World (Premium Furniture Lookbook)
 **Concept:** A high-end digital catalog/magazine. No e-commerce, no cart.
 - **Color Palette:** Soft creams, beige, elegant gold accents, and abundant negative space.
 - **Layout (Desktop):** Asymmetrical editorial "Masonry" grid for 50 items (Living Room, L-Sofas, Bedrooms).

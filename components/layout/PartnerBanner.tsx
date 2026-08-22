@@ -7,7 +7,7 @@ export default function PartnerBanner() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-[70vh] w-full items-center justify-center overflow-hidden bg-museum-spotlight px-6 py-24 md:min-h-[60vh] md:py-32">
+    <section className="relative flex min-h-[min(70vh,40rem)] w-full items-center justify-center overflow-hidden bg-museum-spotlight px-fluid py-section md:min-h-[60vh]">
       <div className="absolute inset-0 bg-museum-dark/20" />
 
       <motion.div
@@ -15,22 +15,22 @@ export default function PartnerBanner() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 mx-auto max-w-2xl text-center"
+        className="relative z-10 mx-auto max-w-prose-hero text-center"
       >
-        <p className="mb-5 text-[0.65rem] uppercase tracking-[0.35em] text-asilsa-cream/60">
+        <p className="text-fluid-caption mb-4 uppercase tracking-[0.28em] text-asilsa-cream/60 sm:mb-5 sm:tracking-[0.35em]">
           {t.partner.eyebrow}
         </p>
-        <h2 className="font-serif text-3xl font-light leading-snug tracking-wide text-asilsa-cream md:text-5xl">
+        <h2 className="text-fluid-display font-serif font-light leading-snug tracking-wide text-asilsa-cream">
           {t.partner.title}
         </h2>
-        <p className="mx-auto mt-6 max-w-md text-sm font-light leading-relaxed tracking-wide text-asilsa-cream/75 md:text-base">
+        <p className="text-fluid-body mx-auto mt-5 max-w-md font-light leading-relaxed tracking-wide text-asilsa-cream/75 sm:mt-6">
           {t.partner.description}
         </p>
         <a
           href="https://asilmelody.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-10 inline-block border border-asilsa-cream/50 px-8 py-3 text-[0.7rem] uppercase tracking-[0.3em] text-asilsa-cream transition-all duration-500 hover:border-asilsa-cream hover:shadow-[0_0_24px_rgba(247,243,238,0.25)]"
+          className="btn-primary-light mt-8 sm:mt-10"
         >
           {t.partner.cta}
         </a>

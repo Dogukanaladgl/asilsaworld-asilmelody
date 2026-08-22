@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Asilsa World — Premium Furniture Lookbook
+        // Asil's a World — Premium Furniture Lookbook
         "asilsa-cream": "#F7F3EE",
         "asilsa-beige": "#E8DFD3",
         "asilsa-gold": "#C4A574",

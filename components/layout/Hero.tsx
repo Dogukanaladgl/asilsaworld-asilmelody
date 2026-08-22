@@ -1,117 +1,109 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop";
 
-const textContainer = {
-  hidden: {},
-  visible: {
-    transition: { delayChildren: 0.6, staggerChildren: 0.25 },
-  },
-};
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
+const fade = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const },
-  },
+    transition: {
+      delay: 0.15 + i * 0.12,
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  }),
 };
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const parallaxRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(parallaxRef.current, {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative -mt-32 flex h-screen min-h-[600px] w-full items-center justify-center overflow-hidden"
-    >
-      <div ref={parallaxRef} className="absolute inset-0 will-change-transform">
+    <section className="relative -mt-[3.75rem] bg-asilsa-cream sm:-mt-24 md:-mt-32">
+      <div className="mx-auto grid min-h-[100svh] max-w-[1400px] items-stretch md:grid-cols-2">
+        {/* Arched visual plane — Lumina-inspired */}
         <motion.div
-          initial={{ scale: 1.05 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          className="absolute inset-0"
+          initial={{ opacity: 0, scale: 1.03 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="relative min-h-[52svh] overflow-hidden md:min-h-full md:rounded-br-[clamp(4rem,18vw,12rem)]"
         >
           <Image
             src={HERO_IMAGE}
-            alt="Minimalist premium living space"
+            alt=""
             fill
             priority
-            sizes="100vw"
-            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover object-[center_35%]"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/25 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-asilsa-cream/10" />
         </motion.div>
-      </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
+        <div className="relative flex flex-col justify-center px-fluid py-14 md:py-24 lg:pl-16 lg:pr-12">
+          <motion.p
+            custom={0}
+            initial="hidden"
+            animate="visible"
+            variants={fade}
+            className="text-fluid-caption mb-5 uppercase tracking-[0.32em] text-museum-dark/45"
+          >
+            {t.nav.collections}
+          </motion.p>
 
-      <motion.div
-        variants={textContainer}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 px-6 text-center"
-      >
-        <motion.h1
-          variants={fadeInUp}
-          className="font-serif text-4xl font-light leading-tight tracking-wide text-asilsa-cream md:text-6xl lg:text-7xl"
-        >
-          {t.hero.title}
-        </motion.h1>
-        <motion.p
-          variants={fadeInUp}
-          className="mt-6 text-sm font-light tracking-[0.2em] text-asilsa-cream/85 md:text-base"
-        >
-          {t.hero.subtitle}
-        </motion.p>
-      </motion.div>
+          <motion.h1
+            custom={1}
+            initial="hidden"
+            animate="visible"
+            variants={fade}
+            className="font-serif text-[clamp(2.4rem,1.4rem+4.5vw,4.75rem)] font-light leading-[1.08] tracking-tight text-museum-dark"
+          >
+            <span className="block">{t.hero.line1}</span>
+            <span className="block italic text-asilsa-gold/90">{t.hero.line2}</span>
+            <span className="block">{t.hero.line3}</span>
+          </motion.h1>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-        className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-3"
-        >
-          <span className="text-[0.65rem] uppercase tracking-[0.3em] text-asilsa-cream/80">
+          <motion.p
+            custom={2}
+            initial="hidden"
+            animate="visible"
+            variants={fade}
+            className="text-fluid-body mt-6 max-w-md font-light leading-relaxed tracking-wide text-museum-dark/60"
+          >
+            {t.hero.subtitle}
+          </motion.p>
+
+          <motion.div
+            custom={3}
+            initial="hidden"
+            animate="visible"
+            variants={fade}
+            className="mt-9"
+          >
+            <Link href="/#collections" className="btn-primary gap-2">
+              {t.hero.cta}
+              <span aria-hidden className="text-base leading-none">
+                →
+              </span>
+            </Link>
+          </motion.div>
+
+          <motion.p
+            custom={4}
+            initial="hidden"
+            animate="visible"
+            variants={fade}
+            className="mt-14 hidden text-fluid-caption uppercase tracking-[0.28em] text-museum-dark/35 md:block"
+          >
             {t.hero.scroll}
-          </span>
-          <span className="h-12 w-px bg-gradient-to-b from-asilsa-cream/70 to-transparent" />
-        </motion.div>
-      </motion.div>
+          </motion.p>
+        </div>
+      </div>
     </section>
   );
 }

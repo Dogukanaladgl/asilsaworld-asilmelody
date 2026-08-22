@@ -25,24 +25,27 @@ export default function Collections() {
   return (
     <section
       id="collections"
-      className="scroll-mt-28 bg-asilsa-cream px-6 py-24 md:px-10 md:py-32"
+      className="scroll-mt-20 bg-asilsa-cream px-fluid py-section md:scroll-mt-28"
     >
-      <div className="mx-auto mb-16 max-w-7xl text-center md:mb-20">
-        <h2 className="font-serif text-3xl font-light tracking-wide text-museum-dark md:text-4xl">
+      <div className="mx-auto mb-10 max-w-7xl text-center sm:mb-12 md:mb-16 lg:mb-20">
+        <p className="text-fluid-body mx-auto mb-3 max-w-xs font-light leading-relaxed tracking-wide text-museum-dark/55 sm:mb-4 sm:max-w-md md:mb-5">
+          {t.collections.eyebrow}
+        </p>
+        <h2 className="text-fluid-display font-serif font-light tracking-wide text-museum-dark">
           {t.collections.title}
         </h2>
-        <span className="mx-auto mt-5 block h-px w-12 bg-asilsa-gold" />
+        <span className="mx-auto mt-4 block h-px w-10 bg-asilsa-gold sm:mt-5 sm:w-12" />
       </div>
 
-      <div className="mx-auto max-w-7xl columns-1 gap-6 sm:columns-2 lg:columns-3">
+      <div className="mx-auto max-w-7xl columns-1 gap-4 sm:columns-2 sm:gap-6 lg:columns-3">
         {furnitureData.map((item, index) => (
           <motion.div
             key={item.id}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="group mb-6 break-inside-avoid"
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="group mb-4 break-inside-avoid sm:mb-6"
           >
             <button
               type="button"
@@ -58,13 +61,14 @@ export default function Collections() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              {/* Always visible on touch devices; hover-only from md up */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100" />
 
-              <div className="absolute inset-x-0 bottom-0 flex translate-y-4 flex-col items-center gap-3 p-6 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="absolute inset-x-0 bottom-0 flex translate-y-0 flex-col items-center gap-2 p-4 opacity-100 transition-all duration-500 sm:gap-3 sm:p-6 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
                 <p className="font-serif text-sm tracking-wide text-asilsa-cream">
                   {item.title}
                 </p>
-                <span className="border border-asilsa-cream/80 px-5 py-2 text-[0.65rem] uppercase tracking-[0.25em] text-asilsa-cream transition-colors group-hover:bg-asilsa-cream/10">
+                <span className="border border-asilsa-cream/90 bg-asilsa-cream/15 px-4 py-1.5 text-[0.6rem] uppercase tracking-[0.22em] text-asilsa-cream backdrop-blur-[2px] sm:px-5 sm:py-2 sm:text-[0.65rem] sm:tracking-[0.25em]">
                   {t.collections.inquire}
                 </span>
               </div>

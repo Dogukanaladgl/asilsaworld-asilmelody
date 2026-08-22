@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import type { FurnitureItem } from "@/lib/data";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { getWhatsAppUrl } from "@/lib/contact";
 
 type LightboxModalProps = {
   isOpen: boolean;
@@ -20,9 +21,9 @@ export default function LightboxModal({
 
   if (!isOpen || !item) return null;
 
-  const whatsappHref = `https://wa.me/905555555555?text=${encodeURIComponent(
+  const whatsappHref = getWhatsAppUrl(
     t.lightbox.message.replace("{title}", item.title),
-  )}`;
+  );
 
   return (
     <motion.div
@@ -33,27 +34,27 @@ export default function LightboxModal({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4 backdrop-blur-md"
+      className="fixed inset-0 z-[60] flex items-end justify-center bg-black/60 p-0 backdrop-blur-md sm:items-center sm:p-4"
       onClick={onClose}
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 40 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="relative grid max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-xl bg-asilsa-cream md:grid-cols-2"
+        className="relative grid max-h-[92dvh] w-full max-w-4xl overflow-y-auto overscroll-contain bg-asilsa-cream sm:max-h-[90vh] sm:overflow-hidden sm:rounded-xl md:grid-cols-2"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label={t.lightbox.close}
-          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center text-museum-dark/60 transition-colors hover:text-museum-dark md:text-asilsa-cream/80 md:hover:text-asilsa-cream"
+          className="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-asilsa-cream text-museum-dark shadow-md ring-1 ring-museum-dark/10 transition-colors hover:bg-museum-dark hover:text-asilsa-cream"
         >
           <span className="text-2xl font-light leading-none">×</span>
         </button>
 
-        <div className="relative min-h-[280px] md:min-h-[520px]">
+        <div className="relative h-56 w-full shrink-0 sm:h-72 md:min-h-[520px]">
           <Image
             src={item.imageUrl}
             alt={item.title}
@@ -64,28 +65,28 @@ export default function LightboxModal({
           />
         </div>
 
-        <div className="flex flex-col justify-center px-8 py-10 md:px-12 md:py-14">
-          <p className="mb-3 text-[0.65rem] uppercase tracking-[0.3em] text-asilsa-gold">
+        <div className="flex flex-col justify-center px-5 py-7 pb-safe sm:px-8 sm:py-10 md:px-12 md:py-14">
+          <p className="mb-2 text-[0.65rem] uppercase tracking-[0.3em] text-asilsa-gold sm:mb-3">
             {item.category[language]}
           </p>
           <h3
             id="lightbox-title"
-            className="font-serif text-2xl font-light tracking-wide text-museum-dark md:text-3xl"
+            className="font-serif text-xl font-light tracking-wide text-museum-dark sm:text-2xl md:text-3xl"
           >
             {item.title}
           </h3>
-          <span className="mt-4 block h-px w-10 bg-asilsa-gold" />
-          <p className="mt-6 text-sm font-light leading-relaxed tracking-wide text-museum-dark/70 md:text-base">
+          <span className="mt-3 block h-px w-10 bg-asilsa-gold sm:mt-4" />
+          <p className="mt-4 text-sm font-light leading-relaxed tracking-wide text-museum-dark/70 sm:mt-6 md:text-base">
             {item.description[language]}
           </p>
-          <p className="mt-5 text-[0.6rem] uppercase tracking-[0.25em] text-museum-dark/35">
+          <p className="mt-4 text-[0.6rem] uppercase tracking-[0.25em] text-museum-dark/35 sm:mt-5">
             {t.lightbox.reference} {item.id}
           </p>
           <a
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 inline-flex w-fit items-center justify-center border border-asilsa-gold bg-asilsa-gold/10 px-6 py-3 text-[0.7rem] uppercase tracking-[0.25em] text-museum-dark transition-colors hover:bg-asilsa-gold hover:text-asilsa-cream"
+            className="btn-gold mt-7 w-full sm:mt-10 sm:w-fit"
           >
             {t.lightbox.whatsapp}
           </a>

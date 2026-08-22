@@ -62,7 +62,7 @@ export default function CareersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-asilsa-cream px-4 pb-20 pt-8 md:pt-12">
+    <div className="min-h-screen bg-asilsa-cream px-fluid pb-28 pt-6 sm:pb-20 sm:pt-8 md:pt-12">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial="hidden"
@@ -222,7 +222,7 @@ export default function CareersPage() {
           <motion.div variants={fieldVariant} className="pt-4 text-center">
             <button
               type="submit"
-              className="border border-museum-dark/80 px-10 py-3.5 text-[0.7rem] uppercase tracking-[0.3em] text-museum-dark transition-colors duration-500 hover:bg-museum-dark hover:text-asilsa-cream"
+              className="btn-primary px-10"
             >
               {t.careers.submit}
             </button>
