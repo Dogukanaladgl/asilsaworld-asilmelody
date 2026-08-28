@@ -3,6 +3,7 @@
 import { useRef, useState, type FormEvent, type DragEvent } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { getWhatsAppUrl } from "@/lib/contact";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 28 },
@@ -104,12 +105,50 @@ export default function CareersPage() {
           />
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-12 border border-asilsa-beige bg-asilsa-beige/30 px-6 py-7 text-center sm:px-8"
+        >
+          <h2 className="font-serif text-lg font-light tracking-wide text-museum-dark sm:text-xl">
+            {t.careers.quickTitle}
+          </h2>
+          <p className="mx-auto mt-3 max-w-md text-sm font-light leading-relaxed tracking-wide text-museum-dark/65">
+            {t.careers.quickText}
+          </p>
+          <a
+            href={getWhatsAppUrl(t.careers.quickMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold mt-6 w-full gap-2 sm:w-auto"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="h-4 w-4"
+              aria-hidden
+            >
+              <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.3-.1-1.5-.700-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1s.9 2.5 1.1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3Z" />
+            </svg>
+            {t.careers.quickCta}
+          </a>
+        </motion.div>
+
+        <div className="mt-12 flex items-center gap-4">
+          <span className="h-px flex-1 bg-museum-dark/12" />
+          <span className="text-[0.65rem] uppercase tracking-[0.25em] text-museum-dark/40">
+            {t.careers.formDivider}
+          </span>
+          <span className="h-px flex-1 bg-museum-dark/12" />
+        </div>
+
         <motion.form
           initial="hidden"
           animate="visible"
           variants={formContainer}
           onSubmit={handleSubmit}
-          className="mt-14 space-y-10 md:mt-16"
+          className="mt-12 space-y-10 md:mt-14"
         >
           <motion.div variants={fieldVariant}>
             <label

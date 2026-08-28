@@ -10,8 +10,8 @@ export const contact = {
   phoneDisplay: "0530 012 27 00",
   phoneHref: "tel:+905300122700",
   whatsappNumber: "905300122700",
-  email: "hello@asilsa.world",
-  instagramHandle: "@asilsa.world",
+  email: "info@asilsaworld.com",
+  instagramHandle: "@asilsaworld",
   // Location
   addressLines: ["Fevziçakmak, 10740. Sokak No: 1", "Karatay / Konya, Türkiye"],
   addressShort: "Karatay, Konya",
@@ -19,13 +19,14 @@ export const contact = {
   // Hours
   hoursDisplay: "08:00 – 20:00",
   hoursNote: "Her gün",
-  // Social — update URLs when ready
+  // Social
   social: {
-    facebook: "https://facebook.com/",
-    instagram: "https://instagram.com/asilsa.world",
-    tiktok: "https://tiktok.com/",
-    x: "https://x.com/",
-    youtube: "https://youtube.com/",
+    facebook:
+      "https://www.facebook.com/people/Asils-a-World/61554319778630/",
+    instagram: "https://www.instagram.com/asilsaworld",
+    tiktok: "https://www.tiktok.com/@asilsaworld",
+    x: "https://x.com/asilsaworld",
+    youtube: "https://www.youtube.com/@AsilsaWorld",
   },
 } as const;
 
@@ -37,6 +38,10 @@ export function getWhatsAppUrl(message?: string) {
 
 export function getMapsUrl() {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapsQuery)}`;
+}
+
+export function getAppleMapsUrl() {
+  return `https://maps.apple.com/?q=${encodeURIComponent(contact.mapsQuery)}`;
 }
 
 export function getMapsEmbedUrl() {

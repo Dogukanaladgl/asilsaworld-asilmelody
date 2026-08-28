@@ -9,7 +9,15 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { dictionary, type Dictionary, type Language } from "@/lib/i18n";
+import {
+  dictionary,
+  languages,
+  type Dictionary,
+  type Language,
+} from "@/lib/i18n";
+
+const isLanguage = (value: string | null): value is Language =>
+  languages.some((item) => item.code === value);
 
 const STORAGE_KEY = "asilsa-language";
 
@@ -32,7 +40,7 @@ export default function LanguageProvider({
   // Read after mount so the first client render matches the server output.
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "tr" || stored === "en") setLanguage(stored);
+    if (isLanguage(stored)) setLanguage(stored);
   }, []);
 
   useEffect(() => {
@@ -41,7 +49,11 @@ export default function LanguageProvider({
   }, [language]);
 
   const toggleLanguage = useCallback(
-    () => setLanguage((current) => (current === "tr" ? "en" : "tr")),
+    () =>
+      setLanguage((current) => {
+        const index = languages.findIndex((item) => item.code === current);
+        return languages[(index + 1) % languages.length].code;
+      }),
     [],
   );
 

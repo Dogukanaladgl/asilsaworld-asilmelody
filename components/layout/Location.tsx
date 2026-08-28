@@ -3,7 +3,12 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import SocialIcons from "@/components/ui/SocialIcons";
-import { contact, getMapsEmbedUrl, getMapsUrl } from "@/lib/contact";
+import {
+  contact,
+  getAppleMapsUrl,
+  getMapsEmbedUrl,
+  getMapsUrl,
+} from "@/lib/contact";
 
 export default function Location() {
   const { t } = useLanguage();
@@ -60,14 +65,40 @@ export default function Location() {
 
           <SocialIcons variant="onLight" className="mt-6" />
 
-          <a
-            href={getMapsUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary mt-7 w-full sm:mt-10 sm:w-auto"
-          >
-            {t.location.directions}
-          </a>
+          <div className="mt-7 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
+            <a
+              href={getAppleMapsUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary w-full gap-2 sm:w-auto"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-4 w-4"
+                aria-hidden
+              >
+                <path d="M16.4 12.6c0-2 1.6-2.9 1.7-3-.9-1.4-2.4-1.5-2.9-1.6-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.3 2-1.4 2.4-.4 6 1 8 .7 1 1.5 2.1 2.5 2 1-.1 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.4-2 .8-1.1 1.1-2.2 1.1-2.3 0 0-2.1-.8-2.1-3.1ZM14.6 6.3c.5-.7.9-1.6.8-2.6-.8 0-1.8.5-2.4 1.2-.5.6-1 1.6-.8 2.5.9.1 1.8-.4 2.4-1.1Z" />
+              </svg>
+              {t.location.directionsApple}
+            </a>
+            <a
+              href={getMapsUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold w-full gap-2 sm:w-auto"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-4 w-4"
+                aria-hidden
+              >
+                <path d="M12 2.2c-3.6 0-6.5 2.9-6.5 6.5 0 4.8 6.5 12.9 6.5 12.9s6.5-8.1 6.5-12.9c0-3.6-2.9-6.5-6.5-6.5Zm0 9a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2Z" />
+              </svg>
+              {t.location.directionsGoogle}
+            </a>
+          </div>
         </motion.div>
 
         <motion.div

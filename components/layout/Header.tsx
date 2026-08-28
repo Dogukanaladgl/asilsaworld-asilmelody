@@ -275,7 +275,7 @@ export default function Header() {
               ))}
 
               <span className="mt-4 block h-px w-10 bg-asilsa-gold" />
-              <LanguageToggle className="mt-2 tracking-[0.3em]" />
+              <LanguageToggle variant="inline" className="mt-2" />
             </nav>
           </motion.div>
         )}
