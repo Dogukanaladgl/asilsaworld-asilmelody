@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { escapeHtml, getMailConfig, resend } from "@/lib/mail";
+import { buildCareersEmailHtml } from "@/lib/email-templates";
+import { getMailConfig, getResend } from "@/lib/mail";
 
 const MAX_CV_BYTES = 5 * 1024 * 1024; // 5MB
 
@@ -40,20 +41,22 @@ export async function POST(request: Request) {
       });
     }
 
-    const { error } = await resend.emails.send({
+    const cvLabel = attachments.length
+      ? attachments[0].filename
+      : "Yüklenmedi";
+
+    const { error } = await getResend().emails.send({
       from,
       to: [to],
       replyTo: email,
       subject: `Kariyer başvurusu: ${name} — ${position}`,
-      html: `
-        <h2>Yeni kariyer başvurusu</h2>
-        <p><strong>İsim:</strong> ${escapeHtml(name)}</p>
-        <p><strong>E-posta:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Pozisyon:</strong> ${escapeHtml(position)}</p>
-        <p><strong>Mesaj:</strong></p>
-        <p>${escapeHtml(message || "—").replaceAll("\n", "<br/>")}</p>
-        <p><strong>CV:</strong> ${attachments.length ? attachments[0].filename : "Yüklenmedi"}</p>
-      `,
+      html: buildCareersEmailHtml({
+        name,
+        email,
+        position,
+        message,
+        cvLabel,
+      }),
       attachments,
     });
 

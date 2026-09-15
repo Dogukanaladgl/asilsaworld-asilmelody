@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { escapeHtml, getMailConfig, resend } from "@/lib/mail";
+import { buildContactEmailHtml } from "@/lib/email-templates";
+import { getMailConfig, getResend } from "@/lib/mail";
 
 export async function POST(request: Request) {
   try {
@@ -17,18 +18,12 @@ export async function POST(request: Request) {
 
     const { to, from } = getMailConfig();
 
-    const { error } = await resend.emails.send({
+    const { error } = await getResend().emails.send({
       from,
       to: [to],
       replyTo: email,
       subject: `İletişim: ${name}`,
-      html: `
-        <h2>Yeni iletişim mesajı</h2>
-        <p><strong>İsim:</strong> ${escapeHtml(name)}</p>
-        <p><strong>E-posta:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Mesaj:</strong></p>
-        <p>${escapeHtml(message).replaceAll("\n", "<br/>")}</p>
-      `,
+      html: buildContactEmailHtml({ name, email, message }),
     });
 
     if (error) {

@@ -6,14 +6,21 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import LanguageToggle from "@/components/ui/LanguageToggle";
-import { brand } from "@/lib/contact";
+import SectionLink from "@/components/ui/SectionLink";
+import BrandMark from "@/components/ui/BrandMark";
+import { useLenis } from "lenis/react";
+import type { SectionId } from "@/lib/scroll";
 
 type NavKey = "collections" | "careers" | "contact";
 
-const navItems: { key: NavKey; href: string }[] = [
-  { key: "collections", href: "/#collections" },
+const navItems: {
+  key: NavKey;
+  href: string;
+  section?: SectionId;
+}[] = [
+  { key: "collections", href: "/", section: "collections" },
   { key: "careers", href: "/careers" },
-  { key: "contact", href: "/#contact" },
+  { key: "contact", href: "/", section: "contact" },
 ];
 
 type Underline = { left: number; width: number };
@@ -24,12 +31,24 @@ export default function Header() {
   const [underline, setUnderline] = useState<Underline | null>(null);
   const { t } = useLanguage();
   const pathname = usePathname();
+  const lenis = useLenis();
   const navRef = useRef<HTMLElement>(null);
   const linkRefs = useRef<Partial<Record<NavKey, HTMLAnchorElement | null>>>(
     {},
   );
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const goToCareersTop = () => {
+    closeMobileMenu();
+    if (pathname === "/careers") {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+    }
+  };
 
   const labels: Record<NavKey, string> = {
     collections: t.nav.collections,
@@ -94,16 +113,8 @@ export default function Header() {
       if (el) observer.observe(el);
     }
 
-    const applyHash = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (hash === "collections" || hash === "contact") setActive(hash);
-    };
-    applyHash();
-    window.addEventListener("hashchange", applyHash);
-
     return () => {
       observer.disconnect();
-      window.removeEventListener("hashchange", applyHash);
     };
   }, [pathname]);
 
@@ -143,32 +154,52 @@ export default function Header() {
           <Link
             href="/"
             onClick={closeMobileMenu}
-            className="min-w-0 truncate font-serif text-[0.75rem] font-light tracking-[0.08em] text-museum-dark sm:text-sm sm:tracking-[0.12em] md:justify-self-start md:text-base"
+            className="min-w-0 text-museum-dark md:justify-self-start"
           >
-            {brand.name}
+            <BrandMark size="sm" />
           </Link>
 
           <nav
             ref={navRef}
             className="relative hidden items-center justify-center gap-4 justify-self-center md:flex lg:gap-8 xl:gap-10"
           >
-            {navItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                ref={(el) => {
-                  linkRefs.current[item.key] = el;
-                }}
-                className={`relative pb-1.5 text-[0.7rem] uppercase tracking-[0.14em] transition-colors duration-300 lg:text-sm lg:tracking-[0.2em] ${
-                  active === item.key
-                    ? "text-museum-dark"
-                    : "text-gray-800 hover:text-asilsa-gold"
-                }`}
-                aria-current={active === item.key ? "page" : undefined}
-              >
-                {labels[item.key]}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const className = `relative pb-1.5 text-[0.7rem] uppercase tracking-[0.14em] transition-colors duration-300 lg:text-sm lg:tracking-[0.2em] ${
+                active === item.key
+                  ? "text-museum-dark"
+                  : "text-gray-800 hover:text-asilsa-gold"
+              }`;
+              const setRef = (el: HTMLAnchorElement | null) => {
+                linkRefs.current[item.key] = el;
+              };
+
+              if (item.section) {
+                return (
+                  <SectionLink
+                    key={item.key}
+                    section={item.section}
+                    ref={setRef}
+                    className={className}
+                    aria-current={active === item.key ? "page" : undefined}
+                  >
+                    {labels[item.key]}
+                  </SectionLink>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  ref={setRef}
+                  onClick={item.key === "careers" ? goToCareersTop : undefined}
+                  className={className}
+                  aria-current={active === item.key ? "page" : undefined}
+                >
+                  {labels[item.key]}
+                </Link>
+              );
+            })}
 
             <AnimatePresence>
               {underline && (
@@ -247,32 +278,58 @@ export default function Header() {
             />
 
             <nav className="flex flex-1 flex-col items-center justify-center gap-7 px-6 pb-safe">
-              {navItems.map((item) => (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  onClick={closeMobileMenu}
-                  className={`relative pb-2 text-xl font-light uppercase tracking-[0.2em] transition-colors ${
-                    active === item.key
-                      ? "text-asilsa-gold"
-                      : "text-museum-dark active:text-asilsa-gold"
-                  }`}
-                  aria-current={active === item.key ? "page" : undefined}
-                >
-                  {labels[item.key]}
-                  {active === item.key && (
-                    <motion.span
-                      layoutId="mobile-nav-underline"
-                      className="absolute inset-x-2 -bottom-0.5 h-px bg-asilsa-gold"
-                      transition={{
-                        type: "spring",
-                        stiffness: 280,
-                        damping: 28,
-                      }}
-                    />
-                  )}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const className = `relative pb-2 text-xl font-light uppercase tracking-[0.2em] transition-colors ${
+                  active === item.key
+                    ? "text-asilsa-gold"
+                    : "text-museum-dark active:text-asilsa-gold"
+                }`;
+
+                const content = (
+                  <>
+                    {labels[item.key]}
+                    {active === item.key && (
+                      <motion.span
+                        layoutId="mobile-nav-underline"
+                        className="absolute inset-x-2 -bottom-0.5 h-px bg-asilsa-gold"
+                        transition={{
+                          type: "spring",
+                          stiffness: 280,
+                          damping: 28,
+                        }}
+                      />
+                    )}
+                  </>
+                );
+
+                if (item.section) {
+                  return (
+                    <SectionLink
+                      key={item.key}
+                      section={item.section}
+                      onNavigate={closeMobileMenu}
+                      className={className}
+                      aria-current={active === item.key ? "page" : undefined}
+                    >
+                      {content}
+                    </SectionLink>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    onClick={
+                      item.key === "careers" ? goToCareersTop : closeMobileMenu
+                    }
+                    className={className}
+                    aria-current={active === item.key ? "page" : undefined}
+                  >
+                    {content}
+                  </Link>
+                );
+              })}
 
               <span className="mt-4 block h-px w-10 bg-asilsa-gold" />
               <LanguageToggle variant="inline" className="mt-2" />

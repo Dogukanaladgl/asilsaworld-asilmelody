@@ -29,31 +29,35 @@ export const dictionary = {
     features: {
       items: [
         {
-          title: "Özenli Zanaat",
-          text: "Her parça, seçilmiş malzemeler ve titiz işçiliğin birleşimi.",
+          title: "Evinizin Ruhunu Yansıtan Premium Ürünler",
+          text: "Yaşam alanınıza kimlik katan seçkin mobilyalar.",
         },
         {
-          title: "Zamansız Tasarım",
-          text: "Trendleri değil, yıllarca yaşayan formları tercih ediyoruz.",
+          title: "Kolay Alışveriş & Hızlı Teslimat",
+          text: "Siparişten teslimata, akıcı ve güvenilir bir süreç.",
         },
         {
-          title: "Showroom Deneyimi",
-          text: "Konya’daki alanımızda dokunarak, görerek karar verin.",
+          title: "Dünyanın Her Yerine Gönderim",
+          text: "Sınırları aşan premium mobilya lojistiği.",
         },
         {
-          title: "Kişisel Danışmanlık",
-          text: "WhatsApp veya ziyaretle size özel yönlendirme sunuyoruz.",
+          title: "Asıl Asalet Asil's a World'de",
+          text: "Markanın öz vaadi: asalet, zarafet ve kalıcı değer.",
         },
       ],
     },
     spaces: {
-      eyebrow: "Mekânlar",
-      title: "Odaya Göre Keşfet",
+      eyebrow: "Kategoriler",
+      title: "Koleksiyona Göre Keşfet",
       items: [
-        { key: "living", label: "Oturma Odası" },
-        { key: "bedroom", label: "Yatak Odası" },
-        { key: "dining", label: "Yemek Odası" },
-        { key: "lounge", label: "Lounge" },
+        { key: "living", label: "Salon Takımı & Oturma Grubu Modelleri" },
+        { key: "corner", label: "Köşe Koltuk & L Oturma Grubu Modelleri" },
+        { key: "bedroom", label: "Yatak Odası & Yaşam Odası Modelleri" },
+        { key: "bedset", label: "Yatak Baza Başlık Seti & Karyola Modelleri" },
+        { key: "dining", label: "Yemek Odası & Salon Takımı Modelleri" },
+        { key: "tv", label: "TV Ünitesi & Masa Sandalye Modelleri" },
+        { key: "wedding", label: "Düğün & Çeyiz Setleri" },
+        { key: "outdoor", label: "Çay & Balkon & Bahçe Seti Modelleri" },
       ],
     },
     featured: {
@@ -61,14 +65,14 @@ export const dictionary = {
       title: "Seçilmiş Atmosferler",
     },
     collections: {
-      eyebrow: "Evinizi güzelleştiren eşsiz tasarımlar",
+      eyebrow: "Evinizin ruhunu yansıtan premium ürünler",
       title: "Seçkin Koleksiyonlar",
       inquire: "Bilgi Al",
     },
     about: {
       eyebrow: "Hikâyemiz",
       title: "Asil's a World Hakkında",
-      subtitle: "Kalite ve Zarafet",
+      subtitle: "Asıl asalet Asil's a World'de",
       description:
         "Asil's a World, her parçasında kalite ve zarafeti bir araya getirir. Modern tasarımlarımız, yaşam alanlarınızı güzelleştirmek için özel olarak kurgulanmıştır.",
     },
@@ -86,8 +90,7 @@ export const dictionary = {
       cta: "Keşfet",
     },
     footer: {
-      tagline:
-        "Premium bir mobilya lookbook'u — her detayda zarafet, seçkin yaşam alanları için.",
+      tagline: "® Asıl asalet Asil's a World'de — evinizin ruhunu yansıtan premium ürünler.",
       quickLinks: "Hızlı Linkler",
       contact: "İletişim",
       phone: "Telefon",
@@ -134,6 +137,13 @@ export const dictionary = {
         "Merhaba, Asil's a World ekibine katılmak istiyorum. CV'mi buradan paylaşabilir miyim?",
       formDivider: "veya formu doldurun",
     },
+    notFound: {
+      eyebrow: "404",
+      title: "Aradığınız sayfa bulunamadı",
+      text: "Bağlantı taşınmış veya hiç var olmamış olabilir. Koleksiyonlara göz atarak devam edebilirsiniz.",
+      home: "Ana Sayfaya Dön",
+      collections: "Koleksiyonları Gör",
+    },
     common: {
       switchLanguage: "Dili değiştir",
       openMenu: "Menüyü aç",
@@ -173,31 +183,35 @@ export const dictionary = {
     features: {
       items: [
         {
-          title: "Refined Craft",
-          text: "Every piece unites selected materials with meticulous workmanship.",
+          title: "Premium Pieces That Reflect Your Home's Spirit",
+          text: "Curated furniture that gives every room a distinct identity.",
         },
         {
-          title: "Timeless Design",
-          text: "We choose forms that endure — not fleeting trends.",
+          title: "Easy Shopping & Fast Delivery",
+          text: "A smooth, reliable journey from order to delivery.",
         },
         {
-          title: "Showroom Experience",
-          text: "See and feel the pieces in our Konya space before you decide.",
+          title: "Shipping Worldwide",
+          text: "Premium furniture logistics that cross every border.",
         },
         {
-          title: "Personal Guidance",
-          text: "Receive tailored advice via WhatsApp or an in-person visit.",
+          title: "True Nobility Lives at Asil's a World",
+          text: "Our promise: nobility, elegance, and lasting value.",
         },
       ],
     },
     spaces: {
-      eyebrow: "Spaces",
-      title: "Explore by Room",
+      eyebrow: "Categories",
+      title: "Explore by Collection",
       items: [
-        { key: "living", label: "Living Room" },
-        { key: "bedroom", label: "Bedroom" },
-        { key: "dining", label: "Dining Room" },
-        { key: "lounge", label: "Lounge" },
+        { key: "living", label: "Salon & Living Group Models" },
+        { key: "corner", label: "Corner Sofa & L-Living Group Models" },
+        { key: "bedroom", label: "Bedroom & Living Room Models" },
+        { key: "bedset", label: "Bed Base, Headboard & Bedstead Models" },
+        { key: "dining", label: "Dining Room & Salon Set Models" },
+        { key: "tv", label: "TV Unit & Table–Chair Models" },
+        { key: "wedding", label: "Wedding & Trousseau Sets" },
+        { key: "outdoor", label: "Tea, Balcony & Garden Set Models" },
       ],
     },
     featured: {
@@ -205,14 +219,14 @@ export const dictionary = {
       title: "Curated Atmospheres",
     },
     collections: {
-      eyebrow: "Unique designs that beautify your home",
+      eyebrow: "Premium pieces that reflect your home's spirit",
       title: "Curated Collections",
       inquire: "Inquire",
     },
     about: {
       eyebrow: "Our Story",
       title: "About Asil's a World",
-      subtitle: "Quality & Elegance",
+      subtitle: "True nobility lives at Asil's a World",
       description:
         "Asil's a World brings quality and elegance together in every piece. Our modern designs are crafted to elevate the beauty of your living spaces.",
     },
@@ -231,7 +245,7 @@ export const dictionary = {
     },
     footer: {
       tagline:
-        "A premium furniture lookbook — elegance in every detail, crafted for refined living spaces.",
+        "® True nobility lives at Asil's a World — premium pieces that reflect your home's spirit.",
       quickLinks: "Quick Links",
       contact: "Contact",
       phone: "Phone",
@@ -278,6 +292,13 @@ export const dictionary = {
         "Hello, I would like to join the Asil's a World team. May I share my CV here?",
       formDivider: "or fill in the form",
     },
+    notFound: {
+      eyebrow: "404",
+      title: "We couldn't find that page",
+      text: "The link may have moved, or it may never have existed. Browse our collections to continue.",
+      home: "Back to Home",
+      collections: "View Collections",
+    },
     common: {
       switchLanguage: "Switch language",
       openMenu: "Open menu",
@@ -317,31 +338,35 @@ export const dictionary = {
     features: {
       items: [
         {
-          title: "丁寧な職人技",
-          text: "厳選された素材と緻密な手仕事が、一つひとつの作品を形づくります。",
+          title: "住まいの魂を映すプレミアム家具",
+          text: "空間に個性を与える厳選されたピース。",
         },
         {
-          title: "時を超えるデザイン",
-          text: "流行ではなく、長く愛されるかたちを選びます。",
+          title: "かんたん購入 & 迅速配送",
+          text: "ご注文からお届けまで、スムーズで安心の流れ。",
         },
         {
-          title: "ショールーム体験",
-          text: "コンヤのショールームで、実際に見て触れてお選びいただけます。",
+          title: "世界中へお届け",
+          text: "国境を越えるプレミアム家具のロジスティクス。",
         },
         {
-          title: "パーソナルなご提案",
-          text: "WhatsApp またはご来店で、お客様に合わせたご提案をいたします。",
+          title: "真の気品は Asil's a World に",
+          text: "気品・優雅さ・長く続く価値という約束。",
         },
       ],
     },
     spaces: {
-      eyebrow: "空間",
-      title: "部屋別に探す",
+      eyebrow: "カテゴリー",
+      title: "コレクションから探す",
       items: [
-        { key: "living", label: "リビング" },
-        { key: "bedroom", label: "ベッドルーム" },
-        { key: "dining", label: "ダイニング" },
-        { key: "lounge", label: "ラウンジ" },
+        { key: "living", label: "サロン & リビングセット" },
+        { key: "corner", label: "コーナーソファ & L字セット" },
+        { key: "bedroom", label: "ベッドルーム & リビングルーム" },
+        { key: "bedset", label: "ベッドベース・ヘッドボード・ベッドフレーム" },
+        { key: "dining", label: "ダイニング & サロンセット" },
+        { key: "tv", label: "TVボード & テーブル・チェア" },
+        { key: "wedding", label: "ウェディング & 嫁入りセット" },
+        { key: "outdoor", label: "ティー・バルコニー・ガーデンセット" },
       ],
     },
     featured: {
@@ -349,14 +374,14 @@ export const dictionary = {
       title: "選び抜かれた空間",
     },
     collections: {
-      eyebrow: "住まいを美しく彩る特別なデザイン",
+      eyebrow: "住まいの魂を映すプレミアム家具",
       title: "厳選コレクション",
       inquire: "お問い合わせ",
     },
     about: {
       eyebrow: "私たちの物語",
       title: "Asil's a World について",
-      subtitle: "品質と優雅さ",
+      subtitle: "真の気品は Asil's a World に",
       description:
         "Asil's a World は、すべての作品に品質と優雅さを重ねています。モダンなデザインは、暮らしの空間をより美しく引き立てるために生まれました。",
     },
@@ -375,7 +400,7 @@ export const dictionary = {
     },
     footer: {
       tagline:
-        "プレミアム家具のルックブック — 洗練された住空間のために、細部まで優雅に。",
+        "® 真の気品は Asil's a World に — 住まいの魂を映すプレミアム家具。",
       quickLinks: "クイックリンク",
       contact: "お問い合わせ",
       phone: "電話",
@@ -422,6 +447,13 @@ export const dictionary = {
         "こんにちは。Asil's a World のチームに応募したいです。こちらで履歴書をお送りしてもよろしいでしょうか。",
       formDivider: "またはフォームに入力",
     },
+    notFound: {
+      eyebrow: "404",
+      title: "ページが見つかりませんでした",
+      text: "リンクが移動したか、存在しない可能性があります。コレクションからお進みください。",
+      home: "ホームへ戻る",
+      collections: "コレクションを見る",
+    },
     common: {
       switchLanguage: "言語を変更",
       openMenu: "メニューを開く",
@@ -461,31 +493,35 @@ export const dictionary = {
     features: {
       items: [
         {
-          title: "Artesanía Cuidada",
-          text: "Cada pieza une materiales seleccionados con una ejecución meticulosa.",
+          title: "Productos Premium que Reflejan el Alma de su Hogar",
+          text: "Mobiliario selecto que da identidad a cada espacio.",
         },
         {
-          title: "Diseño Atemporal",
-          text: "Elegimos formas que perduran, no tendencias pasajeras.",
+          title: "Compra Fácil & Entrega Rápida",
+          text: "Un proceso fluido y fiable desde el pedido hasta la entrega.",
         },
         {
-          title: "Experiencia en Showroom",
-          text: "Vea y sienta las piezas en nuestro espacio de Konya antes de decidir.",
+          title: "Envíos a Todo el Mundo",
+          text: "Logística premium de mobiliario sin fronteras.",
         },
         {
-          title: "Asesoría Personal",
-          text: "Reciba orientación a medida por WhatsApp o en una visita.",
+          title: "La Verdadera Nobleza Está en Asil's a World",
+          text: "Nuestra promesa: nobleza, elegancia y valor duradero.",
         },
       ],
     },
     spaces: {
-      eyebrow: "Espacios",
-      title: "Explorar por Ambiente",
+      eyebrow: "Categorías",
+      title: "Explorar por Colección",
       items: [
-        { key: "living", label: "Salón" },
-        { key: "bedroom", label: "Dormitorio" },
-        { key: "dining", label: "Comedor" },
-        { key: "lounge", label: "Lounge" },
+        { key: "living", label: "Salón & Grupos de Estar" },
+        { key: "corner", label: "Sofás Esquinados & Grupos en L" },
+        { key: "bedroom", label: "Dormitorio & Sala de Estar" },
+        { key: "bedset", label: "Base, Cabecero & Camas" },
+        { key: "dining", label: "Comedor & Sets de Salón" },
+        { key: "tv", label: "Mueble TV & Mesa–Silla" },
+        { key: "wedding", label: "Sets de Boda & Ajuar" },
+        { key: "outdoor", label: "Té, Balcón & Jardín" },
       ],
     },
     featured: {
@@ -493,14 +529,14 @@ export const dictionary = {
       title: "Atmósferas Seleccionadas",
     },
     collections: {
-      eyebrow: "Diseños únicos que embellecen su hogar",
+      eyebrow: "Productos premium que reflejan el alma de su hogar",
       title: "Colecciones Selectas",
       inquire: "Consultar",
     },
     about: {
       eyebrow: "Nuestra Historia",
       title: "Sobre Asil's a World",
-      subtitle: "Calidad y Elegancia",
+      subtitle: "La verdadera nobleza está en Asil's a World",
       description:
         "Asil's a World reúne calidad y elegancia en cada pieza. Nuestros diseños modernos están concebidos para realzar la belleza de sus espacios.",
     },
@@ -519,7 +555,7 @@ export const dictionary = {
     },
     footer: {
       tagline:
-        "Un lookbook de mobiliario premium: elegancia en cada detalle, para espacios refinados.",
+        "® La verdadera nobleza está en Asil's a World — productos premium que reflejan el alma de su hogar.",
       quickLinks: "Enlaces Rápidos",
       contact: "Contacto",
       phone: "Teléfono",
@@ -566,6 +602,13 @@ export const dictionary = {
         "Hola, me gustaría unirme al equipo de Asil's a World. ¿Puedo enviar mi CV por aquí?",
       formDivider: "o rellene el formulario",
     },
+    notFound: {
+      eyebrow: "404",
+      title: "No encontramos esa página",
+      text: "Es posible que el enlace se haya movido o que nunca haya existido. Continúe explorando nuestras colecciones.",
+      home: "Volver al Inicio",
+      collections: "Ver Colecciones",
+    },
     common: {
       switchLanguage: "Cambiar idioma",
       openMenu: "Abrir menú",
@@ -605,31 +648,35 @@ export const dictionary = {
     features: {
       items: [
         {
-          title: "Тонкое мастерство",
-          text: "Каждое изделие соединяет отобранные материалы и тщательную работу.",
+          title: "Премиум-изделия, отражающие дух вашего дома",
+          text: "Избранная мебель, которая придаёт пространству характер.",
         },
         {
-          title: "Вневременной дизайн",
-          text: "Мы выбираем формы, которые живут годами, а не мимолётные тренды.",
+          title: "Лёгкая покупка и быстрая доставка",
+          text: "Плавный и надёжный путь от заказа до получения.",
         },
         {
-          title: "Опыт шоурума",
-          text: "Увидьте и почувствуйте мебель в нашем пространстве в Конье.",
+          title: "Доставка по всему миру",
+          text: "Премиальная логистика мебели без границ.",
         },
         {
-          title: "Личная консультация",
-          text: "Индивидуальные рекомендации в WhatsApp или при визите к нам.",
+          title: "Истинное благородство — в Asil's a World",
+          text: "Наше обещание: благородство, элегантность и непреходящая ценность.",
         },
       ],
     },
     spaces: {
-      eyebrow: "Пространства",
-      title: "Выбрать по комнате",
+      eyebrow: "Категории",
+      title: "Смотреть по коллекции",
       items: [
-        { key: "living", label: "Гостиная" },
-        { key: "bedroom", label: "Спальня" },
-        { key: "dining", label: "Столовая" },
-        { key: "lounge", label: "Лаундж" },
+        { key: "living", label: "Салон и гостиные группы" },
+        { key: "corner", label: "Угловые и L-образные группы" },
+        { key: "bedroom", label: "Спальня и жилые комнаты" },
+        { key: "bedset", label: "Основания, изголовья и кровати" },
+        { key: "dining", label: "Столовые и салонные комплекты" },
+        { key: "tv", label: "ТВ-тумбы, столы и стулья" },
+        { key: "wedding", label: "Свадебные и приданые наборы" },
+        { key: "outdoor", label: "Чайные, балконные и садовые наборы" },
       ],
     },
     featured: {
@@ -637,14 +684,14 @@ export const dictionary = {
       title: "Отобранные атмосферы",
     },
     collections: {
-      eyebrow: "Уникальные решения, украшающие ваш дом",
+      eyebrow: "Премиум-изделия, отражающие дух вашего дома",
       title: "Избранные коллекции",
       inquire: "Узнать больше",
     },
     about: {
       eyebrow: "Наша история",
       title: "О Asil's a World",
-      subtitle: "Качество и элегантность",
+      subtitle: "Истинное благородство — в Asil's a World",
       description:
         "Asil's a World соединяет качество и элегантность в каждом изделии. Наши современные проекты создаются, чтобы подчеркнуть красоту вашего пространства.",
     },
@@ -663,7 +710,7 @@ export const dictionary = {
     },
     footer: {
       tagline:
-        "Премиальный лукбук мебели — элегантность в каждой детали, для утончённых интерьеров.",
+        "® Истинное благородство — в Asil's a World: премиум-изделия, отражающие дух вашего дома.",
       quickLinks: "Быстрые ссылки",
       contact: "Контакты",
       phone: "Телефон",
@@ -709,6 +756,13 @@ export const dictionary = {
       quickMessage:
         "Здравствуйте! Хочу присоединиться к команде Asil's a World. Могу отправить резюме здесь?",
       formDivider: "или заполните форму",
+    },
+    notFound: {
+      eyebrow: "404",
+      title: "Такая страница не найдена",
+      text: "Возможно, ссылка изменилась или страницы никогда не существовало. Загляните в наши коллекции.",
+      home: "На главную",
+      collections: "Смотреть коллекции",
     },
     common: {
       switchLanguage: "Сменить язык",

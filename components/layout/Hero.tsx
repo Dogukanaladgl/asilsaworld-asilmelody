@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import SectionLink from "@/components/ui/SectionLink";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop";
@@ -85,12 +85,15 @@ export default function Hero() {
             variants={fade}
             className="mt-9"
           >
-            <Link href="/#collections" className="btn-primary w-full gap-2 sm:w-auto">
+            <SectionLink
+              section="collections"
+              className="btn-primary w-full gap-2 sm:w-auto"
+            >
               {t.hero.cta}
               <span aria-hidden className="text-base leading-none">
                 →
               </span>
-            </Link>
+            </SectionLink>
           </motion.div>
 
           <motion.p

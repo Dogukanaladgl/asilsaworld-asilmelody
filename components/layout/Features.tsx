@@ -73,7 +73,7 @@ export default function Features() {
             className="min-w-0 text-center lg:text-left"
           >
             <FeatureIcon index={index} />
-            <h3 className="mt-4 text-[0.68rem] uppercase tracking-[0.14em] text-museum-dark sm:tracking-[0.22em]">
+            <h3 className="mt-4 text-[0.78rem] font-medium leading-snug tracking-wide text-museum-dark sm:text-[0.82rem]">
               {item.title}
             </h3>
             <p className="mx-auto mt-3 max-w-[22rem] text-sm font-light leading-relaxed tracking-normal text-museum-dark/55 break-words lg:mx-0 lg:tracking-wide">

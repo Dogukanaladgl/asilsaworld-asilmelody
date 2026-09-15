@@ -1,12 +1,53 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
-import { ReactLenis } from "lenis/react";
+import { usePathname } from "next/navigation";
+import { ReactLenis, useLenis } from "lenis/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  clearUrlHash,
+  consumeSectionScroll,
+  scrollToSection,
+  type SectionId,
+} from "@/lib/scroll";
 import "lenis/dist/lenis.css";
 
 gsap.registerPlugin(ScrollTrigger);
+
+function SectionScrollHandler() {
+  const pathname = usePathname();
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const fromHash = window.location.hash.replace("#", "");
+    const pending = consumeSectionScroll();
+    const target =
+      pending ??
+      (fromHash === "collections" ||
+      fromHash === "contact" ||
+      fromHash === "location"
+        ? (fromHash as SectionId)
+        : null);
+
+    if (!target) {
+      clearUrlHash();
+      return;
+    }
+
+    const run = () => scrollToSection(target, lenis);
+    // Wait a frame so the home sections are in the DOM after navigation.
+    const id = window.requestAnimationFrame(() => {
+      window.setTimeout(run, 40);
+    });
+
+    return () => window.cancelAnimationFrame(id);
+  }, [pathname, lenis]);
+
+  return null;
+}
 
 export default function SmoothScrolling({
   children,
@@ -33,6 +74,7 @@ export default function SmoothScrolling({
         smoothWheel: true,
       }}
     >
+      <SectionScrollHandler />
       {children}
     </ReactLenis>
   );

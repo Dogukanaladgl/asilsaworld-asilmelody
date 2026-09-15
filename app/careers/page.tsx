@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState, type FormEvent, type DragEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent, type DragEvent } from "react";
 import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getWhatsAppUrl } from "@/lib/contact";
 
@@ -41,6 +42,24 @@ export default function CareersPage() {
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { t } = useLanguage();
+  const lenis = useLenis();
+
+  useEffect(() => {
+    // Always open careers from the top — don't keep the previous page scroll.
+    const run = () => {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+    };
+    const frame = window.requestAnimationFrame(run);
+    const retry = window.setTimeout(run, 120);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(retry);
+    };
+  }, [lenis]);
 
   const handleFile = (file: File | undefined) => {
     if (!file) return;

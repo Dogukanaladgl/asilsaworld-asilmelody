@@ -4,6 +4,8 @@
  */
 export const brand = {
   name: "Asil's a World",
+  line1: "ASIL'S A",
+  line2: "WORLD",
 } as const;
 
 export const contact = {

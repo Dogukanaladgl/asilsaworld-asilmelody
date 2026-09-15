@@ -23,8 +23,18 @@ const config: Config = {
           "radial-gradient(ellipse at center, rgba(242, 237, 230, 0.95) 0%, rgba(232, 223, 211, 0.6) 40%, rgba(44, 36, 28, 0.85) 100%)",
       },
       fontFamily: {
-        serif: ["var(--font-playfair)", "Georgia", "serif"],
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        serif: [
+          "var(--font-playfair)",
+          "var(--font-noto-serif-jp)",
+          "Georgia",
+          "serif",
+        ],
+        sans: [
+          "var(--font-geist-sans)",
+          "var(--font-noto-sans-jp)",
+          "system-ui",
+          "sans-serif",
+        ],
       },
     },
   },

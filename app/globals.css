@@ -17,6 +17,17 @@ body.scroll-locked {
   touch-action: none;
 }
 
+/* The 404 view stands alone: no chrome, no fixed-header offset. */
+body:has([data-page="not-found"]) header,
+body:has([data-page="not-found"]) footer,
+body:has([data-page="not-found"]) .fab-inset {
+  display: none;
+}
+
+body:has([data-page="not-found"]) main {
+  padding-top: 0;
+}
+
 input,
 textarea,
 [contenteditable="true"] {

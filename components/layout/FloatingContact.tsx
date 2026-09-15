@@ -3,7 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { brand } from "@/lib/contact";
+import BrandMark from "@/components/ui/BrandMark";
 
 const inputClass =
   "w-full border-0 border-b border-museum-dark/20 bg-transparent py-2.5 text-base font-light tracking-wide text-museum-dark outline-none transition-colors placeholder:text-museum-dark/35 focus:border-asilsa-gold sm:text-sm";
@@ -85,9 +85,9 @@ export default function FloatingContact() {
               <div className="flex shrink-0 items-center justify-between border-b border-asilsa-beige/70 bg-museum-dark px-5 py-3.5">
                 <h2
                   id="contact-panel-title"
-                  className="font-serif text-sm font-light tracking-[0.08em] text-asilsa-cream"
+                  className="text-asilsa-cream"
                 >
-                  {brand.name}
+                  <BrandMark size="sm" showMark={false} />
                 </h2>
                 <button
                   type="button"
