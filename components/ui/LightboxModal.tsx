@@ -73,7 +73,8 @@ export default function LightboxModal({
             src={item.imageUrl}
             alt={item.title}
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={95}
+            sizes="(max-width: 768px) 100vw, 60vw"
             className="object-cover"
             priority
           />

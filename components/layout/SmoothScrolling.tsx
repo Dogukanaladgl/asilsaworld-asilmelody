@@ -24,12 +24,14 @@ function SectionScrollHandler() {
 
     const fromHash = window.location.hash.replace("#", "");
     const pending = consumeSectionScroll();
+    const normalizedHash =
+      fromHash === "collections" ? "spaces" : fromHash;
     const target =
       pending ??
-      (fromHash === "collections" ||
-      fromHash === "contact" ||
-      fromHash === "location"
-        ? (fromHash as SectionId)
+      (normalizedHash === "spaces" ||
+      normalizedHash === "contact" ||
+      normalizedHash === "location"
+        ? (normalizedHash as SectionId)
         : null);
 
     if (!target) {

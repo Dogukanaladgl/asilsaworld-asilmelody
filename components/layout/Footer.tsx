@@ -12,24 +12,31 @@ export default function Footer() {
 
   return (
     <footer className="pb-[calc(5.5rem+env(safe-area-inset-bottom))] sm:pb-0">
-      <div className="bg-museum-dark px-fluid py-16 md:py-20">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div className="max-w-xl">
-            <h2 className="font-serif text-3xl font-light tracking-wide text-asilsa-cream md:text-4xl">
-              {t.footer.inviteTitle}
-            </h2>
-            <p className="mt-4 text-sm font-light tracking-wide text-asilsa-cream/65">
-              {t.footer.inviteText}
-            </p>
+      {/* Soft handoff from page cream → invite panel */}
+      <div className="bg-gradient-to-b from-asilsa-cream via-asilsa-beige/50 to-asilsa-beige/80 px-fluid pb-10 pt-16 md:pb-14 md:pt-24">
+        <div className="relative mx-auto max-w-7xl overflow-hidden border border-museum-dark/10 bg-museum-dark">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-asilsa-beige/25 to-transparent"
+          />
+          <div className="relative flex flex-col items-start justify-between gap-8 px-6 py-12 sm:px-10 md:flex-row md:items-center md:px-12 md:py-16">
+            <div className="max-w-xl">
+              <h2 className="font-serif text-3xl font-light tracking-wide text-asilsa-cream md:text-4xl">
+                {t.footer.inviteTitle}
+              </h2>
+              <p className="mt-4 text-sm font-light tracking-wide text-asilsa-cream/65">
+                {t.footer.inviteText}
+              </p>
+            </div>
+            <a
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary-light w-full md:w-auto"
+            >
+              {t.footer.inviteCta}
+            </a>
           </div>
-          <a
-            href={getWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary-light w-full md:w-auto"
-          >
-            {t.footer.inviteCta}
-          </a>
         </div>
       </div>
 
@@ -51,7 +58,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-1">
               <li>
                 <SectionLink
-                  section="collections"
+                  section="spaces"
                   className="inline-flex min-h-11 items-center text-sm font-light tracking-wide text-museum-dark/70 transition-colors hover:text-asilsa-gold"
                 >
                   {t.nav.collections}
@@ -67,7 +74,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://asilmelody.com"
+                  href="https://asilmelody.ddogukan.dev/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center text-sm font-light tracking-wide text-museum-dark/70 transition-colors hover:text-asilsa-gold"

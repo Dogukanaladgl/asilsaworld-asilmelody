@@ -57,7 +57,8 @@ export default function Collections() {
                 src={item.imageUrl}
                 alt={item.title}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                quality={90}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
 

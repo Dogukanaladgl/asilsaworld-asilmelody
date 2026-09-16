@@ -27,7 +27,7 @@ export default function PartnerBanner() {
           {t.partner.description}
         </p>
         <a
-          href="https://asilmelody.com"
+          href="https://asilmelody.ddogukan.dev/"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary-light mt-8 w-full sm:mt-10 sm:w-auto"

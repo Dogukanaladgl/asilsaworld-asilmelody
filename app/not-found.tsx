@@ -75,7 +75,7 @@ export default function NotFound() {
             {t.notFound.home}
           </Link>
           <SectionLink
-            section="collections"
+            section="spaces"
             className="btn-gold w-full sm:w-auto"
           >
             {t.notFound.collections}

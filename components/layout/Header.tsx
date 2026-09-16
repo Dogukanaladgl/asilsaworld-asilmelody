@@ -18,7 +18,7 @@ const navItems: {
   href: string;
   section?: SectionId;
 }[] = [
-  { key: "collections", href: "/", section: "collections" },
+  { key: "collections", href: "/", section: "spaces" },
   { key: "careers", href: "/careers" },
   { key: "contact", href: "/", section: "contact" },
 ];
@@ -73,14 +73,28 @@ export default function Header() {
     }
 
     const sectionIds: NavKey[] = ["collections", "contact"];
+    // "collections" nav tracks the #spaces catalog section on the homepage
+    const sectionElIds: Record<"collections" | "contact", string> = {
+      collections: "spaces",
+      contact: "contact",
+    };
     const ratios = new Map<NavKey, number>();
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          const id = entry.target.id as NavKey;
-          if (sectionIds.includes(id)) {
-            ratios.set(id, entry.isIntersecting ? entry.intersectionRatio : 0);
+          const elId = entry.target.id;
+          const navKey = (
+            Object.entries(sectionElIds) as [
+              "collections" | "contact",
+              string,
+            ][]
+          ).find(([, id]) => id === elId)?.[0];
+          if (navKey && sectionIds.includes(navKey)) {
+            ratios.set(
+              navKey,
+              entry.isIntersecting ? entry.intersectionRatio : 0,
+            );
           }
         }
 
@@ -108,8 +122,9 @@ export default function Header() {
       },
     );
 
-    for (const id of sectionIds) {
-      const el = document.getElementById(id);
+    for (const navKey of sectionIds) {
+      if (navKey !== "collections" && navKey !== "contact") continue;
+      const el = document.getElementById(sectionElIds[navKey]);
       if (el) observer.observe(el);
     }
 

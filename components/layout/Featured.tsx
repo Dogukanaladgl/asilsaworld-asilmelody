@@ -44,7 +44,8 @@ export default function Featured() {
                   src={item.imageUrl}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  quality={90}
+                  sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 

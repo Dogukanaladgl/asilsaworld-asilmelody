@@ -6,7 +6,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import SectionLink from "@/components/ui/SectionLink";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop";
+  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=90&w=3200&auto=format&fit=crop&dpr=2";
 
 const fade = {
   hidden: { opacity: 0, y: 24 },
@@ -39,7 +39,8 @@ export default function Hero() {
             alt=""
             fill
             priority
-            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={95}
+            sizes="(max-width: 768px) 100vw, 60vw"
             className="object-cover object-[center_35%]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/25 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-asilsa-cream/10" />
@@ -86,7 +87,7 @@ export default function Hero() {
             className="mt-9"
           >
             <SectionLink
-              section="collections"
+              section="spaces"
               className="btn-primary w-full gap-2 sm:w-auto"
             >
               {t.hero.cta}

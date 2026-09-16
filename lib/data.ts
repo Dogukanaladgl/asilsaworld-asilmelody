@@ -27,7 +27,7 @@ export const furnitureData: FurnitureItem[] = [
       ru: "Мягкая льняная обивка встречается со скульптурной формой в предмете, созданном для спокойной и утончённой жизни.",
     },
     imageUrl:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=90&w=2400&auto=format&fit=crop&dpr=2",
   },
   {
     id: "ASL-002",
@@ -47,7 +47,7 @@ export const furnitureData: FurnitureItem[] = [
       ru: "Тёплые дубовые поверхности и выверенные пропорции создают трапезу, укоренённую во вневременном мастерстве.",
     },
     imageUrl:
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=90&w=2400&auto=format&fit=crop&dpr=2",
   },
   {
     id: "ASL-003",
@@ -67,7 +67,7 @@ export const furnitureData: FurnitureItem[] = [
       ru: "Спокойное убежище из приглушённых тонов и утончённых фактур, созданное для безмятежной элегантности.",
     },
     imageUrl:
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=90&w=2400&auto=format&fit=crop&dpr=2",
   },
   {
     id: "ASL-004",
@@ -87,7 +87,7 @@ export const furnitureData: FurnitureItem[] = [
       ru: "Природный рисунок мрамора и чистая геометрия придают комнате ощущение тихой роскоши.",
     },
     imageUrl:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=90&w=2400&auto=format&fit=crop&dpr=2",
   },
   {
     id: "ASL-005",
@@ -107,7 +107,7 @@ export const furnitureData: FurnitureItem[] = [
       ru: "Глубокий бархат и мягкие изгибы объединяют комфорт, беседу и сдержанную изысканность.",
     },
     imageUrl:
-      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=90&w=2400&auto=format&fit=crop&dpr=2",
   },
   {
     id: "ASL-006",
@@ -127,7 +127,7 @@ export const furnitureData: FurnitureItem[] = [
       ru: "Камерная композиция мягкого сиденья и тёплого света, созданная для неспешных моментов.",
     },
     imageUrl:
-      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=90&w=2400&auto=format&fit=crop&dpr=2",
   },
   {
     id: "ASL-007",
@@ -147,7 +147,7 @@ export const furnitureData: FurnitureItem[] = [
       ru: "Галерейные интервалы и мягкие нейтральные тона превращают повседневность в выверенный визуальный опыт.",
     },
     imageUrl:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=90&w=2400&auto=format&fit=crop&dpr=2",
   },
   {
     id: "ASL-008",
@@ -167,6 +167,6 @@ export const furnitureData: FurnitureItem[] = [
       ru: "Залитые солнцем поверхности и лёгкие формы воспевают простор мебелью, которая дышит вместе с комнатой.",
     },
     imageUrl:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=90&w=2400&auto=format&fit=crop&dpr=2",
   },
 ];

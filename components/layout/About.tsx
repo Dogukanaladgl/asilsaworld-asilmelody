@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const ABOUT_IMAGE =
-  "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1400&auto=format&fit=crop";
+  "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=90&w=2400&auto=format&fit=crop&dpr=2";
 
 export default function About() {
   const { t } = useLanguage();
@@ -24,7 +24,8 @@ export default function About() {
             src={ABOUT_IMAGE}
             alt=""
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={90}
+            sizes="(max-width: 768px) 100vw, 55vw"
             className="object-cover"
           />
         </motion.div>
