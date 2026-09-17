@@ -38,6 +38,29 @@ export function getWhatsAppUrl(message?: string) {
   return `${base}?text=${encodeURIComponent(message)}`;
 }
 
+/** Absolute URL for a site asset (image path or full URL). */
+export function getPublicAssetUrl(pathOrUrl: string) {
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+  const path = pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`;
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return `${window.location.origin}${path}`;
+  }
+  return path;
+}
+
+export function buildProductInquiryMessage(options: {
+  template: string;
+  title: string;
+  ref: string;
+  imageUrl: string;
+}) {
+  const link = getPublicAssetUrl(options.imageUrl);
+  return options.template
+    .replaceAll("{title}", options.title)
+    .replaceAll("{ref}", options.ref)
+    .replaceAll("{link}", link);
+}
+
 export function getMapsUrl() {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapsQuery)}`;
 }

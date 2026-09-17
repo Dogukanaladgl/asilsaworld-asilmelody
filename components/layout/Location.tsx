@@ -15,7 +15,7 @@ export default function Location() {
   return (
     <section
       id="location"
-      className="scroll-mt-[calc(5rem+env(safe-area-inset-top))] border-t border-gray-200/40 bg-asilsa-cream px-fluid py-section md:scroll-mt-32"
+      className="border-t border-gray-200/40 bg-asilsa-cream px-fluid py-section"
     >
       <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] md:gap-12 lg:gap-16">
         <motion.div

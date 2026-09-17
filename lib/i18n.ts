@@ -84,7 +84,8 @@ export const dictionary = {
       whatsapp: "WhatsApp'tan Bilgi Al",
       reference: "Ref.",
       close: "Kapat",
-      message: "Merhaba, {title} hakkında bilgi almak istiyorum.",
+      message:
+        "Merhaba, {title} (Ref: {ref}) hakkında bilgi almak istiyorum.\n\nÜrün görseli:\n{link}",
     },
     partner: {
       eyebrow: "Partner",
@@ -242,7 +243,8 @@ export const dictionary = {
       whatsapp: "Inquire via WhatsApp",
       reference: "Ref.",
       close: "Close",
-      message: "Hello, I would like to know more about {title}.",
+      message:
+        "Hello, I would like to know more about {title} (Ref: {ref}).\n\nProduct image:\n{link}",
     },
     partner: {
       eyebrow: "Partner",
@@ -400,7 +402,8 @@ export const dictionary = {
       whatsapp: "WhatsApp でお問い合わせ",
       reference: "参照",
       close: "閉じる",
-      message: "こんにちは。{title} について詳しく知りたいです。",
+      message:
+        "こんにちは。{title}（参照: {ref}）について詳しく知りたいです。\n\n商品画像:\n{link}",
     },
     partner: {
       eyebrow: "パートナー",
@@ -559,7 +562,8 @@ export const dictionary = {
       whatsapp: "Consultar por WhatsApp",
       reference: "Ref.",
       close: "Cerrar",
-      message: "Hola, me gustaría saber más sobre {title}.",
+      message:
+        "Hola, me gustaría saber más sobre {title} (Ref: {ref}).\n\nImagen del producto:\n{link}",
     },
     partner: {
       eyebrow: "Partner",
@@ -718,7 +722,8 @@ export const dictionary = {
       whatsapp: "Узнать в WhatsApp",
       reference: "Арт.",
       close: "Закрыть",
-      message: "Здравствуйте! Хотел(а) бы узнать больше о {title}.",
+      message:
+        "Здравствуйте! Хотел(а) бы узнать больше о {title} (арт. {ref}).\n\nИзображение:\n{link}",
     },
     partner: {
       eyebrow: "Партнёр",

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import type { FurnitureItem } from "@/lib/data";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { getWhatsAppUrl } from "@/lib/contact";
+import { buildProductInquiryMessage, getWhatsAppUrl } from "@/lib/contact";
 
 type LightboxModalProps = {
   isOpen: boolean;
@@ -36,7 +36,12 @@ export default function LightboxModal({
   if (!isOpen || !item) return null;
 
   const whatsappHref = getWhatsAppUrl(
-    t.lightbox.message.replace("{title}", item.title),
+    buildProductInquiryMessage({
+      template: t.lightbox.message,
+      title: item.title,
+      ref: item.id,
+      imageUrl: item.imageUrl,
+    }),
   );
 
   return (
@@ -68,14 +73,20 @@ export default function LightboxModal({
           <span className="text-2xl font-light leading-none">×</span>
         </button>
 
-        <div className="relative h-[min(42svh,18rem)] w-full shrink-0 sm:h-72 md:min-h-[520px]">
+        <div className={`relative h-[min(42svh,18rem)] w-full shrink-0 sm:h-72 md:min-h-[520px] ${
+          item.imageUrl.includes("features") ? "bg-asilsa-cream" : ""
+        }`}>
           <Image
             src={item.imageUrl}
             alt={item.title}
             fill
             quality={95}
             sizes="(max-width: 768px) 100vw, 60vw"
-            className="object-cover"
+            className={
+              item.imageUrl.includes("features")
+                ? "object-contain p-4"
+                : "object-cover"
+            }
             priority
           />
         </div>

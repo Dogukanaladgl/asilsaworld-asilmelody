@@ -19,6 +19,32 @@ function SectionScrollHandler() {
   const pathname = usePathname();
   const lenis = useLenis();
 
+  // Reset scroll on every route change (Lenis otherwise keeps the previous offset).
+  useEffect(() => {
+    const pending = (() => {
+      if (typeof window === "undefined") return null;
+      return window.sessionStorage.getItem("asilsa-scroll-to");
+    })();
+
+    // Home + pending section scroll: SectionScrollHandler below will jump to the section.
+    if (pathname === "/" && pending) return;
+
+    const run = () => {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+    };
+
+    const frame = window.requestAnimationFrame(run);
+    const retry = window.setTimeout(run, 80);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(retry);
+    };
+  }, [pathname, lenis]);
+
   useEffect(() => {
     if (pathname !== "/") return;
 
@@ -26,13 +52,17 @@ function SectionScrollHandler() {
     const pending = consumeSectionScroll();
     const normalizedHash =
       fromHash === "collections" ? "spaces" : fromHash;
+
+    // Old contact/location hashes now live on /iletisim
+    if (normalizedHash === "contact" || normalizedHash === "location") {
+      clearUrlHash();
+      window.location.assign("/iletisim");
+      return;
+    }
+
     const target =
       pending ??
-      (normalizedHash === "spaces" ||
-      normalizedHash === "contact" ||
-      normalizedHash === "location"
-        ? (normalizedHash as SectionId)
-        : null);
+      (normalizedHash === "spaces" ? ("spaces" as SectionId) : null);
 
     if (!target) {
       clearUrlHash();

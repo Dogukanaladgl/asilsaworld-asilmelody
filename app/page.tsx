@@ -3,7 +3,6 @@ import Features from "@/components/layout/Features";
 import Spaces from "@/components/layout/Spaces";
 import About from "@/components/layout/About";
 import PartnerBanner from "@/components/layout/PartnerBanner";
-import Location from "@/components/layout/Location";
 
 export default function Home() {
   return (
@@ -13,7 +12,6 @@ export default function Home() {
       <Spaces />
       <About />
       <PartnerBanner />
-      <Location />
     </>
   );
 }

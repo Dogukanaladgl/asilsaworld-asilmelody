@@ -19,13 +19,6 @@ export const catalogYear = 2027;
 
 export const catalogItems: CatalogItem[] = [
   {
-    "id": "AW-2027-001",
-    "title": "Salon & Oturma — 001",
-    "categoryId": "living",
-    "collection": "Salon & Oturma",
-    "imageUrl": "/catalog/2027/living/salon-oturma-001.webp"
-  },
-  {
     "id": "AW-2027-002",
     "title": "Salon & Oturma — 002",
     "categoryId": "living",
@@ -201,18 +194,11 @@ export const catalogItems: CatalogItem[] = [
     "imageUrl": "/catalog/2027/lamia/lamia-026.webp"
   },
   {
-    "id": "AW-2027-027",
-    "title": "Yatak & Baza — 027",
-    "categoryId": "bedset",
-    "collection": "Yatak & Baza",
-    "imageUrl": "/catalog/2027/bedset/yatak-baza-027.webp"
-  },
-  {
     "id": "AW-2027-028",
     "title": "Yatak & Baza — 028",
     "categoryId": "bedset",
     "collection": "Yatak & Baza",
-    "imageUrl": "/catalog/2027/bedset/yatak-baza-028.webp"
+    "imageUrl": "/catalog/2027/bedset/yatak-baza-features.webp"
   },
   {
     "id": "AW-2027-029",

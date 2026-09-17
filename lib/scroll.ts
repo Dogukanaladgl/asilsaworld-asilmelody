@@ -1,6 +1,6 @@
 export const SECTION_SCROLL_KEY = "asilsa-scroll-to";
 
-export type SectionId = "spaces" | "contact" | "location";
+export type SectionId = "spaces";
 
 type ScrollTarget = {
   scrollTo: (
@@ -26,7 +26,7 @@ export function consumeSectionScroll(): SectionId | null {
   const id = window.sessionStorage.getItem(SECTION_SCROLL_KEY);
   if (!id) return null;
   window.sessionStorage.removeItem(SECTION_SCROLL_KEY);
-  if (id === "spaces" || id === "contact" || id === "location") {
+  if (id === "spaces") {
     return id;
   }
   return null;

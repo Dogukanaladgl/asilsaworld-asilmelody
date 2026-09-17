@@ -20,7 +20,7 @@ const navItems: {
 }[] = [
   { key: "collections", href: "/", section: "spaces" },
   { key: "careers", href: "/careers" },
-  { key: "contact", href: "/", section: "contact" },
+  { key: "contact", href: "/iletisim" },
 ];
 
 type Underline = { left: number; width: number };
@@ -50,6 +50,17 @@ export default function Header() {
     }
   };
 
+  const goToContactTop = () => {
+    closeMobileMenu();
+    if (pathname === "/iletisim") {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+    }
+  };
+
   const labels: Record<NavKey, string> = {
     collections: t.nav.collections,
     careers: t.nav.careers,
@@ -67,53 +78,29 @@ export default function Header() {
       return;
     }
 
+    if (pathname === "/iletisim") {
+      setActive("contact");
+      return;
+    }
+
     if (pathname !== "/") {
       setActive(null);
       return;
     }
 
-    const sectionIds: NavKey[] = ["collections", "contact"];
-    // "collections" nav tracks the #spaces catalog section on the homepage
-    const sectionElIds: Record<"collections" | "contact", string> = {
-      collections: "spaces",
-      contact: "contact",
-    };
-    const ratios = new Map<NavKey, number>();
+    const ratios = new Map<string, number>();
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          const elId = entry.target.id;
-          const navKey = (
-            Object.entries(sectionElIds) as [
-              "collections" | "contact",
-              string,
-            ][]
-          ).find(([, id]) => id === elId)?.[0];
-          if (navKey && sectionIds.includes(navKey)) {
-            ratios.set(
-              navKey,
-              entry.isIntersecting ? entry.intersectionRatio : 0,
-            );
-          }
+          ratios.set(
+            entry.target.id,
+            entry.isIntersecting ? entry.intersectionRatio : 0,
+          );
         }
 
-        let best: NavKey | null = null;
-        let bestRatio = 0.12;
-        for (const id of sectionIds) {
-          const ratio = ratios.get(id) ?? 0;
-          if (ratio > bestRatio) {
-            bestRatio = ratio;
-            best = id;
-          }
-        }
-
-        const nearBottom =
-          window.innerHeight + window.scrollY >=
-          document.documentElement.scrollHeight - 120;
-        if (nearBottom) best = "contact";
-
-        setActive(best);
+        const spacesRatio = ratios.get("spaces") ?? 0;
+        setActive(spacesRatio > 0.12 ? "collections" : null);
       },
       {
         root: null,
@@ -122,11 +109,8 @@ export default function Header() {
       },
     );
 
-    for (const navKey of sectionIds) {
-      if (navKey !== "collections" && navKey !== "contact") continue;
-      const el = document.getElementById(sectionElIds[navKey]);
-      if (el) observer.observe(el);
-    }
+    const spacesEl = document.getElementById("spaces");
+    if (spacesEl) observer.observe(spacesEl);
 
     return () => {
       observer.disconnect();
@@ -207,7 +191,13 @@ export default function Header() {
                   key={item.key}
                   href={item.href}
                   ref={setRef}
-                  onClick={item.key === "careers" ? goToCareersTop : undefined}
+                  onClick={
+                    item.key === "careers"
+                      ? goToCareersTop
+                      : item.key === "contact"
+                        ? goToContactTop
+                        : undefined
+                  }
                   className={className}
                   aria-current={active === item.key ? "page" : undefined}
                 >
@@ -336,7 +326,11 @@ export default function Header() {
                     key={item.key}
                     href={item.href}
                     onClick={
-                      item.key === "careers" ? goToCareersTop : closeMobileMenu
+                      item.key === "careers"
+                        ? goToCareersTop
+                        : item.key === "contact"
+                          ? goToContactTop
+                          : closeMobileMenu
                     }
                     className={className}
                     aria-current={active === item.key ? "page" : undefined}

@@ -23,7 +23,7 @@ export default function CatalogCategoryView({
   if (!category) return null;
 
   return (
-    <main className="bg-asilsa-cream px-fluid pb-section pt-[calc(5.5rem+env(safe-area-inset-top))] md:pt-36">
+    <main className="bg-asilsa-cream px-fluid pb-section pt-12">
       <div className="mx-auto mb-10 max-w-7xl md:mb-14">
         <Link
           href="/#spaces"
@@ -31,7 +31,7 @@ export default function CatalogCategoryView({
         >
           ← {t.spaces.title}
         </Link>
-        <p className="mt-6 text-fluid-caption uppercase tracking-[0.32em] text-asilsa-gold">
+        <p className="mt-5 text-fluid-caption uppercase tracking-[0.32em] text-asilsa-gold">
           {t.spaces.catalogBadge.replace("{year}", String(catalogYear))}
         </p>
         <h1 className="text-fluid-display mt-3 font-serif font-light tracking-wide text-museum-dark">

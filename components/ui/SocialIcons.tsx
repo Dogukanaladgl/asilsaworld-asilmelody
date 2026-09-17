@@ -1,4 +1,4 @@
-import { contact } from "@/lib/contact";
+import { contact, getWhatsAppUrl } from "@/lib/contact";
 
 type SocialVariant = "onDark" | "onLight";
 
@@ -8,9 +8,14 @@ const socialItems = [
   { key: "tiktok", label: "TikTok", href: contact.social.tiktok },
   { key: "x", label: "X", href: contact.social.x },
   { key: "youtube", label: "YouTube", href: contact.social.youtube },
+  { key: "whatsapp", label: "WhatsApp", href: getWhatsAppUrl() },
 ] as const;
 
-function SocialGlyph({ name }: { name: (typeof socialItems)[number]["key"] }) {
+function SocialGlyph({
+  name,
+}: {
+  name: (typeof socialItems)[number]["key"];
+}) {
   switch (name) {
     case "facebook":
       return (
@@ -73,6 +78,13 @@ function SocialGlyph({ name }: { name: (typeof socialItems)[number]["key"] }) {
           <path fill="currentColor" d="M10.5 9.6v4.8l4.2-2.4-4.2-2.4Z" />
         </>
       );
+    case "whatsapp":
+      return (
+        <path
+          fill="currentColor"
+          d="M12 4.6A7.3 7.3 0 0 0 5.5 15.4L4.7 19l3.7-.8A7.3 7.3 0 1 0 12 4.6Zm0 13.3c-1.2 0-2.3-.3-3.3-.9l-.2-.1-2.2.5.5-2.1-.1-.2a5.4 5.4 0 1 1 5.3 2.8Zm3-4.1c-.2-.1-1-.5-1.2-.6-.2-.1-.3-.1-.4.1l-.6.7c-.1.1-.2.1-.4 0-.2-.1-.8-.3-1.5-.9-.5-.5-.9-1.1-1-1.3-.1-.2 0-.3.1-.4l.3-.4c.1-.1.1-.2.2-.3.1-.1 0-.2 0-.3l-.5-1.3c-.1-.3-.3-.3-.4-.3h-.4c-.1 0-.3.1-.5.3-.2.2-.6.6-.6 1.4 0 .8.6 1.6.7 1.7.1.1 1.2 1.9 3 2.6 1.8.7 1.8.5 2.1.4.3-.1 1-.4 1.1-.8.1-.4.1-.7.1-.8 0-.1-.1-.1-.3-.2Z"
+        />
+      );
   }
 }
 
@@ -86,7 +98,7 @@ export default function SocialIcons({
   const onDark = variant === "onDark";
 
   return (
-    <ul className={`flex flex-wrap items-center gap-3.5 ${className}`}>
+    <ul className={`flex flex-wrap items-center justify-center gap-3.5 ${className}`}>
       {socialItems.map((item) => (
         <li key={item.key}>
           <a
@@ -100,7 +112,11 @@ export default function SocialIcons({
                 : "bg-museum-dark text-asilsa-cream hover:bg-asilsa-gold hover:text-museum-dark"
             }`}
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" aria-hidden>
+            <svg
+              viewBox="0 0 24 24"
+              className="h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]"
+              aria-hidden
+            >
               <SocialGlyph name={item.key} />
             </svg>
           </a>
