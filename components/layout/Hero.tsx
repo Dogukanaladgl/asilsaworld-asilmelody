@@ -25,18 +25,20 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative -mt-[calc(3.75rem+env(safe-area-inset-top))] bg-asilsa-cream sm:-mt-24 md:-mt-32">
-      <div className="mx-auto grid min-h-[100svh] max-w-[1400px] items-stretch md:grid-cols-2">
-        {/* Arched visual plane — Lumina-inspired */}
+    <section
+      className="relative -mt-[calc(3.75rem+env(safe-area-inset-top))] bg-asilsa-cream sm:-mt-24 md:-mt-32"
+      aria-labelledby="hero-heading"
+    >
+      <div className="mx-auto grid max-w-[1400px] items-stretch md:min-h-[100svh] md:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative min-h-[52svh] overflow-hidden md:min-h-full md:rounded-br-[clamp(4rem,18vw,12rem)]"
+          className="relative aspect-[4/5] min-h-[42svh] max-h-[58svh] overflow-hidden sm:max-h-none sm:min-h-[48svh] md:aspect-auto md:min-h-full md:max-h-none md:rounded-br-[clamp(4rem,18vw,12rem)]"
         >
           <Image
             src={HERO_IMAGE}
-            alt=""
+            alt={`${t.hero.line1} ${t.hero.line2} ${t.hero.line3}`}
             fill
             priority
             quality={95}
@@ -46,23 +48,24 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/25 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-asilsa-cream/10" />
         </motion.div>
 
-        <div className="relative flex flex-col justify-center px-fluid py-14 md:py-24 lg:pl-16 lg:pr-12">
+        <div className="relative flex flex-col justify-center px-fluid py-10 pb-14 sm:py-14 md:py-24 lg:pl-16 lg:pr-12">
           <motion.p
             custom={0}
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="text-fluid-caption mb-5 uppercase tracking-[0.22em] text-museum-dark/45 sm:tracking-[0.32em]"
+            className="text-fluid-caption mb-4 uppercase tracking-[0.18em] text-museum-dark/45 sm:mb-5 sm:tracking-[0.32em]"
           >
             {t.nav.collections}
           </motion.p>
 
           <motion.h1
+            id="hero-heading"
             custom={1}
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="max-w-full break-words font-serif text-[clamp(2rem,1.15rem+5.2vw,4.75rem)] font-light leading-[1.1] tracking-tight text-museum-dark"
+            className="max-w-full break-words font-serif text-[clamp(1.85rem,1.1rem+4.5vw,4.75rem)] font-light leading-[1.12] tracking-tight text-museum-dark"
           >
             <span className="block">{t.hero.line1}</span>
             <span className="block italic text-asilsa-gold/90">{t.hero.line2}</span>
@@ -74,7 +77,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="text-fluid-body mt-6 max-w-md font-light leading-relaxed tracking-wide text-museum-dark/60"
+            className="text-fluid-body mt-5 max-w-md font-light leading-relaxed tracking-wide text-museum-dark/60 sm:mt-6"
           >
             {t.hero.subtitle}
           </motion.p>
@@ -84,7 +87,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="mt-9"
+            className="mt-8 sm:mt-9"
           >
             <SectionLink
               section="spaces"

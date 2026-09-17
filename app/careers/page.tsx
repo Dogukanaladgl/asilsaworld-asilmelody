@@ -108,19 +108,19 @@ export default function CareersPage() {
         >
           <motion.h1
             variants={fadeInUp}
-            className="font-serif text-4xl font-light tracking-wide text-museum-dark md:text-5xl"
+            className="font-serif text-[clamp(1.75rem,1.2rem+3vw,3rem)] font-light tracking-wide text-museum-dark"
           >
             {t.careers.title}
           </motion.h1>
           <motion.p
             variants={fadeInUp}
-            className="mx-auto mt-6 max-w-xl text-sm font-light leading-relaxed tracking-wide text-gray-500 md:text-base"
+            className="mx-auto mt-4 max-w-xl text-sm font-light leading-relaxed tracking-wide text-gray-500 sm:mt-6 md:text-base"
           >
             {t.careers.subtitle}
           </motion.p>
           <motion.span
             variants={fadeInUp}
-            className="mx-auto mt-8 block h-px w-12 bg-asilsa-gold"
+            className="mx-auto mt-6 block h-px w-12 bg-asilsa-gold sm:mt-8"
           />
         </motion.div>
 
@@ -128,7 +128,7 @@ export default function CareersPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-12 border border-asilsa-beige bg-asilsa-beige/30 px-6 py-7 text-center sm:px-8"
+          className="mt-8 border border-asilsa-beige bg-asilsa-beige/30 px-4 py-6 text-center sm:mt-12 sm:px-8 sm:py-7"
         >
           <h2 className="font-serif text-lg font-light tracking-wide text-museum-dark sm:text-xl">
             {t.careers.quickTitle}
@@ -154,9 +154,9 @@ export default function CareersPage() {
           </a>
         </motion.div>
 
-        <div className="mt-12 flex items-center gap-4">
+        <div className="mt-8 flex items-center gap-3 sm:mt-12 sm:gap-4">
           <span className="h-px flex-1 bg-museum-dark/12" />
-          <span className="text-[0.65rem] uppercase tracking-[0.25em] text-museum-dark/40">
+          <span className="shrink-0 text-[0.6rem] uppercase tracking-[0.2em] text-museum-dark/40 sm:text-[0.65rem] sm:tracking-[0.25em]">
             {t.careers.formDivider}
           </span>
           <span className="h-px flex-1 bg-museum-dark/12" />
@@ -167,7 +167,7 @@ export default function CareersPage() {
           animate="visible"
           variants={formContainer}
           onSubmit={handleSubmit}
-          className="mt-12 space-y-10 md:mt-14"
+          className="mt-8 space-y-8 sm:mt-12 sm:space-y-10 md:mt-14"
         >
           <motion.div variants={fieldVariant}>
             <label
@@ -256,7 +256,7 @@ export default function CareersPage() {
               }}
               onDragLeave={() => setIsDragging(false)}
               onDrop={onDrop}
-              className={`flex cursor-pointer flex-col items-center justify-center gap-3 border border-dashed px-6 py-12 transition-colors duration-300 ${
+              className={`flex min-h-[9rem] cursor-pointer flex-col items-center justify-center gap-3 border border-dashed px-4 py-10 transition-colors duration-300 sm:px-6 sm:py-12 ${
                 isDragging
                   ? "border-asilsa-gold bg-asilsa-beige/40"
                   : "border-museum-dark/25 hover:border-asilsa-gold/70 hover:bg-asilsa-beige/30"

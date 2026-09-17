@@ -9,7 +9,11 @@ import LanguageToggle from "@/components/ui/LanguageToggle";
 import SectionLink from "@/components/ui/SectionLink";
 import BrandMark from "@/components/ui/BrandMark";
 import { useLenis } from "lenis/react";
-import type { SectionId } from "@/lib/scroll";
+import {
+  clearHomeScrollRestore,
+  prefersReducedMotion,
+  type SectionId,
+} from "@/lib/scroll";
 
 type NavKey = "collections" | "careers" | "contact";
 
@@ -38,6 +42,22 @@ export default function Header() {
   );
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const goHomeTop = () => {
+    closeMobileMenu();
+    clearHomeScrollRestore();
+    if (pathname !== "/") return;
+    const immediate = prefersReducedMotion();
+    if (lenis) {
+      lenis.scrollTo(0, { immediate });
+    } else {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: immediate ? "auto" : "smooth",
+      });
+    }
+  };
 
   const goToCareersTop = () => {
     closeMobileMenu();
@@ -152,7 +172,7 @@ export default function Header() {
         <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-fluid py-3.5 sm:py-5 md:grid md:grid-cols-3 md:py-6">
           <Link
             href="/"
-            onClick={closeMobileMenu}
+            onClick={goHomeTop}
             className="min-w-0 text-museum-dark md:justify-self-start"
           >
             <BrandMark size="sm" />
@@ -160,6 +180,7 @@ export default function Header() {
 
           <nav
             ref={navRef}
+            aria-label={t.common.mainNav}
             className="relative hidden items-center justify-center gap-4 justify-self-center md:flex lg:gap-8 xl:gap-10"
           >
             {navItems.map((item) => {
@@ -282,7 +303,10 @@ export default function Header() {
               aria-hidden
             />
 
-            <nav className="flex flex-1 flex-col items-center justify-center gap-7 px-6 pb-safe">
+            <nav
+              aria-label={t.common.mainNav}
+              className="flex flex-1 flex-col items-center justify-center gap-7 px-6 pb-safe"
+            >
               {navItems.map((item) => {
                 const className = `relative pb-2 text-xl font-light uppercase tracking-[0.2em] transition-colors ${
                   active === item.key

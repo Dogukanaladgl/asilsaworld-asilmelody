@@ -56,15 +56,15 @@ textarea,
   }
 
   .px-fluid {
-    padding-inline: clamp(1.25rem, 5.5vw, 2.5rem);
+    padding-inline: clamp(1rem, 4.5vw, 2.5rem);
   }
 
   .py-section {
-    padding-block: clamp(3rem, 5vw + 1.5rem, 8rem);
+    padding-block: clamp(2.5rem, 4vw + 1.25rem, 8rem);
   }
 
   .gap-fluid {
-    gap: clamp(1.5rem, 3vw, 4rem);
+    gap: clamp(1.75rem, 3vw, 4rem);
   }
 
   .max-w-prose-hero {

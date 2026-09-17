@@ -3,8 +3,8 @@ import { brand } from "@/lib/contact";
 const sizeClasses = {
   sm: {
     wrap: "gap-0.5",
-    line1: "text-[0.58rem] tracking-[0.22em] sm:text-[0.62rem]",
-    line2: "text-[0.72rem] tracking-[0.28em] sm:text-[0.78rem]",
+    line1: "text-[0.55rem] tracking-[0.18em] sm:text-[0.62rem] sm:tracking-[0.22em]",
+    line2: "text-[0.68rem] tracking-[0.22em] sm:text-[0.78rem] sm:tracking-[0.28em]",
     mark: "text-[0.45em]",
   },
   md: {

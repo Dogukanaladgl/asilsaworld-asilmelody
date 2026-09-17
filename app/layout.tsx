@@ -11,6 +11,13 @@ import Footer from "@/components/layout/Footer";
 import FloatingContact from "@/components/layout/FloatingContact";
 import SmoothScrolling from "@/components/layout/SmoothScrolling";
 import LanguageProvider from "@/components/providers/LanguageProvider";
+import {
+  absoluteUrl,
+  buildMetadata,
+  getOrganizationJsonLd,
+  getSiteUrl,
+  siteConfig,
+} from "@/lib/seo";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -46,8 +53,31 @@ const notoSerifJp = Noto_Serif_JP({
 });
 
 export const metadata: Metadata = {
-  title: "Asil's a World | Premium Furniture Lookbook",
-  description: "Asil's a World | Premium Furniture Lookbook",
+  metadataBase: new URL(getSiteUrl()),
+  ...buildMetadata({
+    title: `${siteConfig.name} | ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    path: "/",
+  }),
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: absoluteUrl("/") }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  keywords: [
+    "Asil's a World",
+    "premium mobilya",
+    "mobilya katalog",
+    "salon takımı",
+    "yatak odası",
+    "yemek odası",
+    "Konya mobilya",
+    "Karatay showroom",
+  ],
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
 };
 
 export const viewport: Viewport = {
@@ -62,11 +92,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = getOrganizationJsonLd();
+
   return (
     <html lang="tr">
       <body
         className={`${playfair.variable} ${geistSans.variable} ${geistMono.variable} ${notoSansJp.variable} ${notoSerifJp.variable} font-sans`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <LanguageProvider>
           <SmoothScrolling>
             <Header />

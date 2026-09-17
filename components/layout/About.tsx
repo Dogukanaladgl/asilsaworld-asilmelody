@@ -11,7 +11,10 @@ export default function About() {
   const { t } = useLanguage();
 
   return (
-    <section className="border-t border-gray-200/40 bg-asilsa-cream px-fluid py-section">
+    <section
+      aria-labelledby="about-heading"
+      className="border-t border-gray-200/40 bg-asilsa-cream px-fluid py-section"
+    >
       <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2 md:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -22,7 +25,7 @@ export default function About() {
         >
           <Image
             src={ABOUT_IMAGE}
-            alt=""
+            alt={t.about.title}
             fill
             quality={90}
             sizes="(max-width: 768px) 100vw, 55vw"
@@ -40,7 +43,10 @@ export default function About() {
           <p className="text-fluid-caption uppercase tracking-[0.32em] text-museum-dark/45">
             {t.about.eyebrow}
           </p>
-          <h2 className="text-fluid-display mt-3 font-serif font-light tracking-wide text-museum-dark">
+          <h2
+            id="about-heading"
+            className="text-fluid-display mt-3 font-serif font-light tracking-wide text-museum-dark"
+          >
             {t.about.title}
           </h2>
           <span className="mt-5 block h-px w-12 bg-asilsa-gold" />

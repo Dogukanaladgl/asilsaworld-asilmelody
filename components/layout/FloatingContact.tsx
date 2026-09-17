@@ -80,15 +80,15 @@ export default function FloatingContact() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 40 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 flex max-h-[min(88dvh,calc(100svh-1rem))] w-full flex-col overflow-hidden border-t border-asilsa-beige/80 bg-asilsa-cream shadow-[0_-12px_40px_rgba(44,36,28,0.15)] sm:mb-16 sm:max-h-[min(85dvh,34rem)] sm:w-[22rem] sm:border sm:shadow-[0_20px_60px_rgba(44,36,28,0.18)]"
+              className="relative z-10 flex max-h-[min(92dvh,calc(100svh-0.5rem))] w-full flex-col overflow-hidden rounded-t-2xl border-t border-asilsa-beige/80 bg-asilsa-cream shadow-[0_-12px_40px_rgba(44,36,28,0.15)] sm:mb-16 sm:max-h-[min(85dvh,34rem)] sm:w-[22rem] sm:rounded-none sm:border sm:shadow-[0_20px_60px_rgba(44,36,28,0.18)]"
             >
               <div className="flex shrink-0 items-center justify-between border-b border-asilsa-beige/70 bg-museum-dark px-5 py-3.5">
-                <h2
+                <p
                   id="contact-panel-title"
                   className="text-asilsa-cream"
                 >
                   <BrandMark size="sm" showMark={false} />
-                </h2>
+                </p>
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}

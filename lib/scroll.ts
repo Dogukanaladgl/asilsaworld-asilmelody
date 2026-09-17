@@ -1,4 +1,6 @@
 export const SECTION_SCROLL_KEY = "asilsa-scroll-to";
+export const HOME_SCROLL_KEY = "asilsa-home-scroll";
+export const HOME_SCROLL_RESTORE_KEY = "asilsa-home-scroll-restore";
 
 export type SectionId = "spaces";
 
@@ -16,8 +18,44 @@ export function clearUrlHash() {
   window.history.replaceState(null, "", clean);
 }
 
+/** Save home scroll so returning from a collection restores the same place. */
+export function rememberHomeScroll(y: number) {
+  if (typeof window === "undefined") return;
+  window.sessionStorage.setItem(
+    HOME_SCROLL_KEY,
+    String(Math.round(Math.max(0, y))),
+  );
+  window.sessionStorage.setItem(HOME_SCROLL_RESTORE_KEY, "1");
+}
+
+export function clearHomeScrollRestore() {
+  if (typeof window === "undefined") return;
+  window.sessionStorage.removeItem(HOME_SCROLL_RESTORE_KEY);
+  window.sessionStorage.removeItem(HOME_SCROLL_KEY);
+}
+
+export function hasHomeScrollRestore() {
+  if (typeof window === "undefined") return false;
+  return window.sessionStorage.getItem(HOME_SCROLL_RESTORE_KEY) === "1";
+}
+
+export function consumeHomeScrollRestore(): number | null {
+  if (typeof window === "undefined") return null;
+  if (window.sessionStorage.getItem(HOME_SCROLL_RESTORE_KEY) !== "1") {
+    return null;
+  }
+  const raw = window.sessionStorage.getItem(HOME_SCROLL_KEY);
+  window.sessionStorage.removeItem(HOME_SCROLL_RESTORE_KEY);
+  window.sessionStorage.removeItem(HOME_SCROLL_KEY);
+  const y = Number(raw);
+  if (!Number.isFinite(y) || y < 0) return null;
+  return y;
+}
+
 export function requestSectionScroll(id: SectionId) {
   if (typeof window === "undefined") return;
+  // Explicit section jump wins over collection return-scroll.
+  clearHomeScrollRestore();
   window.sessionStorage.setItem(SECTION_SCROLL_KEY, id);
 }
 
@@ -35,12 +73,24 @@ export function consumeSectionScroll(): SectionId | null {
 export function scrollToSection(
   id: SectionId,
   scroller?: ScrollTarget | null,
+  options?: { immediate?: boolean },
 ) {
   if (typeof window === "undefined") return;
   const el = document.getElementById(id);
   if (!el) return;
-  scrollToElement(el, scroller);
+  scrollToElement(el, scroller, options);
   clearUrlHash();
+}
+
+export function prefersReducedMotion() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+export function getWindowScrollY(scroller?: { scroll?: number } | null) {
+  if (typeof window === "undefined") return 0;
+  if (scroller && typeof scroller.scroll === "number") return scroller.scroll;
+  return window.scrollY || document.documentElement.scrollTop || 0;
 }
 
 export function scrollToElement(
@@ -51,15 +101,16 @@ export function scrollToElement(
   if (typeof window === "undefined") return;
 
   const margin = Number.parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+  const immediate = options?.immediate ?? prefersReducedMotion();
 
   if (scroller) {
     scroller.scrollTo(el, {
       offset: -margin,
-      immediate: options?.immediate ?? false,
+      immediate,
     });
   } else {
     el.scrollIntoView({
-      behavior: options?.immediate ? "auto" : "smooth",
+      behavior: immediate ? "auto" : "smooth",
       block: "start",
     });
   }

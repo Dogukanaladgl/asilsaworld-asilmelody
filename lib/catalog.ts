@@ -12,6 +12,8 @@ export type { CatalogCategoryId, CatalogItem };
 
 export type CatalogCategory = {
   id: CatalogCategoryId;
+  /** Pretty public URL slug, e.g. /koleksiyon/salon */
+  slug: string;
   label: LocalizedText;
   blurb: LocalizedText;
   /** Shown on the home “explore by collection” grid */
@@ -21,6 +23,7 @@ export type CatalogCategory = {
 export const catalogCategories: CatalogCategory[] = [
   {
     id: "living",
+    slug: "salon",
     onHome: true,
     label: {
       tr: "Salon Takımı & Oturma Grubu",
@@ -39,6 +42,7 @@ export const catalogCategories: CatalogCategory[] = [
   },
   {
     id: "bedroom",
+    slug: "yatak-odasi",
     onHome: true,
     label: {
       tr: "Yatak Odası & Yaşam Odası",
@@ -57,6 +61,7 @@ export const catalogCategories: CatalogCategory[] = [
   },
   {
     id: "bedset",
+    slug: "yatak-baza",
     onHome: true,
     label: {
       tr: "Yatak Baza Başlık & Karyola",
@@ -75,6 +80,7 @@ export const catalogCategories: CatalogCategory[] = [
   },
   {
     id: "dining",
+    slug: "yemek-odasi",
     onHome: true,
     label: {
       tr: "Yemek Odası & Salon Takımı",
@@ -93,6 +99,7 @@ export const catalogCategories: CatalogCategory[] = [
   },
   {
     id: "lamia",
+    slug: "lamia",
     onHome: true,
     label: {
       tr: "Lamia Koleksiyonu",
@@ -111,6 +118,7 @@ export const catalogCategories: CatalogCategory[] = [
   },
   {
     id: "others",
+    slug: "digerleri",
     onHome: true,
     label: {
       tr: "Diğerleri",
@@ -190,6 +198,15 @@ export function getHomeCategories() {
 
 export function getCategory(id: string) {
   return catalogCategories.find((c) => c.id === id) ?? null;
+}
+
+export function getCategoryBySlug(slug: string) {
+  return catalogCategories.find((c) => c.slug === slug) ?? null;
+}
+
+export function getCategoryPath(id: CatalogCategoryId) {
+  const category = getCategory(id);
+  return `/koleksiyon/${category?.slug ?? id}`;
 }
 
 export function getItemsByCategory(id: CatalogCategoryId) {

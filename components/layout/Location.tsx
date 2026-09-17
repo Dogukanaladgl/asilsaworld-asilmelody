@@ -15,9 +15,10 @@ export default function Location() {
   return (
     <section
       id="location"
+      aria-labelledby="location-heading"
       className="border-t border-gray-200/40 bg-asilsa-cream px-fluid py-section"
     >
-      <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] md:gap-12 lg:gap-16">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 sm:gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] md:gap-12 lg:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -28,9 +29,12 @@ export default function Location() {
           <p className="text-fluid-caption uppercase tracking-[0.28em] text-museum-dark/45 sm:tracking-[0.35em]">
             {t.location.eyebrow}
           </p>
-          <h2 className="mt-3 font-serif text-[clamp(1.35rem,0.9rem+2.2vw,2.15rem)] font-light leading-snug tracking-wide text-museum-dark sm:mt-4">
+          <h1
+            id="location-heading"
+            className="mt-3 font-serif text-[clamp(1.35rem,0.9rem+2.2vw,2.15rem)] font-light leading-snug tracking-wide text-museum-dark sm:mt-4"
+          >
             {t.location.title}
-          </h2>
+          </h1>
           <span className="mt-4 block h-px w-10 bg-asilsa-gold sm:mt-5 sm:w-12" />
           <p className="mt-5 text-sm font-medium leading-relaxed tracking-wide text-museum-dark sm:mt-7 md:text-base">
             {t.location.invite}
@@ -67,7 +71,7 @@ export default function Location() {
               href={getAppleMapsUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary w-full gap-2 whitespace-nowrap px-4 py-2.5 text-[0.6rem] tracking-[0.12em] sm:px-4 sm:text-[0.65rem] sm:tracking-[0.16em]"
+              className="btn-primary w-full gap-2 px-3 py-3 text-[0.58rem] leading-snug tracking-[0.1em] sm:px-4 sm:text-[0.65rem] sm:tracking-[0.16em]"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -83,7 +87,7 @@ export default function Location() {
               href={getMapsUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary w-full gap-2 whitespace-nowrap px-4 py-2.5 text-[0.6rem] tracking-[0.12em] sm:px-4 sm:text-[0.65rem] sm:tracking-[0.16em]"
+              className="btn-primary w-full gap-2 px-3 py-3 text-[0.58rem] leading-snug tracking-[0.1em] sm:px-4 sm:text-[0.65rem] sm:tracking-[0.16em]"
             >
               <svg viewBox="0 0 48 48" className="h-4 w-4 shrink-0" aria-hidden>
                 <path
@@ -113,7 +117,7 @@ export default function Location() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-asilsa-beige/60 sm:aspect-[16/10] md:aspect-auto md:h-[min(48vw,520px)] md:min-h-[360px]"
+          className="relative aspect-[5/4] w-full overflow-hidden rounded-xl border border-asilsa-beige/60 sm:aspect-[16/10] sm:rounded-2xl md:aspect-auto md:h-[min(48vw,520px)] md:min-h-[360px]"
         >
           <iframe
             title={t.location.mapTitle}

@@ -3,35 +3,47 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import {
   getCategoryCover,
+  getCategoryPath,
   getHomeCategories,
   type CatalogCategoryId,
 } from "@/lib/catalog";
+import { getWindowScrollY, rememberHomeScroll } from "@/lib/scroll";
 
 export default function Spaces() {
   const { t, language } = useLanguage();
   const categories = getHomeCategories();
+  const lenis = useLenis();
+
+  const rememberScroll = () => {
+    rememberHomeScroll(getWindowScrollY(lenis));
+  };
 
   return (
     <section
       id="spaces"
+      aria-labelledby="spaces-heading"
       className="scroll-mt-[calc(5rem+env(safe-area-inset-top))] bg-asilsa-beige/30 px-fluid py-section md:scroll-mt-32"
     >
-      <div className="mx-auto mb-10 max-w-7xl text-center md:mb-14">
-        <p className="text-fluid-caption uppercase tracking-[0.32em] text-museum-dark/45">
+      <div className="mx-auto mb-8 max-w-7xl text-center sm:mb-10 md:mb-14">
+        <p className="text-fluid-caption uppercase tracking-[0.28em] text-museum-dark/45 sm:tracking-[0.32em]">
           {t.spaces.eyebrow}
         </p>
-        <h2 className="text-fluid-display mt-3 font-serif font-light tracking-wide text-museum-dark">
+        <h2
+          id="spaces-heading"
+          className="text-fluid-display mt-3 font-serif font-light tracking-wide text-museum-dark"
+        >
           {t.spaces.title}
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-sm font-light tracking-wide text-museum-dark/50">
+        <p className="mx-auto mt-3 max-w-md text-sm font-light leading-relaxed tracking-wide text-museum-dark/50 sm:mt-4">
           {t.spaces.catalogNote}
         </p>
       </div>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-4">
         {categories.map((item, index) => {
           const cover = getCategoryCover(item.id as CatalogCategoryId);
 
@@ -44,7 +56,8 @@ export default function Spaces() {
               transition={{ duration: 0.65, delay: index * 0.05 }}
             >
               <Link
-                href={`/katalog/${item.id}`}
+                href={getCategoryPath(item.id as CatalogCategoryId)}
+                onClick={rememberScroll}
                 className="group relative block aspect-[3/4] overflow-hidden"
               >
                 <Image
@@ -55,8 +68,8 @@ export default function Spaces() {
                   sizes="(max-width: 768px) 50vw, 33vw"
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/75 via-museum-dark/15 to-transparent" />
-                <span className="absolute inset-x-0 bottom-0 p-3 text-center text-[0.68rem] font-light leading-snug tracking-wide text-asilsa-cream sm:p-4 sm:text-[0.72rem]">
+                <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/80 via-museum-dark/20 to-transparent" />
+                <span className="absolute inset-x-0 bottom-0 px-2.5 pb-3 pt-10 text-center text-[0.62rem] font-light leading-snug tracking-wide text-asilsa-cream sm:px-3 sm:pb-4 sm:text-[0.68rem] md:px-4 md:text-[0.72rem]">
                   {item.label[language]}
                 </span>
               </Link>

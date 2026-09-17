@@ -13,21 +13,21 @@ export default function Footer() {
   return (
     <footer className="pb-[calc(5.5rem+env(safe-area-inset-bottom))] sm:pb-0">
       <div className="border-t border-gray-200/50 bg-asilsa-cream">
-        <div className="mx-auto grid max-w-7xl gap-fluid px-fluid py-section md:grid-cols-3">
+        <div className="mx-auto grid max-w-7xl gap-10 px-fluid py-section sm:gap-fluid md:grid-cols-3">
           <div>
             <Link href="/" className="inline-block text-museum-dark">
               <BrandMark size="sm" />
             </Link>
-            <p className="mt-5 max-w-xs text-sm font-light leading-relaxed tracking-wide text-museum-dark/60">
+            <p className="mt-4 max-w-xs text-sm font-light leading-relaxed tracking-wide text-museum-dark/60 sm:mt-5">
               {t.footer.tagline}
             </p>
           </div>
 
           <div>
-            <h3 className="text-[0.72rem] uppercase tracking-[0.28em] text-museum-dark/75">
+            <h2 className="text-[0.68rem] uppercase tracking-[0.24em] text-museum-dark/75 sm:text-[0.72rem] sm:tracking-[0.28em]">
               {t.footer.quickLinks}
-            </h3>
-            <ul className="mt-5 space-y-1">
+            </h2>
+            <ul className="mt-3 space-y-0.5 sm:mt-5 sm:space-y-1">
               <li>
                 <SectionLink
                   section="spaces"
@@ -66,16 +66,16 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[0.72rem] uppercase tracking-[0.28em] text-museum-dark/75">
+            <h2 className="text-[0.68rem] uppercase tracking-[0.24em] text-museum-dark/75 sm:text-[0.72rem] sm:tracking-[0.28em]">
               {t.footer.contact}
-            </h3>
-            <ul className="mt-5 space-y-1">
+            </h2>
+            <ul className="mt-3 space-y-0.5 sm:mt-5 sm:space-y-1">
               <li>
                 <a
                   href={getMapsUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center text-sm font-light tracking-wide text-museum-dark/70 transition-colors hover:text-asilsa-gold"
+                  className="inline-flex min-h-11 items-center break-words text-sm font-light tracking-wide text-museum-dark/70 transition-colors hover:text-asilsa-gold"
                 >
                   {contact.addressShort}
                 </a>

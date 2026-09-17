@@ -35,6 +35,7 @@ export default function LightboxModal({
 
   if (!isOpen || !item) return null;
 
+  const isFeatureSheet = item.imageUrl.includes("features");
   const whatsappHref = getWhatsAppUrl(
     buildProductInquiryMessage({
       template: t.lightbox.message,
@@ -61,21 +62,23 @@ export default function LightboxModal({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 40 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="relative grid max-h-[100svh] w-full max-w-4xl overflow-y-auto overscroll-contain bg-asilsa-cream sm:max-h-[90vh] sm:overflow-hidden sm:rounded-xl md:grid-cols-2"
+        className="relative flex max-h-[100svh] w-full max-w-4xl flex-col overflow-hidden bg-asilsa-cream sm:max-h-[90vh] sm:rounded-xl md:grid md:grid-cols-2 md:overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label={t.lightbox.close}
-          className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-asilsa-cream text-museum-dark shadow-md ring-1 ring-museum-dark/10 transition-colors hover:bg-museum-dark hover:text-asilsa-cream"
+          className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-asilsa-cream/95 text-museum-dark shadow-md ring-1 ring-museum-dark/10 transition-colors hover:bg-museum-dark hover:text-asilsa-cream"
         >
           <span className="text-2xl font-light leading-none">×</span>
         </button>
 
-        <div className={`relative h-[min(42svh,18rem)] w-full shrink-0 sm:h-72 md:min-h-[520px] ${
-          item.imageUrl.includes("features") ? "bg-asilsa-cream" : ""
-        }`}>
+        <div
+          className={`relative h-[min(38svh,16rem)] w-full shrink-0 sm:h-72 md:min-h-[520px] ${
+            isFeatureSheet ? "bg-asilsa-cream" : ""
+          }`}
+        >
           <Image
             src={item.imageUrl}
             alt={item.title}
@@ -83,36 +86,34 @@ export default function LightboxModal({
             quality={95}
             sizes="(max-width: 768px) 100vw, 60vw"
             className={
-              item.imageUrl.includes("features")
-                ? "object-contain p-4"
-                : "object-cover"
+              isFeatureSheet ? "object-contain p-3 sm:p-4" : "object-cover"
             }
             priority
           />
         </div>
 
-        <div className="flex flex-col justify-center px-5 py-7 pb-safe sm:px-8 sm:py-10 md:px-12 md:py-14">
-          <p className="mb-2 text-[0.65rem] uppercase tracking-[0.3em] text-asilsa-gold sm:mb-3">
+        <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-5 py-6 pb-safe sm:px-8 sm:py-10 md:justify-center md:px-12 md:py-14">
+          <p className="mb-2 text-[0.62rem] uppercase tracking-[0.24em] text-asilsa-gold sm:mb-3 sm:text-[0.65rem] sm:tracking-[0.3em]">
             {item.category[language]}
           </p>
-          <h3
+          <h2
             id="lightbox-title"
-            className="font-serif text-xl font-light tracking-wide text-museum-dark sm:text-2xl md:text-3xl"
+            className="break-words font-serif text-xl font-light tracking-wide text-museum-dark sm:text-2xl md:text-3xl"
           >
             {item.title}
-          </h3>
+          </h2>
           <span className="mt-3 block h-px w-10 bg-asilsa-gold sm:mt-4" />
           <p className="mt-4 text-sm font-light leading-relaxed tracking-wide text-museum-dark/70 sm:mt-6 md:text-base">
             {item.description[language]}
           </p>
-          <p className="mt-4 text-[0.6rem] uppercase tracking-[0.25em] text-museum-dark/35 sm:mt-5">
+          <p className="mt-4 text-[0.6rem] uppercase tracking-[0.22em] text-museum-dark/35 sm:mt-5 sm:tracking-[0.25em]">
             {t.lightbox.reference} {item.id}
           </p>
           <a
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gold mt-7 w-full sm:mt-10 sm:w-fit"
+            className="btn-gold mt-6 w-full sm:mt-10 sm:w-fit"
           >
             {t.lightbox.whatsapp}
           </a>

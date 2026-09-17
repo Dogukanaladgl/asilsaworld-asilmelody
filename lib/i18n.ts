@@ -154,6 +154,7 @@ export const dictionary = {
       openMenu: "Menüyü aç",
       closeMenu: "Menüyü kapat",
       contactUs: "Bize yazın",
+      mainNav: "Ana menü",
     },
     contactPanel: {
       greeting:
@@ -314,6 +315,7 @@ export const dictionary = {
       openMenu: "Open menu",
       closeMenu: "Close menu",
       contactUs: "Message us",
+      mainNav: "Main navigation",
     },
     contactPanel: {
       greeting:
@@ -473,6 +475,7 @@ export const dictionary = {
       openMenu: "メニューを開く",
       closeMenu: "メニューを閉じる",
       contactUs: "メッセージを送る",
+      mainNav: "メインメニュー",
     },
     contactPanel: {
       greeting:
@@ -633,6 +636,7 @@ export const dictionary = {
       openMenu: "Abrir menú",
       closeMenu: "Cerrar menú",
       contactUs: "Escríbanos",
+      mainNav: "Menú principal",
     },
     contactPanel: {
       greeting:
@@ -793,6 +797,7 @@ export const dictionary = {
       openMenu: "Открыть меню",
       closeMenu: "Закрыть меню",
       contactUs: "Напишите нам",
+      mainNav: "Главное меню",
     },
     contactPanel: {
       greeting:

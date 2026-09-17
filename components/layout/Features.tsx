@@ -61,10 +61,10 @@ export default function Features() {
   const { t } = useLanguage();
 
   return (
-    <section className="border-t border-gray-200/40 bg-asilsa-cream px-fluid py-14 md:py-20">
-      <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+    <section className="border-t border-gray-200/40 bg-asilsa-cream px-fluid py-12 sm:py-14 md:py-20">
+      <div className="mx-auto grid max-w-7xl gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-8">
         {t.features.items.map((item, index) => (
-          <motion.div
+          <motion.article
             key={item.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,13 +73,13 @@ export default function Features() {
             className="min-w-0 text-center lg:text-left"
           >
             <FeatureIcon index={index} />
-            <h3 className="mt-4 text-[0.78rem] font-medium leading-snug tracking-wide text-museum-dark sm:text-[0.82rem]">
+            <h2 className="mt-3.5 text-[0.78rem] font-medium leading-snug tracking-wide text-museum-dark sm:mt-4 sm:text-[0.82rem]">
               {item.title}
-            </h3>
-            <p className="mx-auto mt-3 max-w-[22rem] text-sm font-light leading-relaxed tracking-normal text-museum-dark/55 break-words lg:mx-0 lg:tracking-wide">
+            </h2>
+            <p className="mx-auto mt-2.5 max-w-[22rem] break-words text-sm font-light leading-relaxed tracking-normal text-museum-dark/55 sm:mt-3 lg:mx-0 lg:tracking-wide">
               {item.text}
             </p>
-          </motion.div>
+          </motion.article>
         ))}
       </div>
     </section>

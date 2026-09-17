@@ -30,7 +30,7 @@ export default function CatalogGrid({ items, emptyText }: CatalogGridProps) {
 
   return (
     <>
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
         {items.map((item, index) => {
           const isFeatureSheet = item.imageUrl.includes("features");
 
@@ -63,11 +63,11 @@ export default function CatalogGrid({ items, emptyText }: CatalogGridProps) {
             {!isFeatureSheet && (
               <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/70 via-transparent to-transparent opacity-90 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100" />
             )}
-            <div className="absolute inset-x-0 bottom-0 flex translate-y-0 flex-col items-center gap-1.5 p-4 opacity-100 transition-all duration-500 md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
-              <p className={`font-serif text-sm tracking-wide ${isFeatureSheet ? "text-museum-dark" : "text-asilsa-cream"}`}>
+            <div className="absolute inset-x-0 bottom-0 flex translate-y-0 flex-col items-center gap-1.5 p-3.5 opacity-100 transition-all duration-500 sm:p-4 md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
+              <p className={`max-w-full break-words text-center font-serif text-[0.85rem] tracking-wide sm:text-sm ${isFeatureSheet ? "text-museum-dark" : "text-asilsa-cream"}`}>
                 {item.collection ?? item.title}
               </p>
-              <span className={`border px-4 py-1.5 text-[0.6rem] uppercase tracking-[0.22em] backdrop-blur-[2px] ${
+              <span className={`border px-3.5 py-1.5 text-[0.58rem] uppercase tracking-[0.18em] backdrop-blur-[2px] sm:px-4 sm:text-[0.6rem] sm:tracking-[0.22em] ${
                 isFeatureSheet
                   ? "border-museum-dark/40 bg-asilsa-cream/80 text-museum-dark"
                   : "border-asilsa-cream/90 bg-asilsa-cream/15 text-asilsa-cream"

@@ -7,7 +7,10 @@ export default function PartnerBanner() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-[min(70svh,40rem)] w-full items-center justify-center overflow-hidden bg-museum-spotlight px-fluid py-section md:min-h-[60svh]">
+    <section
+      aria-labelledby="partner-heading"
+      className="relative flex min-h-[min(70svh,40rem)] w-full items-center justify-center overflow-hidden bg-museum-spotlight px-fluid py-section md:min-h-[60svh]"
+    >
       <div className="absolute inset-0 bg-museum-dark/20" />
 
       <motion.div
@@ -20,7 +23,10 @@ export default function PartnerBanner() {
         <p className="text-fluid-caption mb-4 uppercase tracking-[0.28em] text-asilsa-cream/60 sm:mb-5 sm:tracking-[0.35em]">
           {t.partner.eyebrow}
         </p>
-        <h2 className="text-fluid-display font-serif font-light leading-snug tracking-wide text-asilsa-cream">
+        <h2
+          id="partner-heading"
+          className="text-fluid-display font-serif font-light leading-snug tracking-wide text-asilsa-cream"
+        >
           {t.partner.title}
         </h2>
         <p className="text-fluid-body mx-auto mt-5 max-w-md font-light leading-relaxed tracking-wide text-asilsa-cream/75 sm:mt-6">
