@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Lenis owns smooth scrolling — CSS smooth fights restores and causes hitching. */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -11,12 +12,18 @@ import {
   getHomeCategories,
   type CatalogCategoryId,
 } from "@/lib/catalog";
-import { getWindowScrollY, rememberHomeScroll } from "@/lib/scroll";
+import {
+  getWindowScrollY,
+  peekHomeScrollRestore,
+  rememberHomeScroll,
+} from "@/lib/scroll";
 
 export default function Spaces() {
   const { t, language } = useLanguage();
   const categories = getHomeCategories();
   const lenis = useLenis();
+  // Skip entrance motion when returning from a collection — avoids scroll hitch.
+  const [skipIntro] = useState(() => peekHomeScrollRestore() != null);
 
   const rememberScroll = () => {
     rememberHomeScroll(getWindowScrollY(lenis));
@@ -43,20 +50,25 @@ export default function Spaces() {
         </p>
       </div>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4">
         {categories.map((item, index) => {
           const cover = getCategoryCover(item.id as CatalogCategoryId);
 
           return (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={skipIntro ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.65, delay: index * 0.05 }}
+              transition={{
+                duration: 0.65,
+                delay: skipIntro ? 0 : index * 0.05,
+              }}
             >
               <Link
                 href={getCategoryPath(item.id as CatalogCategoryId)}
+                scroll={false}
+                onPointerDown={rememberScroll}
                 onClick={rememberScroll}
                 className="group relative block aspect-[3/4] overflow-hidden"
               >

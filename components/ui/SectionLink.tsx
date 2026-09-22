@@ -41,13 +41,14 @@ const SectionLink = forwardRef<HTMLAnchorElement, SectionLinkProps>(
       }
 
       requestSectionScroll(section);
-      router.push("/");
+      router.push("/", { scroll: false });
     };
 
     return (
       <Link
         ref={ref}
         href="/"
+        scroll={false}
         onClick={handleClick}
         className={className}
         aria-current={ariaCurrent}

@@ -3,12 +3,13 @@ import type { FurnitureItem } from "@/lib/data";
 import {
   catalogItems,
   catalogYear,
-  type CatalogCategoryId,
   type CatalogItem,
 } from "@/lib/catalog.generated";
 
 export { catalogItems, catalogYear };
-export type { CatalogCategoryId, CatalogItem };
+export type { CatalogItem };
+
+export type CatalogCategoryId = CatalogItem["categoryId"];
 
 export type CatalogCategory = {
   id: CatalogCategoryId;
@@ -19,6 +20,32 @@ export type CatalogCategory = {
   /** Shown on the home “explore by collection” grid */
   onHome: boolean;
 };
+
+/** Named bedroom + dining suite, e.g. “Alaçatı Koleksiyonu”. */
+function roomCollection(
+  id: CatalogCategoryId,
+  name: LocalizedText,
+): CatalogCategory {
+  return {
+    id,
+    slug: id,
+    onHome: true,
+    label: {
+      tr: `${name.tr} Koleksiyonu`,
+      en: `${name.en} Collection`,
+      ja: `${name.ja} コレクション`,
+      es: `Colección ${name.es}`,
+      ru: `Коллекция ${name.ru}`,
+    },
+    blurb: {
+      tr: `2027 güncel katalog — ${name.tr} yatak odası ve yemek odası takımları.`,
+      en: `2027 current catalog — ${name.en} bedroom and dining room sets.`,
+      ja: `2027最新カタログ — ${name.ja}のベッドルームとダイニング。`,
+      es: `Catálogo 2027 — dormitorio y comedor ${name.es}.`,
+      ru: `Актуальный каталог 2027 — спальня и столовая ${name.ru}.`,
+    },
+  };
+}
 
 export const catalogCategories: CatalogCategory[] = [
   {
@@ -33,30 +60,11 @@ export const catalogCategories: CatalogCategory[] = [
       ru: "Салон и гостиные группы",
     },
     blurb: {
-      tr: "2027 güncel katalog — oturma grupları ve salon takımları.",
-      en: "2027 current catalog — living groups and salon sets.",
-      ja: "2027最新カタログ — リビングセット。",
-      es: "Catálogo 2027 — grupos de estar y salones.",
-      ru: "Актуальный каталог 2027 — гостиные группы.",
-    },
-  },
-  {
-    id: "bedroom",
-    slug: "yatak-odasi",
-    onHome: true,
-    label: {
-      tr: "Yatak Odası & Yaşam Odası",
-      en: "Bedroom & Living Room",
-      ja: "ベッドルーム",
-      es: "Dormitorio y sala",
-      ru: "Спальня и жилые комнаты",
-    },
-    blurb: {
-      tr: "2027 güncel katalog — yatak odası takımları.",
-      en: "2027 current catalog — bedroom suites.",
-      ja: "2027最新カタログ — ベッドルームセット。",
-      es: "Catálogo 2027 — dormitorios.",
-      ru: "Актуальный каталог 2027 — спальни.",
+      tr: "2027 güncel katalog — isimli oturma grupları, fiyata göre sıralı.",
+      en: "2027 current catalog — named living groups, ordered by price.",
+      ja: "2027最新カタログ — 価格順のリビングセット。",
+      es: "Catálogo 2027 — grupos con nombre, ordenados por precio.",
+      ru: "Актуальный каталог 2027 — именные гостиные, по цене.",
     },
   },
   {
@@ -73,49 +81,58 @@ export const catalogCategories: CatalogCategory[] = [
     blurb: {
       tr: "2027 güncel katalog — baza, başlık ve karyola modelleri.",
       en: "2027 current catalog — bases, headboards and bedsteads.",
-      ja: "2027最新カタログ — ベッド関連モデル。",
-      es: "Catálogo 2027 — bases y cabeceros.",
-      ru: "Актуальный каталог 2027 — кровати и основания.",
+      ja: "2027最新カタログ — ベッドベース・ヘッドボード。",
+      es: "Catálogo 2027 — bases, cabeceros y camas.",
+      ru: "Актуальный каталог 2027 — основания, изголовья и кровати.",
     },
   },
   {
-    id: "dining",
-    slug: "yemek-odasi",
+    id: "corner",
+    slug: "kose",
     onHome: true,
     label: {
-      tr: "Yemek Odası & Salon Takımı",
-      en: "Dining Room & Salon Sets",
-      ja: "ダイニング & サロン",
-      es: "Comedor y salón",
-      ru: "Столовые и салонные комплекты",
+      tr: "Köşe Koltuk & L Oturma",
+      en: "Corner Sofas & L-Living",
+      ja: "コーナーソファ",
+      es: "Sofás esquinados y L",
+      ru: "Угловые диваны",
     },
     blurb: {
-      tr: "2027 güncel katalog — yemek odası takımları.",
-      en: "2027 current catalog — dining sets.",
-      ja: "2027最新カタログ — ダイニングセット。",
-      es: "Catálogo 2027 — comedores.",
-      ru: "Актуальный каталог 2027 — столовые.",
+      tr: "2027 güncel katalog — köşe ve L oturma grupları.",
+      en: "2027 current catalog — corner and L-shaped living groups.",
+      ja: "2027最新カタログ — コーナー＆L字ソファ。",
+      es: "Catálogo 2027 — sofás esquinados y en L.",
+      ru: "Актуальный каталог 2027 — угловые и L-образные группы.",
     },
   },
-  {
-    id: "lamia",
-    slug: "lamia",
-    onHome: true,
-    label: {
-      tr: "Lamia Koleksiyonu",
-      en: "Lamia Collection",
-      ja: "Lamia コレクション",
-      es: "Colección Lamia",
-      ru: "Коллекция Lamia",
-    },
-    blurb: {
-      tr: "2027 güncel katalog — Lamia özel seçkisi.",
-      en: "2027 current catalog — the Lamia selection.",
-      ja: "2027最新カタログ — Lamiaセレクション。",
-      es: "Catálogo 2027 — selección Lamia.",
-      ru: "Актуальный каталог 2027 — коллекция Lamia.",
-    },
-  },
+  roomCollection("alacati", {
+    tr: "Alaçatı",
+    en: "Alaçatı",
+    ja: "アラチャトゥ",
+    es: "Alaçatı",
+    ru: "Алачаты",
+  }),
+  roomCollection("alisya-gold", {
+    tr: "Alisya Gold",
+    en: "Alisya Gold",
+    ja: "アリシャ ゴールド",
+    es: "Alisya Gold",
+    ru: "Алисья Голд",
+  }),
+  roomCollection("alyans", {
+    tr: "Alyans",
+    en: "Alyans",
+    ja: "アリャンス",
+    es: "Alyans",
+    ru: "Альянс",
+  }),
+  roomCollection("tokyo", {
+    tr: "Tokyo",
+    en: "Tokyo",
+    ja: "トーキョー",
+    es: "Tokyo",
+    ru: "Токио",
+  }),
   {
     id: "others",
     slug: "digerleri",
@@ -128,11 +145,11 @@ export const catalogCategories: CatalogCategory[] = [
       ru: "Другое",
     },
     blurb: {
-      tr: "Köşe koltuk, TV ünitesi, çeyiz ve bahçe setleri.",
-      en: "Corner sofas, TV units, trousseau and garden sets.",
-      ja: "コーナーソファ、TVボード、その他。",
-      es: "Sofás esquinados, muebles TV, ajuar y jardín.",
-      ru: "Угловые диваны, ТВ-тумбы, приданое и сад.",
+      tr: "TV ünitesi, çeyiz ve bahçe setleri.",
+      en: "TV units, trousseau and garden sets.",
+      ja: "TVボード、その他。",
+      es: "Muebles TV, ajuar y jardín.",
+      ru: "ТВ-тумбы, приданое и сад.",
     },
   },
 ];
@@ -142,16 +159,6 @@ export const otherSubcategories: {
   id: string;
   label: LocalizedText;
 }[] = [
-  {
-    id: "corner",
-    label: {
-      tr: "Köşe Koltuk & L Oturma Grubu",
-      en: "Corner Sofa & L-Living Groups",
-      ja: "コーナー & L字ソファ",
-      es: "Sofás esquinados y grupos en L",
-      ru: "Угловые и L-образные группы",
-    },
-  },
   {
     id: "tv",
     label: {
@@ -185,11 +192,11 @@ export const otherSubcategories: {
 ];
 
 const defaultDescription: LocalizedText = {
-  tr: "Asil's a World 2027 güncel katalog seçkisi. Detay ve stok için bilgilendirme alın.",
-  en: "From the Asil's a World 2027 current catalog. Inquire for details and availability.",
-  ja: "Asil's a World 2027最新カタログより。詳細はお問い合わせください。",
-  es: "Del catálogo actual 2027 de Asil's a World. Consulte disponibilidad.",
-  ru: "Из актуального каталога Asil's a World 2027. Уточните наличие.",
+  tr: "Asil's a World 2027 güncel katalog seçkisi. Görseller bilgilendirme amaçlıdır; temin ve detay için yazın.",
+  en: "From the Asil's a World 2027 catalog. Images are for inquiry; ask us about availability.",
+  ja: "Asil's a World 2027カタログより。詳細・納期はお問い合わせください。",
+  es: "Del catálogo 2027 de Asil's a World. Consulte disponibilidad.",
+  ru: "Из каталога Asil's a World 2027. Уточните наличие у нас.",
 };
 
 export function getHomeCategories() {
@@ -213,22 +220,8 @@ export function getItemsByCategory(id: CatalogCategoryId) {
   return catalogItems.filter((item) => item.categoryId === id);
 }
 
-/** Curated, high-clarity covers for the home category grid */
-export const categoryCoverImages: Record<CatalogCategoryId, string> = {
-  living: "/catalog/2027/covers/living.webp",
-  bedroom: "/catalog/2027/covers/bedroom.webp",
-  bedset: "/catalog/2027/covers/bedset.webp",
-  dining: "/catalog/2027/covers/dining.webp",
-  lamia: "/catalog/2027/covers/lamia.webp",
-  others: "/catalog/2027/covers/others.webp",
-};
-
 export function getCategoryCover(id: CatalogCategoryId): string {
-  return (
-    categoryCoverImages[id] ??
-    catalogItems.find((item) => item.categoryId === id)?.imageUrl ??
-    categoryCoverImages.living
-  );
+  return `/catalog/2027/covers/${id}.webp`;
 }
 
 export function isCatalogCategoryId(id: string): id is CatalogCategoryId {
@@ -238,6 +231,8 @@ export function isCatalogCategoryId(id: string): id is CatalogCategoryId {
 /** Adapt catalog items for the existing lightbox */
 export function toFurnitureItem(item: CatalogItem): FurnitureItem {
   const category = getCategory(item.categoryId);
+  const imageUrls =
+    item.imageUrls?.length > 0 ? item.imageUrls : [item.imageUrl];
   return {
     id: item.id,
     title: item.collection ?? item.title,
@@ -250,5 +245,6 @@ export function toFurnitureItem(item: CatalogItem): FurnitureItem {
     },
     description: defaultDescription,
     imageUrl: item.imageUrl,
+    imageUrls,
   };
 }

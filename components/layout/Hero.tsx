@@ -34,7 +34,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative aspect-[4/5] min-h-[42svh] max-h-[58svh] overflow-hidden sm:max-h-none sm:min-h-[48svh] md:aspect-auto md:min-h-full md:max-h-none md:rounded-br-[clamp(4rem,18vw,12rem)]"
+          className="relative h-[min(58svh,28rem)] w-full min-w-0 overflow-hidden sm:h-[min(70svh,40rem)] md:h-auto md:min-h-full md:rounded-br-[clamp(4rem,18vw,12rem)]"
         >
           <Image
             src={HERO_IMAGE}
@@ -43,7 +43,7 @@ export default function Hero() {
             priority
             quality={95}
             sizes="(max-width: 768px) 100vw, 60vw"
-            className="object-cover object-[center_35%]"
+            className="object-cover object-[center_42%] md:object-[center_35%]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/25 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-asilsa-cream/10" />
         </motion.div>

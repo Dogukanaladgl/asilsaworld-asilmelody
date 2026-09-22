@@ -6,6 +6,8 @@ export interface FurnitureItem {
   category: LocalizedText;
   description: LocalizedText;
   imageUrl: string;
+  /** Optional gallery; falls back to [imageUrl] */
+  imageUrls?: string[];
 }
 
 export const furnitureData: FurnitureItem[] = [

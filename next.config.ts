@@ -1,8 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Allow phone / LAN / tunnel access to the Turbopack dev server.
+  // Without this, Next warns: "Cross origin request detected from <LAN-IP>".
+  allowedDevOrigins: [
+    "192.168.*.*",
+    "10.*.*.*",
+    "172.*.*.*",
+    "*.local",
+    "*.trycloudflare.com",
+  ],
   images: {
-    qualities: [75, 90, 95],
+    qualities: [75, 90, 95, 100],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512],
     remotePatterns: [
@@ -26,8 +35,18 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/katalog/bedroom",
-        destination: "/koleksiyon/yatak-odasi",
-        permanent: true,
+        destination: "/#spaces",
+        permanent: false,
+      },
+      {
+        source: "/koleksiyon/yatak-odasi",
+        destination: "/#spaces",
+        permanent: false,
+      },
+      {
+        source: "/koleksiyon/yemek-odasi",
+        destination: "/#spaces",
+        permanent: false,
       },
       {
         source: "/katalog/bedset",
@@ -36,12 +55,22 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/katalog/dining",
-        destination: "/koleksiyon/yemek-odasi",
-        permanent: true,
+        destination: "/#spaces",
+        permanent: false,
       },
       {
         source: "/katalog/lamia",
-        destination: "/koleksiyon/lamia",
+        destination: "/koleksiyon/yatak-baza",
+        permanent: true,
+      },
+      {
+        source: "/koleksiyon/lamia",
+        destination: "/koleksiyon/yatak-baza",
+        permanent: true,
+      },
+      {
+        source: "/katalog/corner",
+        destination: "/koleksiyon/kose",
         permanent: true,
       },
       {
