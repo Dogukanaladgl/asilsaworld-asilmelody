@@ -49,16 +49,16 @@ function CatalogCard({
         alt=""
         aria-hidden
         fill
-        quality={95}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        quality={100}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
         className="scale-110 object-cover blur-2xl brightness-95"
       />
       <Image
         src={src}
         alt={title}
         fill
-        quality={95}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        quality={100}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
         className="object-contain transition-transform duration-700 group-hover:scale-[1.03]"
       />
 

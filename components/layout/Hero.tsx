@@ -30,21 +30,24 @@ export default function Hero() {
     >
       <div className="mx-auto grid max-w-[1400px] items-stretch md:min-h-[100svh] md:grid-cols-2">
         <motion.div
-          initial={{ opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative h-[min(58svh,28rem)] w-full min-w-0 overflow-hidden sm:h-[min(70svh,40rem)] md:h-auto md:min-h-full md:rounded-br-[clamp(4rem,18vw,12rem)]"
+          className="relative h-[min(58svh,28rem)] w-full min-w-0 overflow-hidden bg-asilsa-cream sm:h-[min(70svh,40rem)] md:h-auto md:min-h-full md:rounded-br-[clamp(4rem,18vw,12rem)]"
         >
           <Image
             src={HERO_IMAGE}
             alt={`${t.hero.line1} ${t.hero.line2} ${t.hero.line3}`}
             fill
             priority
-            quality={95}
-            sizes="(max-width: 768px) 100vw, 60vw"
-            className="object-cover object-[center_42%] md:object-[center_35%]"
+            // Always serve the full-resolution source — responsive srcset
+            // switches to soft, smaller files when the viewport shrinks.
+            unoptimized
+            quality={100}
+            sizes="100vw"
+            className="object-contain object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/25 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-asilsa-cream/10" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-museum-dark/15 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-asilsa-cream/10" />
         </motion.div>
 
         <div className="relative flex flex-col justify-center px-fluid py-10 pb-14 sm:py-14 md:py-24 lg:pl-16 lg:pr-12">
