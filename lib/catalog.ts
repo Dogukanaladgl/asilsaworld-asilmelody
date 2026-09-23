@@ -176,11 +176,11 @@ export const otherSubcategories: {
 ];
 
 const defaultDescription: LocalizedText = {
-  tr: "Asil's a World 2027 Güncel Katalog seçkisi. Görseller bilgilendirme amaçlıdır; temin ve detay için yazın.",
-  en: "From the Asil's a World 2027 catalog. Images are for inquiry; ask us about availability.",
-  ja: "Asil's a World 2027カタログより。詳細・納期はお問い合わせください。",
-  es: "Del catálogo 2027 de Asil's a World. Consulte disponibilidad.",
-  ru: "Из каталога Asil's a World 2027. Уточните наличие у нас.",
+  tr: "Asil's a World 2027 Güncel Katalog Seçkisi.",
+  en: "Asil's a World 2027 Current Catalog Selection.",
+  ja: "Asil's a World 2027 最新カタログ選定。",
+  es: "Selección del Catálogo Actual 2027 de Asil's a World.",
+  ru: "Подборка Актуальный Каталог Asil's a World 2027.",
 };
 
 export function getHomeCategories() {

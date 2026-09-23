@@ -24,6 +24,7 @@ import {
   scrollToSection,
   type SectionId,
 } from "@/lib/scroll";
+import { registerLenis } from "@/lib/lenis-registry";
 import "lenis/dist/lenis.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -31,6 +32,8 @@ gsap.registerPlugin(ScrollTrigger);
 type LenisLike = {
   scroll?: number;
   resize: () => void;
+  stop: () => void;
+  start: () => void;
   scrollTo: (
     target: number | string | HTMLElement,
     options?: { immediate?: boolean; force?: boolean },
@@ -95,6 +98,11 @@ function SectionScrollHandler() {
   const restoredThisVisitRef = useRef(false);
 
   lenisRef.current = lenis;
+
+  useEffect(() => {
+    registerLenis(lenis ?? null);
+    return () => registerLenis(null);
+  }, [lenis]);
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {

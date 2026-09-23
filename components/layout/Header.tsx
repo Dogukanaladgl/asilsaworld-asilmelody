@@ -14,6 +14,7 @@ import {
   prefersReducedMotion,
   type SectionId,
 } from "@/lib/scroll";
+import { lockBodyScroll, unlockBodyScroll } from "@/lib/scroll-lock";
 
 type NavKey = "collections" | "careers" | "contact";
 
@@ -88,8 +89,9 @@ export default function Header() {
   };
 
   useEffect(() => {
-    document.body.classList.toggle("scroll-locked", isMobileMenuOpen);
-    return () => document.body.classList.remove("scroll-locked");
+    if (isMobileMenuOpen) lockBodyScroll();
+    else unlockBodyScroll();
+    return () => unlockBodyScroll();
   }, [isMobileMenuOpen]);
 
   useEffect(() => {

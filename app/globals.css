@@ -5,6 +5,8 @@
 /* Lenis owns smooth scrolling — CSS smooth fights restores and causes hitching. */
 html {
   scroll-behavior: auto;
+  /* Always reserve scrollbar space so open/close never shifts the layout. */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -13,8 +15,17 @@ body {
   overflow-x: clip;
 }
 
+/*
+ * Lenis default: `.lenis-stopped { overflow: clip }` — clip drops the scrollbar
+ * and the page jumps sideways. Use hidden instead; scrollbar-gutter keeps the lane.
+ */
+html.lenis.lenis-stopped {
+  overflow: hidden !important;
+}
+
+html.scroll-locked,
 body.scroll-locked {
-  overflow: hidden;
+  overscroll-behavior: none;
   touch-action: none;
 }
 

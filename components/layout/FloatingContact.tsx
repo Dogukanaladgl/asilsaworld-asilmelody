@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import BrandMark from "@/components/ui/BrandMark";
+import { lockBodyScroll, unlockBodyScroll } from "@/lib/scroll-lock";
 
 const inputClass =
   "w-full border-0 border-b border-museum-dark/20 bg-transparent py-2.5 text-base font-light tracking-wide text-museum-dark outline-none transition-colors placeholder:text-museum-dark/35 focus:border-asilsa-gold sm:text-sm";
@@ -20,10 +21,10 @@ export default function FloatingContact() {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
     };
-    document.body.classList.add("scroll-locked");
+    lockBodyScroll();
     window.addEventListener("keydown", onKeyDown);
     return () => {
-      document.body.classList.remove("scroll-locked");
+      unlockBodyScroll();
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isOpen]);

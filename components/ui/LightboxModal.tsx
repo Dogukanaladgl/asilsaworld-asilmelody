@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import type { FurnitureItem } from "@/lib/data";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { buildProductInquiryMessage, getWhatsAppUrl } from "@/lib/contact";
+import { lockBodyScroll, unlockBodyScroll } from "@/lib/scroll-lock";
 
 type LightboxModalProps = {
   isOpen: boolean;
@@ -39,10 +40,10 @@ export default function LightboxModal({
         setPhotoIndex((i) => (i - 1 + gallery.length) % gallery.length);
       }
     };
-    document.body.classList.add("scroll-locked");
+    lockBodyScroll();
     window.addEventListener("keydown", onKeyDown);
     return () => {
-      document.body.classList.remove("scroll-locked");
+      unlockBodyScroll();
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isOpen, onClose, item]);
@@ -79,6 +80,7 @@ export default function LightboxModal({
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="relative flex max-h-[100svh] w-full max-w-4xl flex-col overflow-hidden bg-asilsa-cream sm:max-h-[90vh] sm:rounded-xl md:grid md:grid-cols-2 md:overflow-hidden"
         onClick={(e) => e.stopPropagation()}
+        data-scroll-lock-allow
       >
         <button
           type="button"
