@@ -50,7 +50,7 @@ export default function Spaces() {
         </p>
       </div>
 
-      <div className="mx-auto grid max-w-[90rem] grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4">
+      <div className="mx-auto grid max-w-[90rem] grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-4">
         {categories.map((item, index) => {
           const cover = getCategoryCover(item.id as CatalogCategoryId);
 

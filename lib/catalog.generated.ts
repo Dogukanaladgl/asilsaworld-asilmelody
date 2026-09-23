@@ -3,10 +3,8 @@ export type CatalogCategoryId =
   | "living"
   | "corner"
   | "bedset"
-  | "alacati"
-  | "alisya-gold"
-  | "alyans"
-  | "tokyo"
+  | "bedroom"
+  | "dining"
   | "others";
 
 export type CatalogItem = {
@@ -326,7 +324,7 @@ export const catalogItems: CatalogItem[] = [
   {
     "id": "AW-2027-029",
     "title": "Alaçatı Yatak Odası",
-    "categoryId": "alacati",
+    "categoryId": "bedroom",
     "collection": "Alaçatı Yatak Odası",
     "imageUrl": "/catalog/2027/bedroom/alacati-yatak-odasi-01.webp",
     "imageUrls": [
@@ -339,22 +337,8 @@ export const catalogItems: CatalogItem[] = [
   },
   {
     "id": "AW-2027-030",
-    "title": "Alaçatı Yemek Odası",
-    "categoryId": "alacati",
-    "collection": "Alaçatı Yemek Odası",
-    "imageUrl": "/catalog/2027/dining/alacati-yemek-odasi-01.webp",
-    "imageUrls": [
-      "/catalog/2027/dining/alacati-yemek-odasi-01.webp",
-      "/catalog/2027/dining/alacati-yemek-odasi-02.webp",
-      "/catalog/2027/dining/alacati-yemek-odasi-03.webp",
-      "/catalog/2027/dining/alacati-yemek-odasi-04.webp",
-      "/catalog/2027/dining/alacati-yemek-odasi-05.webp"
-    ]
-  },
-  {
-    "id": "AW-2027-031",
     "title": "Alisya Gold Yatak Odası",
-    "categoryId": "alisya-gold",
+    "categoryId": "bedroom",
     "collection": "Alisya Gold Yatak Odası",
     "imageUrl": "/catalog/2027/bedroom/alisya-gold-yatak-odasi-01.webp",
     "imageUrls": [
@@ -366,22 +350,9 @@ export const catalogItems: CatalogItem[] = [
     ]
   },
   {
-    "id": "AW-2027-032",
-    "title": "Alisya Gold Yemek Odası",
-    "categoryId": "alisya-gold",
-    "collection": "Alisya Gold Yemek Odası",
-    "imageUrl": "/catalog/2027/dining/alisya-gold-yemek-odasi-01.webp",
-    "imageUrls": [
-      "/catalog/2027/dining/alisya-gold-yemek-odasi-01.webp",
-      "/catalog/2027/dining/alisya-gold-yemek-odasi-02.webp",
-      "/catalog/2027/dining/alisya-gold-yemek-odasi-03.webp",
-      "/catalog/2027/dining/alisya-gold-yemek-odasi-04.webp"
-    ]
-  },
-  {
-    "id": "AW-2027-033",
+    "id": "AW-2027-031",
     "title": "Alyans Yatak Odası",
-    "categoryId": "alyans",
+    "categoryId": "bedroom",
     "collection": "Alyans Yatak Odası",
     "imageUrl": "/catalog/2027/bedroom/alyans-yatak-odasi-01.webp",
     "imageUrls": [
@@ -393,22 +364,9 @@ export const catalogItems: CatalogItem[] = [
     ]
   },
   {
-    "id": "AW-2027-034",
-    "title": "Alyans Yemek Odası",
-    "categoryId": "alyans",
-    "collection": "Alyans Yemek Odası",
-    "imageUrl": "/catalog/2027/dining/alyans-yemek-odasi-01.webp",
-    "imageUrls": [
-      "/catalog/2027/dining/alyans-yemek-odasi-01.webp",
-      "/catalog/2027/dining/alyans-yemek-odasi-02.webp",
-      "/catalog/2027/dining/alyans-yemek-odasi-03.webp",
-      "/catalog/2027/dining/alyans-yemek-odasi-04.webp"
-    ]
-  },
-  {
-    "id": "AW-2027-035",
+    "id": "AW-2027-032",
     "title": "Tokyo Yatak Odası",
-    "categoryId": "tokyo",
+    "categoryId": "bedroom",
     "collection": "Tokyo Yatak Odası",
     "imageUrl": "/catalog/2027/bedroom/tokyo-yatak-odasi-01.webp",
     "imageUrls": [
@@ -421,9 +379,49 @@ export const catalogItems: CatalogItem[] = [
     ]
   },
   {
+    "id": "AW-2027-033",
+    "title": "Alaçatı Yemek Odası",
+    "categoryId": "dining",
+    "collection": "Alaçatı Yemek Odası",
+    "imageUrl": "/catalog/2027/dining/alacati-yemek-odasi-01.webp",
+    "imageUrls": [
+      "/catalog/2027/dining/alacati-yemek-odasi-01.webp",
+      "/catalog/2027/dining/alacati-yemek-odasi-02.webp",
+      "/catalog/2027/dining/alacati-yemek-odasi-03.webp",
+      "/catalog/2027/dining/alacati-yemek-odasi-04.webp",
+      "/catalog/2027/dining/alacati-yemek-odasi-05.webp"
+    ]
+  },
+  {
+    "id": "AW-2027-034",
+    "title": "Alisya Gold Yemek Odası",
+    "categoryId": "dining",
+    "collection": "Alisya Gold Yemek Odası",
+    "imageUrl": "/catalog/2027/dining/alisya-gold-yemek-odasi-01.webp",
+    "imageUrls": [
+      "/catalog/2027/dining/alisya-gold-yemek-odasi-01.webp",
+      "/catalog/2027/dining/alisya-gold-yemek-odasi-02.webp",
+      "/catalog/2027/dining/alisya-gold-yemek-odasi-03.webp",
+      "/catalog/2027/dining/alisya-gold-yemek-odasi-04.webp"
+    ]
+  },
+  {
+    "id": "AW-2027-035",
+    "title": "Alyans Yemek Odası",
+    "categoryId": "dining",
+    "collection": "Alyans Yemek Odası",
+    "imageUrl": "/catalog/2027/dining/alyans-yemek-odasi-01.webp",
+    "imageUrls": [
+      "/catalog/2027/dining/alyans-yemek-odasi-01.webp",
+      "/catalog/2027/dining/alyans-yemek-odasi-02.webp",
+      "/catalog/2027/dining/alyans-yemek-odasi-03.webp",
+      "/catalog/2027/dining/alyans-yemek-odasi-04.webp"
+    ]
+  },
+  {
     "id": "AW-2027-036",
     "title": "Tokyo Yemek Odası",
-    "categoryId": "tokyo",
+    "categoryId": "dining",
     "collection": "Tokyo Yemek Odası",
     "imageUrl": "/catalog/2027/dining/tokyo-yemek-odasi-01.webp",
     "imageUrls": [

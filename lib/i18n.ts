@@ -49,7 +49,7 @@ export const dictionary = {
     spaces: {
       eyebrow: "Kategoriler",
       title: "Koleksiyona Göre Keşfet",
-      catalogNote: "2027 güncel katalog — kategoriyi seçerek modelleri inceleyin.",
+      catalogNote: "2027 Güncel Katalog — kategoriyi seçerek modelleri inceleyin.",
       catalogBadge: "{year} Güncel Katalog",
       comingSoon: "Yakında",
       othersNote:
@@ -209,7 +209,7 @@ export const dictionary = {
     spaces: {
       eyebrow: "Categories",
       title: "Explore by Collection",
-      catalogNote: "2027 current catalog — choose a category to browse the models.",
+      catalogNote: "2027 Current Catalog — choose a category to browse the models.",
       catalogBadge: "{year} Current Catalog",
       comingSoon: "Coming soon",
       othersNote:
@@ -530,8 +530,8 @@ export const dictionary = {
     spaces: {
       eyebrow: "Categorías",
       title: "Explorar por Colección",
-      catalogNote: "Catálogo actual 2027 — elija una categoría para ver los modelos.",
-      catalogBadge: "Catálogo actual {year}",
+      catalogNote: "Catálogo Actual 2027 — elija una categoría para ver los modelos.",
+      catalogBadge: "Catálogo Actual {year}",
       comingSoon: "Próximamente",
       othersNote:
         "Las imágenes de estas categorías aparecerán aquí cuando estén listas.",
@@ -691,8 +691,8 @@ export const dictionary = {
     spaces: {
       eyebrow: "Категории",
       title: "Смотреть по коллекции",
-      catalogNote: "Актуальный каталог 2027 — выберите категорию, чтобы увидеть модели.",
-      catalogBadge: "Актуальный каталог {year}",
+      catalogNote: "Актуальный Каталог 2027 — выберите категорию, чтобы увидеть модели.",
+      catalogBadge: "Актуальный Каталог {year}",
       comingSoon: "Скоро",
       othersNote:
         "Изображения этих категорий появятся здесь по мере подготовки.",

@@ -35,28 +35,18 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/katalog/bedroom",
-        destination: "/#spaces",
-        permanent: false,
+        destination: "/koleksiyon/yatak-odasi",
+        permanent: true,
       },
       {
-        source: "/koleksiyon/yatak-odasi",
-        destination: "/#spaces",
-        permanent: false,
-      },
-      {
-        source: "/koleksiyon/yemek-odasi",
-        destination: "/#spaces",
-        permanent: false,
+        source: "/katalog/dining",
+        destination: "/koleksiyon/yemek-odasi",
+        permanent: true,
       },
       {
         source: "/katalog/bedset",
         destination: "/koleksiyon/yatak-baza",
         permanent: true,
-      },
-      {
-        source: "/katalog/dining",
-        destination: "/#spaces",
-        permanent: false,
       },
       {
         source: "/katalog/lamia",
@@ -76,6 +66,27 @@ const nextConfig: NextConfig = {
       {
         source: "/katalog/others",
         destination: "/koleksiyon/digerleri",
+        permanent: true,
+      },
+      // Former named-suite categories → room pages
+      {
+        source: "/koleksiyon/alacati",
+        destination: "/koleksiyon/yatak-odasi",
+        permanent: true,
+      },
+      {
+        source: "/koleksiyon/alisya-gold",
+        destination: "/koleksiyon/yatak-odasi",
+        permanent: true,
+      },
+      {
+        source: "/koleksiyon/alyans",
+        destination: "/koleksiyon/yatak-odasi",
+        permanent: true,
+      },
+      {
+        source: "/koleksiyon/tokyo",
+        destination: "/koleksiyon/yatak-odasi",
         permanent: true,
       },
     ];

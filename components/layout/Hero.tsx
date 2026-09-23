@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import SectionLink from "@/components/ui/SectionLink";
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=90&w=3200&auto=format&fit=crop&dpr=2";
+const HERO_IMAGE = "/catalog/2027/corner/dolcezza.webp";
 
 const fade = {
   hidden: { opacity: 0, y: 24 },

@@ -19,7 +19,7 @@ export const siteConfig = {
   name: brand.name,
   tagline: "Premium Furniture Lookbook",
   description:
-    "Asil's a World — zarafet, konfor ve kusursuz detaylarla şekillenen premium mobilya. 2027 güncel katalog, Konya showroom.",
+    "Asil's a World — zarafet, konfor ve kusursuz detaylarla şekillenen premium mobilya. 2027 Güncel Katalog, Konya showroom.",
   locale: "tr_TR",
   languages: ["tr", "en", "ja", "es", "ru"] as const,
 };

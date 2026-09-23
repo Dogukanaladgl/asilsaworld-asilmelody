@@ -21,32 +21,6 @@ export type CatalogCategory = {
   onHome: boolean;
 };
 
-/** Named bedroom + dining suite, e.g. “Alaçatı Yemek Odası & Yatak Odası Koleksiyonu”. */
-function roomCollection(
-  id: CatalogCategoryId,
-  name: LocalizedText,
-): CatalogCategory {
-  return {
-    id,
-    slug: id,
-    onHome: true,
-    label: {
-      tr: `${name.tr} Yemek Odası & Yatak Odası Koleksiyonu`,
-      en: `${name.en} Dining & Bedroom Collection`,
-      ja: `${name.ja} ダイニング & ベッドルーム コレクション`,
-      es: `Colección ${name.es} Comedor y Dormitorio`,
-      ru: `Коллекция ${name.ru}: столовая и спальня`,
-    },
-    blurb: {
-      tr: `2027 güncel katalog — ${name.tr} yatak odası ve yemek odası takımları.`,
-      en: `2027 current catalog — ${name.en} bedroom and dining room sets.`,
-      ja: `2027最新カタログ — ${name.ja}のベッドルームとダイニング。`,
-      es: `Catálogo 2027 — dormitorio y comedor ${name.es}.`,
-      ru: `Актуальный каталог 2027 — спальня и столовая ${name.ru}.`,
-    },
-  };
-}
-
 export const catalogCategories: CatalogCategory[] = [
   {
     id: "living",
@@ -60,11 +34,11 @@ export const catalogCategories: CatalogCategory[] = [
       ru: "Салон и гостиные группы",
     },
     blurb: {
-      tr: "2027 güncel katalog — isimli oturma grupları, fiyata göre sıralı.",
-      en: "2027 current catalog — named living groups, ordered by price.",
-      ja: "2027最新カタログ — 価格順のリビングセット。",
-      es: "Catálogo 2027 — grupos con nombre, ordenados por precio.",
-      ru: "Актуальный каталог 2027 — именные гостиные, по цене.",
+      tr: "2027 Güncel Katalog — Salon Takımı & Oturma Grupları.",
+      en: "2027 Current Catalog — Salon Sets & Living Groups.",
+      ja: "2027最新カタログ — サロンセット & リビンググループ。",
+      es: "Catálogo Actual 2027 — conjuntos de salón y grupos de estar.",
+      ru: "Актуальный Каталог 2027 — салонные комплекты и гостиные группы.",
     },
   },
   {
@@ -79,11 +53,11 @@ export const catalogCategories: CatalogCategory[] = [
       ru: "Основания, изголовья и кровати",
     },
     blurb: {
-      tr: "2027 güncel katalog — baza, başlık ve karyola modelleri.",
-      en: "2027 current catalog — bases, headboards and bedsteads.",
-      ja: "2027最新カタログ — ベッドベース・ヘッドボード。",
-      es: "Catálogo 2027 — bases, cabeceros y camas.",
-      ru: "Актуальный каталог 2027 — основания, изголовья и кровати.",
+      tr: "2027 Güncel Katalog — Baza, Başlık & Karyola Modelleri.",
+      en: "2027 Current Catalog — Base, Headboard & Bedstead Models.",
+      ja: "2027最新カタログ — ベース・ヘッドボード・ベッドフレームモデル。",
+      es: "Catálogo Actual 2027 — Modelos de Base, Cabecero y Cama.",
+      ru: "Актуальный Каталог 2027 — Модели Оснований, Изголовий и Кроватей.",
     },
   },
   {
@@ -91,48 +65,58 @@ export const catalogCategories: CatalogCategory[] = [
     slug: "kose",
     onHome: true,
     label: {
-      tr: "Köşe Koltuk & L Oturma",
-      en: "Corner Sofas & L-Living",
+      tr: "Köşe Koltuk & L Oturma Grubu",
+      en: "Corner Sofas & L-Living Groups",
       ja: "コーナーソファ",
       es: "Sofás esquinados y L",
       ru: "Угловые диваны",
     },
     blurb: {
-      tr: "2027 güncel katalog — köşe ve L oturma grupları.",
-      en: "2027 current catalog — corner and L-shaped living groups.",
-      ja: "2027最新カタログ — コーナー＆L字ソファ。",
-      es: "Catálogo 2027 — sofás esquinados y en L.",
-      ru: "Актуальный каталог 2027 — угловые и L-образные группы.",
+      tr: "2027 Güncel Katalog — Köşe Takımları & L Oturma Grupları.",
+      en: "2027 Current Catalog — Corner Sets & L Living Groups.",
+      ja: "2027最新カタログ — コーナーセット & L字リビンググループ。",
+      es: "Catálogo Actual 2027 — Conjuntos Esquinados & Grupos de Estar en L.",
+      ru: "Актуальный Каталог 2027 — Угловые Комплекты & L-Образные Гостиные Группы.",
     },
   },
-  roomCollection("alacati", {
-    tr: "Alaçatı",
-    en: "Alaçatı",
-    ja: "アラチャトゥ",
-    es: "Alaçatı",
-    ru: "Алачаты",
-  }),
-  roomCollection("alisya-gold", {
-    tr: "Alisya Gold",
-    en: "Alisya Gold",
-    ja: "アリシャ ゴールド",
-    es: "Alisya Gold",
-    ru: "Алисья Голд",
-  }),
-  roomCollection("alyans", {
-    tr: "Alyans",
-    en: "Alyans",
-    ja: "アリャンス",
-    es: "Alyans",
-    ru: "Альянс",
-  }),
-  roomCollection("tokyo", {
-    tr: "Tokyo",
-    en: "Tokyo",
-    ja: "トーキョー",
-    es: "Tokyo",
-    ru: "Токио",
-  }),
+  {
+    id: "bedroom",
+    slug: "yatak-odasi",
+    onHome: true,
+    label: {
+      tr: "Yatak Odası",
+      en: "Bedroom",
+      ja: "ベッドルーム",
+      es: "Dormitorio",
+      ru: "Спальня",
+    },
+    blurb: {
+      tr: "2027 Güncel Katalog — Alaçatı, Alisya Gold, Alyans ve Tokyo Yatak Odası Koleksiyonları.",
+      en: "2027 Current Catalog — Alaçatı, Alisya Gold, Alyans and Tokyo Bedroom Collections.",
+      ja: "2027最新カタログ — アラチャトゥ、アリシャ ゴールド、アリャンス、トーキョーのベッドルームコレクション。",
+      es: "Catálogo Actual 2027 — Colecciones de Dormitorio Alaçatı, Alisya Gold, Alyans y Tokyo.",
+      ru: "Актуальный Каталог 2027 — Коллекции Спален Alaçatı, Alisya Gold, Alyans и Tokyo.",
+    },
+  },
+  {
+    id: "dining",
+    slug: "yemek-odasi",
+    onHome: true,
+    label: {
+      tr: "Yemek Odası",
+      en: "Dining Room",
+      ja: "ダイニング",
+      es: "Comedor",
+      ru: "Столовая",
+    },
+    blurb: {
+      tr: "2027 Güncel Katalog — Alaçatı, Alisya Gold, Alyans ve Tokyo Yemek Odası Koleksiyonları.",
+      en: "2027 Current Catalog — Alaçatı, Alisya Gold, Alyans and Tokyo Dining Collections.",
+      ja: "2027最新カタログ — アラチャトゥ、アリシャ ゴールド、アリャンス、トーキョーのダイニングコレクション。",
+      es: "Catálogo Actual 2027 — Colecciones de Comedor Alaçatı, Alisya Gold, Alyans y Tokyo.",
+      ru: "Актуальный Каталог 2027 — Коллекции Столовых Alaçatı, Alisya Gold, Alyans и Tokyo.",
+    },
+  },
   {
     id: "others",
     slug: "digerleri",
@@ -145,11 +129,11 @@ export const catalogCategories: CatalogCategory[] = [
       ru: "Другое",
     },
     blurb: {
-      tr: "TV ünitesi, çeyiz ve bahçe setleri.",
-      en: "TV units, trousseau and garden sets.",
-      ja: "TVボード、その他。",
-      es: "Muebles TV, ajuar y jardín.",
-      ru: "ТВ-тумбы, приданое и сад.",
+      tr: "TV Ünitesi, Çeyiz ve Bahçe Setleri.",
+      en: "TV Units, Trousseau and Garden Sets.",
+      ja: "TVボード、嫁入りセット、ガーデンセット。",
+      es: "Muebles TV, Ajuar y Sets de Jardín.",
+      ru: "ТВ-Тумбы, Приданое и Садовые Наборы.",
     },
   },
 ];
@@ -192,7 +176,7 @@ export const otherSubcategories: {
 ];
 
 const defaultDescription: LocalizedText = {
-  tr: "Asil's a World 2027 güncel katalog seçkisi. Görseller bilgilendirme amaçlıdır; temin ve detay için yazın.",
+  tr: "Asil's a World 2027 Güncel Katalog seçkisi. Görseller bilgilendirme amaçlıdır; temin ve detay için yazın.",
   en: "From the Asil's a World 2027 catalog. Images are for inquiry; ask us about availability.",
   ja: "Asil's a World 2027カタログより。詳細・納期はお問い合わせください。",
   es: "Del catálogo 2027 de Asil's a World. Consulte disponibilidad.",
