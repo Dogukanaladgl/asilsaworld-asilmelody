@@ -53,6 +53,43 @@ const FAMILY_NAMES = {
   tokyo: "Tokyo",
 };
 
+/** Home-grid covers only — product galleries keep their own order. */
+const HOME_COVER_OVERRIDES = {
+  alacati: "/catalog/2027/bedroom/alacati-yatak-odasi-02.webp",
+};
+
+/** Crop bias for home covers: 0 = left, 0.5 = centre, 1 = right. */
+const HOME_COVER_BIAS = {
+  "alisya-gold": 0.06,
+  alyans: 0.06,
+  tokyo: 0.06,
+};
+
+/** Extra horizontal nudge in final cover pixels (positive = right, negative = left). */
+const HOME_COVER_NUDGE_PX = {
+  "alisya-gold": -250,
+  alyans: -100,
+  tokyo: -100,
+};
+
+/**
+ * When set, crop stays 4:5 / same output size, but the window is centred on
+ * the bed + nightstand. `x` = focus centre (0–1 of source width),
+ * `span` = how much of the source width to keep (smaller = tighter on furniture).
+ * Still respects HOME_COVER_NUDGE_PX.
+ */
+const HOME_COVER_FOCUS = {
+  "alisya-gold": { x: 0.3, span: 0.55 },
+  alyans: { x: 0.28, span: 0.52 },
+  tokyo: { x: 0.33, span: 0.55 },
+};
+
+/**
+ * Fit full scene into the 4:5 card (bed + nightstands stay visible and
+ * centred). Uses a blurred fill behind; other covers stay cover-crop.
+ */
+const HOME_COVER_FIT = new Set();
+
 const ROOMS = [
   { dir: "bedroom", suffix: "yatak-odasi", label: "Yatak Odası" },
   { dir: "dining", suffix: "yemek-odasi", label: "Yemek Odası" },
@@ -114,7 +151,7 @@ function nextId() {
   return `AW-2027-${String(counter++).padStart(3, "0")}`;
 }
 
-async function writeCover(id, publicUrl) {
+async function writeCover(id, publicUrl, horizontalBias = 0.5, nudgePx = 0) {
   if (!publicUrl) {
     console.warn("No cover for", id);
     return;
@@ -125,12 +162,97 @@ async function writeCover(id, publicUrl) {
     return;
   }
   fs.mkdirSync(COVERS, { recursive: true });
-  await sharp(src)
-    .rotate()
-    .resize({ width: 1600, height: 2000, fit: "cover", position: "centre" })
+
+  const TARGET_W = 1600;
+  const TARGET_H = 2000;
+  const targetRatio = TARGET_W / TARGET_H;
+  const bias = Math.min(1, Math.max(0, horizontalBias));
+  const outPath = path.join(COVERS, `${id}.webp`);
+
+  const prepared = await sharp(src).rotate().toBuffer();
+  const { width: srcW = 0, height: srcH = 0 } = await sharp(prepared).metadata();
+  if (!srcW || !srcH) {
+    console.warn("Bad cover dimensions", publicUrl);
+    return;
+  }
+
+  if (HOME_COVER_FIT.has(id)) {
+    // Full width + height visible; pad with blurred cover so card stays 4:5.
+    const bg = await sharp(prepared)
+      .resize(TARGET_W, TARGET_H, { fit: "cover", position: "centre" })
+      .blur(48)
+      .modulate({ brightness: 0.92 })
+      .toBuffer();
+    const fg = await sharp(prepared)
+      .resize(TARGET_W, TARGET_H, {
+        fit: "contain",
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      })
+      .toBuffer();
+    await sharp(bg)
+      .composite([{ input: fg, left: nudgePx, top: 0 }])
+      .webp({ quality: 95, effort: 5 })
+      .toFile(outPath);
+    const notes = [
+      "fit centre — bed + nightstands",
+      nudgePx ? `nudge ${nudgePx}px` : null,
+    ].filter(Boolean);
+    console.log("cover", id, `(${notes.join(", ")})`);
+    return;
+  }
+
+  const focus = HOME_COVER_FOCUS[id];
+  if (focus && srcW / srcH > targetRatio) {
+    const x = Math.min(1, Math.max(0, focus.x ?? 0.5));
+    const span = Math.min(1, Math.max(0.2, focus.span ?? 0.55));
+    // Bed + nightstand strip, then cover-crop into 4:5 (same size, no letterbox).
+    let extractW = Math.min(srcW, Math.round(srcW * span));
+    let extractLeft = Math.round(x * srcW - extractW / 2);
+    // Nudge in final-cover pixels → source pixels (positive = right).
+    extractLeft -= Math.round((nudgePx * extractW) / TARGET_W);
+    extractLeft = Math.min(Math.max(0, extractLeft), srcW - extractW);
+    await sharp(prepared)
+      .extract({ left: extractLeft, top: 0, width: extractW, height: srcH })
+      .resize(TARGET_W, TARGET_H, { fit: "cover", position: "centre" })
+      .webp({ quality: 95, effort: 5 })
+      .toFile(outPath);
+    const notes = [
+      `focus x=${focus.x} span=${focus.span}`,
+      nudgePx ? `nudge ${nudgePx}px` : null,
+    ].filter(Boolean);
+    console.log("cover", id, `(${notes.join(", ")})`);
+    return;
+  }
+
+  let left = 0;
+  let top = 0;
+  let cropW = srcW;
+  let cropH = srcH;
+
+  if (srcW / srcH > targetRatio) {
+    cropH = srcH;
+    cropW = Math.round(srcH * targetRatio);
+    const maxLeft = srcW - cropW;
+    left = Math.round(maxLeft * bias);
+    // Nudge in final-cover pixels → source pixels.
+    left += Math.round((nudgePx * cropW) / TARGET_W);
+    left = Math.min(Math.max(0, left), maxLeft);
+  } else {
+    cropW = srcW;
+    cropH = Math.round(srcW / targetRatio);
+    top = Math.round((srcH - cropH) * 0.5);
+  }
+
+  await sharp(prepared)
+    .extract({ left, top, width: cropW, height: cropH })
+    .resize({ width: TARGET_W, height: TARGET_H })
     .webp({ quality: 95, effort: 5 })
-    .toFile(path.join(COVERS, `${id}.webp`));
-  console.log("cover", id);
+    .toFile(outPath);
+  const notes = [
+    bias !== 0.5 ? `bias ${bias.toFixed(2)}` : null,
+    nudgePx ? `nudge ${nudgePx}px` : null,
+  ].filter(Boolean);
+  console.log("cover", id, notes.length ? `(${notes.join(", ")})` : "");
 }
 
 /** One product per room, each with its own gallery. */
@@ -213,6 +335,7 @@ async function main() {
   Object.assign(covers, collections.covers);
   // “Diğerleri” has no photos of its own yet.
   covers.others = covers.living;
+  Object.assign(covers, HOME_COVER_OVERRIDES);
 
   const categoryIds = [...PRODUCT_DIRS, ...collections.families, "others"];
   const body = JSON.stringify(items, null, 2);
@@ -238,7 +361,12 @@ export const catalogItems: CatalogItem[] = ${body};
 
   fs.rmSync(COVERS, { recursive: true, force: true });
   for (const [id, url] of Object.entries(covers)) {
-    await writeCover(id, url);
+    await writeCover(
+      id,
+      url,
+      HOME_COVER_BIAS[id] ?? 0.5,
+      HOME_COVER_NUDGE_PX[id] ?? 0,
+    );
   }
 }
 

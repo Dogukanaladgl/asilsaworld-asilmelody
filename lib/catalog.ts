@@ -21,7 +21,7 @@ export type CatalogCategory = {
   onHome: boolean;
 };
 
-/** Named bedroom + dining suite, e.g. “Alaçatı Koleksiyonu”. */
+/** Named bedroom + dining suite, e.g. “Alaçatı Yemek Odası & Yatak Odası Koleksiyonu”. */
 function roomCollection(
   id: CatalogCategoryId,
   name: LocalizedText,
@@ -31,11 +31,11 @@ function roomCollection(
     slug: id,
     onHome: true,
     label: {
-      tr: `${name.tr} Koleksiyonu`,
-      en: `${name.en} Collection`,
-      ja: `${name.ja} コレクション`,
-      es: `Colección ${name.es}`,
-      ru: `Коллекция ${name.ru}`,
+      tr: `${name.tr} Yemek Odası & Yatak Odası Koleksiyonu`,
+      en: `${name.en} Dining & Bedroom Collection`,
+      ja: `${name.ja} ダイニング & ベッドルーム コレクション`,
+      es: `Colección ${name.es} Comedor y Dormitorio`,
+      ru: `Коллекция ${name.ru}: столовая и спальня`,
     },
     blurb: {
       tr: `2027 güncel katalog — ${name.tr} yatak odası ve yemek odası takımları.`,

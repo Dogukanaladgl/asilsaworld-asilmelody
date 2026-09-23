@@ -34,7 +34,7 @@ const WEBP_QUALITY = 95;
 /** Feature collages (e.g. LED / USB callouts) are small graphics, not product shots. */
 const MIN_PRODUCT_EDGE = 1000;
 
-/** Products without a “kapak” file: stem of the photo that should lead. */
+/** Products without a “kapak” file — or when a specific shot should lead. */
 const COVER_OVERRIDES = {
   // Beige lifestyle room (not the orange carmen2 shot).
   carmen: /carmen\s*\(\s*2\s*\)/i,

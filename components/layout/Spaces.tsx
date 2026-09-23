@@ -50,7 +50,7 @@ export default function Spaces() {
         </p>
       </div>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4">
+      <div className="mx-auto grid max-w-[90rem] grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4">
         {categories.map((item, index) => {
           const cover = getCategoryCover(item.id as CatalogCategoryId);
 
@@ -70,14 +70,14 @@ export default function Spaces() {
                 scroll={false}
                 onPointerDown={rememberScroll}
                 onClick={rememberScroll}
-                className="group relative block aspect-[3/4] overflow-hidden"
+                className="group relative block aspect-[4/5] overflow-hidden"
               >
                 <Image
                   src={cover}
                   alt={item.label[language]}
                   fill
                   quality={90}
-                  sizes="(max-width: 768px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 50vw, 25vw"
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-museum-dark/80 via-museum-dark/20 to-transparent" />
