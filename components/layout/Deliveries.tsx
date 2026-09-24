@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -11,7 +11,8 @@ import {
   type DeliveryPost,
 } from "@/lib/deliveries";
 
-const SLIDE_MS = 7000;
+/** Continuous marquee speed (px / second). */
+const SCROLL_SPEED = 32;
 const BRAND_AVATAR = "/brand/logo.webp";
 
 function InstagramGlyph({ className }: { className?: string }) {
@@ -86,6 +87,63 @@ function ActionIcons() {
   );
 }
 
+function DeliveryCard({ post }: { post: DeliveryPost }) {
+  const { t } = useLanguage();
+  const href = post.href || instagramUrl;
+  const remote = /^https?:\/\//i.test(post.image);
+
+  return (
+    <a
+      data-delivery-card
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex w-[min(78vw,17.5rem)] shrink-0 flex-col overflow-hidden rounded-2xl border border-museum-dark/10 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-0.5 hover:border-museum-dark/18 hover:shadow-[0_12px_32px_-18px_rgba(28,25,23,0.28)] sm:w-[17.5rem]"
+      aria-label={`${post.alt} — ${t.deliveries.openPost}`}
+    >
+      <div className="flex items-center gap-2.5 px-3.5 py-3">
+        <span
+          className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[conic-gradient(from_210deg,#f58529,#dd2a7b,#8134af,#515bd4,#f58529)] p-[1.5px]"
+          aria-hidden
+        >
+          <span className="relative h-full w-full overflow-hidden rounded-full bg-museum-dark">
+            <Image
+              src={BRAND_AVATAR}
+              alt=""
+              fill
+              sizes="36px"
+              className="object-cover object-center"
+            />
+          </span>
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-[0.8rem] font-medium tracking-wide text-museum-dark">
+            {instagramHandle.replace(/^@/, "")}
+          </p>
+          <p className="truncate text-[0.65rem] font-light tracking-wide text-museum-dark/40">
+            Instagram
+          </p>
+        </div>
+        <InstagramGlyph className="h-4 w-4 shrink-0 text-museum-dark/35 transition-colors duration-300 group-hover:text-asilsa-gold" />
+      </div>
+
+      <div className="relative aspect-square overflow-hidden bg-asilsa-beige/40">
+        <Image
+          src={post.image}
+          alt={post.alt}
+          fill
+          unoptimized={remote}
+          quality={100}
+          sizes="280px"
+          className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+      </div>
+
+      <ActionIcons />
+    </a>
+  );
+}
+
 export default function Deliveries({
   posts = fallbackDeliveryPosts,
 }: {
@@ -93,42 +151,50 @@ export default function Deliveries({
 }) {
   const { t } = useLanguage();
   const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
+  const offsetRef = useRef(0);
+  const pausedRef = useRef(false);
   const items = posts.length > 0 ? posts : fallbackDeliveryPosts;
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!track || paused) return;
+    if (!track) return;
 
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
     if (reduceMotion) return;
 
-    const step = () => {
-      const first = track.querySelector<HTMLElement>("[data-delivery-card]");
-      if (!first) return;
+    let raf = 0;
+    let last = performance.now();
 
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      if (maxScroll <= 2) return;
+    const tick = (now: number) => {
+      const dt = Math.min(0.064, (now - last) / 1000);
+      last = now;
 
-      const gap =
-        Number.parseFloat(
-          getComputedStyle(track).columnGap || getComputedStyle(track).gap,
-        ) || 16;
-      const amount = first.offsetWidth + gap;
-      const next = track.scrollLeft + amount;
-      const atEnd = next >= maxScroll - 2;
+      if (!pausedRef.current) {
+        const loopWidth = track.scrollWidth / 2;
+        if (loopWidth > 1) {
+          offsetRef.current += SCROLL_SPEED * dt;
+          if (offsetRef.current >= loopWidth) {
+            offsetRef.current -= loopWidth;
+          }
+          track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
+        }
+      }
 
-      track.scrollTo({
-        left: atEnd ? 0 : next,
-        behavior: "smooth",
-      });
+      raf = requestAnimationFrame(tick);
     };
 
-    const id = window.setInterval(step, SLIDE_MS);
-    return () => window.clearInterval(id);
-  }, [paused, items.length]);
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [items.length]);
+
+  const pause = () => {
+    pausedRef.current = true;
+  };
+  const resume = () => {
+    pausedRef.current = false;
+  };
 
   return (
     <section
@@ -156,77 +222,28 @@ export default function Deliveries({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.65 }}
-        className="relative px-fluid"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocusCapture={() => setPaused(true)}
+        className="relative overflow-hidden"
+        onMouseEnter={pause}
+        onMouseLeave={resume}
+        onFocusCapture={pause}
         onBlurCapture={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
-            setPaused(false);
+            resume();
           }
         }}
       >
         <div
           ref={trackRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-5 [&::-webkit-scrollbar]:hidden"
+          className="flex w-max gap-4 will-change-transform sm:gap-5"
           aria-label={t.deliveries.title}
         >
-          {items.map((post) => {
-            const href = post.href || instagramUrl;
-            const remote = /^https?:\/\//i.test(post.image);
-
-            return (
-              <a
-                key={post.id}
-                data-delivery-card
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex w-[min(78vw,17.5rem)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-museum-dark/10 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-0.5 hover:border-museum-dark/18 hover:shadow-[0_12px_32px_-18px_rgba(28,25,23,0.28)] sm:w-[min(42vw,18.5rem)] md:w-[calc((100%-2.5rem)/3)] lg:w-[calc((100%-3.75rem)/4)]"
-                aria-label={`${post.alt} — ${t.deliveries.openPost}`}
-              >
-                <div className="flex items-center gap-2.5 px-3.5 py-3">
-                  <span
-                    className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[conic-gradient(from_210deg,#f58529,#dd2a7b,#8134af,#515bd4,#f58529)] p-[1.5px]"
-                    aria-hidden
-                  >
-                    <span className="relative h-full w-full overflow-hidden rounded-full bg-museum-dark">
-                      <Image
-                        src={BRAND_AVATAR}
-                        alt=""
-                        fill
-                        sizes="36px"
-                        className="object-cover object-center"
-                      />
-                    </span>
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-[0.8rem] font-medium tracking-wide text-museum-dark">
-                      {instagramHandle.replace(/^@/, "")}
-                    </p>
-                    <p className="truncate text-[0.65rem] font-light tracking-wide text-museum-dark/40">
-                      Instagram
-                    </p>
-                  </div>
-                  <InstagramGlyph className="h-4 w-4 shrink-0 text-museum-dark/35 transition-colors duration-300 group-hover:text-asilsa-gold" />
-                </div>
-
-                <div className="relative aspect-square overflow-hidden bg-asilsa-beige/40">
-                  <Image
-                    src={post.image}
-                    alt={post.alt}
-                    fill
-                    unoptimized={remote}
-                    quality={100}
-                    sizes="(max-width: 640px) 78vw, (max-width: 768px) 42vw, (max-width: 1024px) 33vw, 25vw"
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                </div>
-
-                <ActionIcons />
-              </a>
-            );
-          })}
+          {items.map((post) => (
+            <DeliveryCard key={post.id} post={post} />
+          ))}
+          {/* Duplicate set for seamless loop */}
+          {items.map((post) => (
+            <DeliveryCard key={`${post.id}-loop`} post={post} />
+          ))}
         </div>
       </motion.div>
 
