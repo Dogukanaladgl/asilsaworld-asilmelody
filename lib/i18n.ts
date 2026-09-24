@@ -14,6 +14,7 @@ export const dictionary = {
   tr: {
     nav: {
       collections: "Koleksiyonlar",
+      about: "Hakkımızda",
       asilMelody: "Asil's a Melody",
       careers: "Kariyer",
       contact: "İletişim",
@@ -56,17 +57,25 @@ export const dictionary = {
         "Bu kategoriler için ürün görselleri hazırlandıkça burada yayınlanacak.",
       emptyCategory: "Bu kategoride henüz ürün bulunmuyor.",
       items: [
-        { key: "living", label: "Salon Takımı & Oturma Grubu" },
-        { key: "bedroom", label: "Yatak Odası & Yaşam Odası" },
-        { key: "bedset", label: "Yatak Baza Başlık & Karyola" },
-        { key: "dining", label: "Yemek Odası & Salon Takımı" },
-        { key: "corner", label: "Köşe Koltuk & L Oturma" },
+        { key: "corner", label: "Köşe Koltuk & L Oturma Grubu Modelleri" },
+        { key: "living", label: "Salon Takımı & Oturma Grubu Modelleri" },
+        { key: "bedroom", label: "Yatak Odası & Yaşam Odası Modelleri" },
+        { key: "bedset", label: "Yatak Baza Başlık Seti & Karyola Modelleri" },
+        { key: "dining", label: "Yemek Odası & Salon Takımı Modelleri" },
         { key: "others", label: "Diğerleri" },
       ],
     },
     featured: {
       eyebrow: "Öne Çıkanlar",
       title: "Seçilmiş Atmosferler",
+    },
+    deliveries: {
+      eyebrow: "Canlı Teslimat",
+      title: "Teslim ettiğimiz bütün ürünler",
+      subtitle:
+        "Müşterilerimizin evlerine ulaşan seçkilerden bir kesit. Daha fazlasını Instagram’da izleyin.",
+      cta: "Daha fazlasını Instagram’da gör",
+      openPost: "Instagram’da aç",
     },
     collections: {
       eyebrow: "Evinizin ruhunu yansıtan premium ürünler",
@@ -79,6 +88,24 @@ export const dictionary = {
       subtitle: "Asıl asalet Asil's a World'de",
       description:
         "Asil's a World, her parçasında kalite ve zarafeti bir araya getirir. Modern tasarımlarımız, yaşam alanlarınızı güzelleştirmek için özel olarak kurgulanmıştır.",
+      pageEyebrow: "Hakkımızda",
+      pageTitle: "Asıl asalet Asil's a World'de",
+      pageIntro:
+        "Zarafet, konfor ve kusursuz detaylarla şekillenen premium mobilya deneyimini; ustalık, kalite ve sürdürülebilirlikle bir araya getiriyoruz.",
+      pillars: [
+        {
+          title: "Kalite ve Zarafet",
+          text: "Asil's a World, her parçasında kalite ve zarafeti bir araya getirir. Modern tasarımlarımız, yaşam alanlarınızı güzelleştirmek için özel olarak tasarlanmıştır.",
+        },
+        {
+          title: "El Yapımı Mobilyalar",
+          text: "Her bir mobilyamız, ustalarımız tarafından özenle el yapımı olarak üretilmektedir. Bu, her parçada eşsiz bir karakter ve dayanıklılık sunar.",
+        },
+        {
+          title: "Sürdürülebilir Malzemeler",
+          text: "Doğal ve sürdürülebilir malzemeler kullanarak çevre dostu ürünler üretiyoruz. Gelecek nesillere daha yeşil bir dünya bırakmak için çalışıyoruz.",
+        },
+      ],
     },
     lightbox: {
       whatsapp: "WhatsApp'tan Bilgi Al",
@@ -173,6 +200,7 @@ export const dictionary = {
   en: {
     nav: {
       collections: "Collections",
+      about: "About",
       asilMelody: "Asil's a Melody",
       careers: "Careers",
       contact: "Contact",
@@ -216,17 +244,25 @@ export const dictionary = {
         "Product images for these categories will appear here as they are prepared.",
       emptyCategory: "No products in this category yet.",
       items: [
-        { key: "living", label: "Salon & Living Groups" },
-        { key: "bedroom", label: "Bedroom & Living Room" },
-        { key: "bedset", label: "Bed Bases, Headboards & Frames" },
-        { key: "dining", label: "Dining Room & Salon Sets" },
-        { key: "corner", label: "Corner Sofas & L-Living" },
+        { key: "corner", label: "Corner Sofa & L-Living Group Models" },
+        { key: "living", label: "Salon & Living Group Models" },
+        { key: "bedroom", label: "Bedroom & Living Room Models" },
+        { key: "bedset", label: "Bed Base, Headboard & Bedstead Models" },
+        { key: "dining", label: "Dining Room & Salon Set Models" },
         { key: "others", label: "Others" },
       ],
     },
     featured: {
       eyebrow: "Featured",
       title: "Curated Atmospheres",
+    },
+    deliveries: {
+      eyebrow: "Live Deliveries",
+      title: "Every piece we deliver",
+      subtitle:
+        "A glimpse of the spaces we furnish for our customers. See more on Instagram.",
+      cta: "See more on Instagram",
+      openPost: "Open on Instagram",
     },
     collections: {
       eyebrow: "Premium pieces that reflect your home's spirit",
@@ -239,6 +275,24 @@ export const dictionary = {
       subtitle: "True nobility lives at Asil's a World",
       description:
         "Asil's a World brings quality and elegance together in every piece. Our modern designs are crafted to elevate the beauty of your living spaces.",
+      pageEyebrow: "About Us",
+      pageTitle: "True nobility lives at Asil's a World",
+      pageIntro:
+        "We bring together a premium furniture experience shaped by elegance, comfort and flawless detail — with craftsmanship, quality and sustainability.",
+      pillars: [
+        {
+          title: "Quality & Elegance",
+          text: "Asil's a World brings quality and elegance together in every piece. Our modern designs are specially crafted to enhance your living spaces.",
+        },
+        {
+          title: "Handcrafted Furniture",
+          text: "Each piece is carefully handmade by our artisans. This gives every product a unique character and lasting durability.",
+        },
+        {
+          title: "Sustainable Materials",
+          text: "We create eco-friendly products using natural and sustainable materials — working toward a greener world for future generations.",
+        },
+      ],
     },
     lightbox: {
       whatsapp: "Inquire via WhatsApp",
@@ -334,6 +388,7 @@ export const dictionary = {
   ja: {
     nav: {
       collections: "コレクション",
+      about: "私たちについて",
       asilMelody: "Asil's a Melody",
       careers: "採用情報",
       contact: "お問い合わせ",
@@ -376,17 +431,25 @@ export const dictionary = {
       othersNote: "準備が整い次第、こちらのカテゴリーに製品画像が追加されます。",
       emptyCategory: "このカテゴリーにはまだ製品がありません。",
       items: [
-        { key: "living", label: "サロン & リビング" },
-        { key: "bedroom", label: "ベッドルーム" },
-        { key: "bedset", label: "ベッドベース・ヘッドボード" },
-        { key: "dining", label: "ダイニング & サロン" },
-        { key: "corner", label: "コーナーソファ" },
+        { key: "corner", label: "コーナーソファ & L字リビングモデル" },
+        { key: "living", label: "サロン & リビングモデル" },
+        { key: "bedroom", label: "ベッドルーム & リビングルームモデル" },
+        { key: "bedset", label: "ベッドベース・ヘッドボード・ベッドフレームモデル" },
+        { key: "dining", label: "ダイニング & サロンセットモデル" },
         { key: "others", label: "その他" },
       ],
     },
     featured: {
       eyebrow: "特集",
       title: "選び抜かれた空間",
+    },
+    deliveries: {
+      eyebrow: "ライブ納品",
+      title: "お届けしたすべての製品",
+      subtitle:
+        "お客様のお宅に届いたセレクションの一部です。詳しくは Instagram でご覧ください。",
+      cta: "Instagram でもっと見る",
+      openPost: "Instagram で開く",
     },
     collections: {
       eyebrow: "住まいの魂を映すプレミアム家具",
@@ -399,6 +462,24 @@ export const dictionary = {
       subtitle: "真の気品は Asil's a World に",
       description:
         "Asil's a World は、すべての作品に品質と優雅さを重ねています。モダンなデザインは、暮らしの空間をより美しく引き立てるために生まれました。",
+      pageEyebrow: "私たちについて",
+      pageTitle: "真の気品は Asil's a World に",
+      pageIntro:
+        "優雅さ、心地よさ、そして完璧なディテールが息づくプレミアム家具の体験を、職人技・品質・サステナビリティと共に届けます。",
+      pillars: [
+        {
+          title: "品質と優雅さ",
+          text: "Asil's a World は、すべての作品に品質と優雅さを重ねています。モダンなデザインは、暮らしの空間をより美しくするために特別にデザインされています。",
+        },
+        {
+          title: "ハンドメイド家具",
+          text: "ひとつひとつの家具は、職人の手で丁寧に手作りされています。だからこそ、すべてのピースに唯一無二の個性と耐久性が宿ります。",
+        },
+        {
+          title: "持続可能な素材",
+          text: "自然で持続可能な素材を使い、環境に配慮した製品をつくっています。次世代により緑豊かな世界を残すために取り組んでいます。",
+        },
+      ],
     },
     lightbox: {
       whatsapp: "WhatsApp でお問い合わせ",
@@ -494,6 +575,7 @@ export const dictionary = {
   es: {
     nav: {
       collections: "Colecciones",
+      about: "Nosotros",
       asilMelody: "Asil's a Melody",
       careers: "Empleo",
       contact: "Contacto",
@@ -537,17 +619,25 @@ export const dictionary = {
         "Las imágenes de estas categorías aparecerán aquí cuando estén listas.",
       emptyCategory: "Aún no hay productos en esta categoría.",
       items: [
-        { key: "living", label: "Salón y grupos de estar" },
-        { key: "bedroom", label: "Dormitorio y sala" },
-        { key: "bedset", label: "Bases, cabeceros y camas" },
-        { key: "dining", label: "Comedor y salón" },
-        { key: "corner", label: "Sofás esquinados y L" },
+        { key: "corner", label: "Modelos de sofás esquinados y grupos en L" },
+        { key: "living", label: "Modelos de salón y grupos de estar" },
+        { key: "bedroom", label: "Modelos de dormitorio y sala" },
+        { key: "bedset", label: "Modelos de base, cabecero y cama" },
+        { key: "dining", label: "Modelos de comedor y salón" },
         { key: "others", label: "Otros" },
       ],
     },
     featured: {
       eyebrow: "Destacados",
       title: "Atmósferas Seleccionadas",
+    },
+    deliveries: {
+      eyebrow: "Entregas en vivo",
+      title: "Todos los productos que entregamos",
+      subtitle:
+        "Una muestra de los espacios que amueblamos para nuestros clientes. Vea más en Instagram.",
+      cta: "Ver más en Instagram",
+      openPost: "Abrir en Instagram",
     },
     collections: {
       eyebrow: "Productos premium que reflejan el alma de su hogar",
@@ -560,6 +650,24 @@ export const dictionary = {
       subtitle: "La verdadera nobleza está en Asil's a World",
       description:
         "Asil's a World reúne calidad y elegancia en cada pieza. Nuestros diseños modernos están concebidos para realzar la belleza de sus espacios.",
+      pageEyebrow: "Nosotros",
+      pageTitle: "La verdadera nobleza está en Asil's a World",
+      pageIntro:
+        "Unimos una experiencia de mobiliario premium moldeada por la elegancia, el confort y el detalle impecable — con oficio, calidad y sostenibilidad.",
+      pillars: [
+        {
+          title: "Calidad y Elegancia",
+          text: "Asil's a World reúne calidad y elegancia en cada pieza. Nuestros diseños modernos están especialmente pensados para embellecer sus espacios.",
+        },
+        {
+          title: "Mobiliario Artesanal",
+          text: "Cada mueble es elaborado a mano con esmero por nuestros artesanos. Así, cada pieza ofrece un carácter único y una durabilidad excepcional.",
+        },
+        {
+          title: "Materiales Sostenibles",
+          text: "Producimos artículos ecológicos con materiales naturales y sostenibles. Trabajamos para dejar un mundo más verde a las próximas generaciones.",
+        },
+      ],
     },
     lightbox: {
       whatsapp: "Consultar por WhatsApp",
@@ -655,6 +763,7 @@ export const dictionary = {
   ru: {
     nav: {
       collections: "Коллекции",
+      about: "О нас",
       asilMelody: "Asil's a Melody",
       careers: "Карьера",
       contact: "Контакты",
@@ -698,17 +807,25 @@ export const dictionary = {
         "Изображения этих категорий появятся здесь по мере подготовки.",
       emptyCategory: "В этой категории пока нет товаров.",
       items: [
-        { key: "living", label: "Салон и гостиные группы" },
-        { key: "bedroom", label: "Спальня и жилые комнаты" },
-        { key: "bedset", label: "Основания, изголовья и кровати" },
-        { key: "dining", label: "Столовые и салонные комплекты" },
-        { key: "corner", label: "Угловые диваны" },
+        { key: "corner", label: "Модели угловых диванов и L-групп" },
+        { key: "living", label: "Модели салонов и гостиных групп" },
+        { key: "bedroom", label: "Модели спален и жилых комнат" },
+        { key: "bedset", label: "Модели оснований, изголовий и кроватей" },
+        { key: "dining", label: "Модели столовых и салонных комплектов" },
         { key: "others", label: "Другое" },
       ],
     },
     featured: {
       eyebrow: "Избранное",
       title: "Отобранные атмосферы",
+    },
+    deliveries: {
+      eyebrow: "Живые доставки",
+      title: "Все изделия, которые мы доставляем",
+      subtitle:
+        "Фрагмент пространств, которые мы создаём для клиентов. Больше — в Instagram.",
+      cta: "Смотреть больше в Instagram",
+      openPost: "Открыть в Instagram",
     },
     collections: {
       eyebrow: "Премиум-изделия, отражающие дух вашего дома",
@@ -721,6 +838,24 @@ export const dictionary = {
       subtitle: "Истинное благородство — в Asil's a World",
       description:
         "Asil's a World соединяет качество и элегантность в каждом изделии. Наши современные проекты создаются, чтобы подчеркнуть красоту вашего пространства.",
+      pageEyebrow: "О нас",
+      pageTitle: "Истинное благородство — в Asil's a World",
+      pageIntro:
+        "Мы объединяем премиальный мебельный опыт, созданный из элегантности, комфорта и безупречных деталей — с мастерством, качеством и устойчивостью.",
+      pillars: [
+        {
+          title: "Качество и элегантность",
+          text: "Asil's a World соединяет качество и элегантность в каждом изделии. Наши современные дизайны специально созданы, чтобы украсить ваши жилые пространства.",
+        },
+        {
+          title: "Мебель ручной работы",
+          text: "Каждое изделие тщательно изготавливается вручную нашими мастерами. Это придаёт каждой вещи уникальный характер и долговечность.",
+        },
+        {
+          title: "Устойчивые материалы",
+          text: "Мы производим экологичные изделия из натуральных и устойчивых материалов — работая ради более зелёного мира для будущих поколений.",
+        },
+      ],
     },
     lightbox: {
       whatsapp: "Узнать в WhatsApp",

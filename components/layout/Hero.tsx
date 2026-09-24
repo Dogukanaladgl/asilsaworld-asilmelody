@@ -5,7 +5,10 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import SectionLink from "@/components/ui/SectionLink";
 
-const HERO_IMAGE = "/catalog/2027/corner/dolcezza.webp";
+const HERO_IMAGE = "/hero/dolcezza.webp";
+/** Native pixel size of HERO_IMAGE — keeps mobile frame 1:1 with the source. */
+const HERO_WIDTH = 1024;
+const HERO_HEIGHT = 963;
 
 const fade = {
   hidden: { opacity: 0, y: 24 },
@@ -33,30 +36,35 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative h-[min(58svh,28rem)] w-full min-w-0 overflow-hidden bg-asilsa-cream sm:h-[min(70svh,40rem)] md:h-auto md:min-h-full md:rounded-br-[clamp(4rem,18vw,12rem)]"
+          className="relative aspect-[1024/963] w-full min-w-0 overflow-hidden bg-asilsa-cream md:aspect-auto md:h-auto md:min-h-full md:rounded-br-[clamp(4rem,18vw,12rem)]"
         >
+          {/*
+            Mobile: frame matches source AR so the full frame shows edge-to-edge
+            with no letterbox and no crop. Desktop (md+): stretch to the split
+            column and cover — still the full-res file via unoptimized.
+          */}
           <Image
             src={HERO_IMAGE}
             alt={`${t.hero.line1} ${t.hero.line2} ${t.hero.line3}`}
-            fill
+            width={HERO_WIDTH}
+            height={HERO_HEIGHT}
             priority
-            // Always serve the full-resolution source — responsive srcset
-            // switches to soft, smaller files when the viewport shrinks.
+            // Full-resolution source only — Next srcset softens the hero on mobile.
             unoptimized
             quality={100}
-            sizes="100vw"
-            className="object-contain object-center"
+            sizes="(max-width: 767px) 100vw, 50vw"
+            className="h-full w-full object-cover object-center md:absolute md:inset-0 md:h-full md:w-full"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-museum-dark/15 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-asilsa-cream/10" />
         </motion.div>
 
-        <div className="relative flex flex-col justify-center px-fluid py-10 pb-14 sm:py-14 md:py-24 lg:pl-16 lg:pr-12">
+        <div className="relative flex flex-col justify-center px-fluid pb-10 pt-7 sm:py-14 md:py-24 lg:pl-16 lg:pr-12">
           <motion.p
             custom={0}
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="text-fluid-caption mb-4 uppercase tracking-[0.18em] text-museum-dark/45 sm:mb-5 sm:tracking-[0.32em]"
+            className="text-fluid-caption mb-3 uppercase tracking-[0.18em] text-museum-dark/45 sm:mb-5 sm:tracking-[0.32em]"
           >
             {t.nav.collections}
           </motion.p>
@@ -67,7 +75,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="max-w-full break-words font-serif text-[clamp(1.85rem,1.1rem+4.5vw,4.75rem)] font-light leading-[1.12] tracking-tight text-museum-dark"
+            className="max-w-full break-words font-serif text-[clamp(1.65rem,1rem+4vw,4.75rem)] font-light leading-[1.12] tracking-tight text-museum-dark"
           >
             <span className="block">{t.hero.line1}</span>
             <span className="block italic text-asilsa-gold/90">{t.hero.line2}</span>
@@ -79,7 +87,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="text-fluid-body mt-5 max-w-md font-light leading-relaxed tracking-wide text-museum-dark/60 sm:mt-6"
+            className="text-fluid-body mt-4 max-w-md font-light leading-relaxed tracking-wide text-museum-dark/60 sm:mt-6"
           >
             {t.hero.subtitle}
           </motion.p>
@@ -89,7 +97,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="mt-8 sm:mt-9"
+            className="mt-6 sm:mt-9"
           >
             <SectionLink
               section="spaces"

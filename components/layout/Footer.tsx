@@ -38,6 +38,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/hakkimizda"
+                  className="inline-flex min-h-11 items-center text-sm font-light tracking-wide text-museum-dark/70 transition-colors hover:text-asilsa-gold"
+                >
+                  {t.nav.about}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/careers"
                   className="inline-flex min-h-11 items-center text-sm font-light tracking-wide text-museum-dark/70 transition-colors hover:text-asilsa-gold"
                 >

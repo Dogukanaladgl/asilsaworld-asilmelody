@@ -212,59 +212,19 @@ export const catalogItems: CatalogItem[] = [
   },
   {
     "id": "AW-2027-019",
-    "title": "Venüs",
+    "title": "Nirvana",
     "categoryId": "bedset",
-    "collection": "Venüs",
-    "imageUrl": "/catalog/2027/bedset/venus-01.webp",
+    "collection": "Nirvana",
+    "imageUrl": "/catalog/2027/bedset/nirvana-01.webp",
     "imageUrls": [
-      "/catalog/2027/bedset/venus-01.webp",
-      "/catalog/2027/bedset/venus-02.webp"
+      "/catalog/2027/bedset/nirvana-01.webp",
+      "/catalog/2027/bedset/nirvana-02.webp",
+      "/catalog/2027/bedset/nirvana-03.webp",
+      "/catalog/2027/bedset/nirvana-04.webp"
     ]
   },
   {
     "id": "AW-2027-020",
-    "title": "Efsane",
-    "categoryId": "bedset",
-    "collection": "Efsane",
-    "imageUrl": "/catalog/2027/bedset/efsane.webp",
-    "imageUrls": [
-      "/catalog/2027/bedset/efsane.webp"
-    ]
-  },
-  {
-    "id": "AW-2027-021",
-    "title": "Carmen",
-    "categoryId": "bedset",
-    "collection": "Carmen",
-    "imageUrl": "/catalog/2027/bedset/carmen-01.webp",
-    "imageUrls": [
-      "/catalog/2027/bedset/carmen-01.webp",
-      "/catalog/2027/bedset/carmen-02.webp",
-      "/catalog/2027/bedset/carmen-03.webp"
-    ]
-  },
-  {
-    "id": "AW-2027-022",
-    "title": "Rüzgar",
-    "categoryId": "bedset",
-    "collection": "Rüzgar",
-    "imageUrl": "/catalog/2027/bedset/ruzgar.webp",
-    "imageUrls": [
-      "/catalog/2027/bedset/ruzgar.webp"
-    ]
-  },
-  {
-    "id": "AW-2027-023",
-    "title": "Rahat",
-    "categoryId": "bedset",
-    "collection": "Rahat",
-    "imageUrl": "/catalog/2027/bedset/rahat.webp",
-    "imageUrls": [
-      "/catalog/2027/bedset/rahat.webp"
-    ]
-  },
-  {
-    "id": "AW-2027-024",
     "title": "Luxury",
     "categoryId": "bedset",
     "collection": "Luxury",
@@ -277,13 +237,55 @@ export const catalogItems: CatalogItem[] = [
     ]
   },
   {
-    "id": "AW-2027-025",
+    "id": "AW-2027-021",
     "title": "Bella",
     "categoryId": "bedset",
     "collection": "Bella",
     "imageUrl": "/catalog/2027/bedset/bella.webp",
     "imageUrls": [
       "/catalog/2027/bedset/bella.webp"
+    ]
+  },
+  {
+    "id": "AW-2027-022",
+    "title": "Efsane",
+    "categoryId": "bedset",
+    "collection": "Efsane",
+    "imageUrl": "/catalog/2027/bedset/efsane.webp",
+    "imageUrls": [
+      "/catalog/2027/bedset/efsane.webp"
+    ]
+  },
+  {
+    "id": "AW-2027-023",
+    "title": "Carmen",
+    "categoryId": "bedset",
+    "collection": "Carmen",
+    "imageUrl": "/catalog/2027/bedset/carmen-01.webp",
+    "imageUrls": [
+      "/catalog/2027/bedset/carmen-01.webp",
+      "/catalog/2027/bedset/carmen-02.webp",
+      "/catalog/2027/bedset/carmen-03.webp"
+    ]
+  },
+  {
+    "id": "AW-2027-024",
+    "title": "Rüzgar",
+    "categoryId": "bedset",
+    "collection": "Rüzgar",
+    "imageUrl": "/catalog/2027/bedset/ruzgar.webp",
+    "imageUrls": [
+      "/catalog/2027/bedset/ruzgar.webp"
+    ]
+  },
+  {
+    "id": "AW-2027-025",
+    "title": "Rahat",
+    "categoryId": "bedset",
+    "collection": "Rahat",
+    "imageUrl": "/catalog/2027/bedset/rahat.webp",
+    "imageUrls": [
+      "/catalog/2027/bedset/rahat.webp"
     ]
   },
   {
@@ -299,6 +301,17 @@ export const catalogItems: CatalogItem[] = [
   },
   {
     "id": "AW-2027-027",
+    "title": "Venüs",
+    "categoryId": "bedset",
+    "collection": "Venüs",
+    "imageUrl": "/catalog/2027/bedset/venus-01.webp",
+    "imageUrls": [
+      "/catalog/2027/bedset/venus-01.webp",
+      "/catalog/2027/bedset/venus-02.webp"
+    ]
+  },
+  {
+    "id": "AW-2027-028",
     "title": "Tesla",
     "categoryId": "bedset",
     "collection": "Tesla",
@@ -306,19 +319,6 @@ export const catalogItems: CatalogItem[] = [
     "imageUrls": [
       "/catalog/2027/bedset/tesla-01.webp",
       "/catalog/2027/bedset/tesla-02.webp"
-    ]
-  },
-  {
-    "id": "AW-2027-028",
-    "title": "Nirvana",
-    "categoryId": "bedset",
-    "collection": "Nirvana",
-    "imageUrl": "/catalog/2027/bedset/nirvana-01.webp",
-    "imageUrls": [
-      "/catalog/2027/bedset/nirvana-01.webp",
-      "/catalog/2027/bedset/nirvana-02.webp",
-      "/catalog/2027/bedset/nirvana-03.webp",
-      "/catalog/2027/bedset/nirvana-04.webp"
     ]
   },
   {

@@ -25,16 +25,16 @@ const ORDER_FILE = path.join(CAT, "order.json");
 const BEDSET_ORDER = [
   "avonnis",
   "hayal",
-  "venus",
+  "nirvana",
+  "luxury",
+  "bella",
   "efsane",
   "carmen",
   "ruzgar",
   "rahat",
-  "luxury",
-  "bella",
   "meram",
+  "venus",
   "tesla",
-  "nirvana",
 ];
 
 /** Pretty titles for slugs that need Turkish characters / casing. */

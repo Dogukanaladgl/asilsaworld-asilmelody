@@ -16,7 +16,7 @@ import {
 } from "@/lib/scroll";
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scroll-lock";
 
-type NavKey = "collections" | "careers" | "contact";
+type NavKey = "collections" | "about" | "careers" | "contact";
 
 const navItems: {
   key: NavKey;
@@ -24,6 +24,7 @@ const navItems: {
   section?: SectionId;
 }[] = [
   { key: "collections", href: "/", section: "spaces" },
+  { key: "about", href: "/hakkimizda" },
   { key: "careers", href: "/careers" },
   { key: "contact", href: "/iletisim" },
 ];
@@ -71,6 +72,17 @@ export default function Header() {
     }
   };
 
+  const goToAboutTop = () => {
+    closeMobileMenu();
+    if (pathname === "/hakkimizda") {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+    }
+  };
+
   const goToContactTop = () => {
     closeMobileMenu();
     if (pathname === "/iletisim") {
@@ -84,6 +96,7 @@ export default function Header() {
 
   const labels: Record<NavKey, string> = {
     collections: t.nav.collections,
+    about: t.nav.about,
     careers: t.nav.careers,
     contact: t.nav.contact,
   };
@@ -95,6 +108,11 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
+    if (pathname === "/hakkimizda") {
+      setActive("about");
+      return;
+    }
+
     if (pathname === "/careers") {
       setActive("careers");
       return;
@@ -161,7 +179,7 @@ export default function Header() {
     updateUnderline();
     window.addEventListener("resize", updateUnderline);
     return () => window.removeEventListener("resize", updateUnderline);
-  }, [active, t.nav.collections, t.nav.careers, t.nav.contact]);
+  }, [active, t.nav.collections, t.nav.about, t.nav.careers, t.nav.contact]);
 
   return (
     <>
@@ -215,11 +233,13 @@ export default function Header() {
                   href={item.href}
                   ref={setRef}
                   onClick={
-                    item.key === "careers"
-                      ? goToCareersTop
-                      : item.key === "contact"
-                        ? goToContactTop
-                        : undefined
+                    item.key === "about"
+                      ? goToAboutTop
+                      : item.key === "careers"
+                        ? goToCareersTop
+                        : item.key === "contact"
+                          ? goToContactTop
+                          : undefined
                   }
                   className={className}
                   aria-current={active === item.key ? "page" : undefined}
@@ -352,11 +372,13 @@ export default function Header() {
                     key={item.key}
                     href={item.href}
                     onClick={
-                      item.key === "careers"
-                        ? goToCareersTop
-                        : item.key === "contact"
-                          ? goToContactTop
-                          : closeMobileMenu
+                      item.key === "about"
+                        ? goToAboutTop
+                        : item.key === "careers"
+                          ? goToCareersTop
+                          : item.key === "contact"
+                            ? goToContactTop
+                            : closeMobileMenu
                     }
                     className={className}
                     aria-current={active === item.key ? "page" : undefined}
